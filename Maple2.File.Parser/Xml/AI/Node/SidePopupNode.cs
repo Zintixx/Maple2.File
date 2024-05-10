@@ -3,7 +3,7 @@
 namespace Maple2.File.Parser.Xml.AI;
 
 public class SidePopupNode : NodeEntry {
-    public NodePopupType type;
+    public NodePopupType type = NodePopupType.talk;
     public string illust = string.Empty;
     public int duration;
     public string script = string.Empty;

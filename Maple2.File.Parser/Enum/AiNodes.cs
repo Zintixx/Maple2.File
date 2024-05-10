@@ -66,6 +66,6 @@ public enum NodeBuffType {
 }
 
 public enum NodePopupType {
-    talk,
-    cutin,
+    talk = 1,
+    cutin = 2,
 }

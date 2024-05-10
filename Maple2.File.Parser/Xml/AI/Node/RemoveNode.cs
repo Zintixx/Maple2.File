@@ -1,6 +1,6 @@
 ﻿namespace Maple2.File.Parser.Xml.AI;
 
-public class RemoveNode : NodeEntry { }
+public class RemoveMeNode : NodeEntry { }
 
 public class SuicideNode : NodeEntry { }
 

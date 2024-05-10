@@ -4,6 +4,7 @@ namespace Maple2.File.Parser.Xml.AI;
 
 public class SkillNode : NodeEntry {
     public int idx;
+    public int id;
     public short level;
     public int prob = 100;
     public bool sequence;

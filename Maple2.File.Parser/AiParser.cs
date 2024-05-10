@@ -31,19 +31,53 @@ public class AiParser {
             var ai = new NpcAi();
             XmlNode? reservedNode = document.SelectSingleNode("npcAi/reserved");
             if (reservedNode != null) {
-                ai.Reserved = ParseChildren(reservedNode).ToList();
+                XmlNode? commentNode = reservedNode.PreviousSibling;
+                while (includeComments && commentNode is XmlComment {Value: not null} comment) {
+                    commentNode = commentNode.PreviousSibling;
+
+                    if (comment.Value.Trim() == "예약") continue; // Redundant comment
+                    ai.Reserved.Insert(0, new Comment {
+                        Value = comment.Value,
+                    });
+                }
+                ai.Reserved.AddRange(ParseChildren(reservedNode));
             }
             XmlNode? battleNode = document.SelectSingleNode("npcAi/battle");
             if (battleNode != null) {
-                ai.Battle = ParseChildren(battleNode).ToList();
+                XmlNode? commentNode = battleNode.PreviousSibling;
+                while (includeComments && commentNode is XmlComment {Value: not null} comment) {
+                    commentNode = commentNode.PreviousSibling;
+
+                    if (comment.Value.Trim() == "전투") continue; // Redundant comment
+                    ai.Battle.Insert(0, new Comment {
+                        Value = comment.Value,
+                    });
+                }
+                ai.Battle.AddRange(ParseChildren(battleNode));
             }
             XmlNode? battleEndNode = document.SelectSingleNode("npcAi/battleEnd");
             if (battleEndNode != null) {
-                ai.BattleEnd = ParseChildren(battleEndNode).ToList();
+                XmlNode? commentNode = battleEndNode.PreviousSibling;
+                while (includeComments && commentNode is XmlComment {Value: not null} comment) {
+                    commentNode = commentNode.PreviousSibling;
+                    ai.BattleEnd.Insert(0, new Comment {
+                        Value = comment.Value,
+                    });
+                }
+                ai.BattleEnd.AddRange(ParseChildren(battleEndNode));
             }
             XmlNode? aiPresetsNode = document.SelectSingleNode("npcAi/aiPresets");
             if (aiPresetsNode != null) {
-                ai.AiPresets = ParseChildren(aiPresetsNode).ToList();
+                XmlNode? commentNode = aiPresetsNode.PreviousSibling;
+                while (includeComments && commentNode is XmlComment {Value: not null} comment) {
+                    commentNode = commentNode.PreviousSibling;
+
+                    if (comment.Value.StartsWith("ai프리셋 모음")) continue; // Redundant comment
+                    ai.AiPresets.Insert(0, new Comment {
+                        Value = comment.Value,
+                    });
+                }
+                ai.AiPresets.AddRange(ParseChildren(aiPresetsNode));
             }
 
             // removing the AI/ prefix because the <aiInfo path> attribute is relative to AI
@@ -115,7 +149,7 @@ public class AiParser {
             "removeslaves" => ParseAttributes<RemoveSlavesNode>(xml),
             "createrandomroom" => ParseAttributes<CreateRandomRoomNode>(xml),
             "createinteractobject" => ParseAttributes<CreateInteractObjectNode>(xml),
-            "removeme" => ParseAttributes<RemoveNode>(xml),
+            "removeme" => ParseAttributes<RemoveMeNode>(xml),
             "suicide" => ParseAttributes<SuicideNode>(xml),
             // Conditions
             "hpover" => ParseAttributes<HpOverCondition>(xml),
