@@ -20,6 +20,10 @@ public class TableParser {
     private readonly XmlSerializer chatStickerSerializer;
     private readonly XmlSerializer defaultItemsSerializer;
     private readonly XmlSerializer dungeonRoomSerializer;
+    private readonly XmlSerializer dungeonMissionSerializer;
+    private readonly XmlSerializer dungeonRoundDataSerializer;
+    private readonly XmlSerializer dungeonRankRewardSerializer;
+    private readonly XmlSerializer dungeonConfigSerializer;
     private readonly XmlSerializer enchantScrollSerializer;
     private readonly XmlSerializer fishSerializer;
     private readonly XmlSerializer fishHabitatSerializer;
@@ -91,6 +95,10 @@ public class TableParser {
         this.chatStickerSerializer = new XmlSerializer(typeof(ChatStickerRoot));
         this.defaultItemsSerializer = new XmlSerializer(typeof(DefaultItems));
         this.dungeonRoomSerializer = new XmlSerializer(typeof(DungeonRoomRoot));
+        this.dungeonMissionSerializer = new XmlSerializer(typeof(DungeonMissionRoot));
+        this.dungeonRoundDataSerializer = new XmlSerializer(typeof(DungeonRoundDataRoot));
+        this.dungeonRankRewardSerializer = new XmlSerializer(typeof(DungeonRankRewardRoot));
+        this.dungeonConfigSerializer = new XmlSerializer(typeof(DungeonConfigRoot));
         this.enchantScrollSerializer = new XmlSerializer(typeof(EnchantScrollRoot));
         this.fishSerializer = new XmlSerializer(typeof(FishRoot));
         this.fishHabitatSerializer = new XmlSerializer(typeof(FishHabitatRoot));
@@ -223,6 +231,66 @@ public class TableParser {
 
         foreach (DungeonRoom dungeon in data.dungeonRoom) {
             yield return (dungeon.dungeonRoomID, dungeon);
+        }
+    }
+
+    public IEnumerable<(int Id, DungeonRoundGroup RoundData)> ParseDungeonRoundData() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/dungeonrounddata.xml"));
+        var data = dungeonRoundDataSerializer.Deserialize(reader) as DungeonRoundDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (DungeonRoundGroup round in data.dungeonRoundGroup) {
+            yield return (round.id, round);
+        } 
+    }
+
+    public IEnumerable<(int Id, DungeonRankReward Reward)> ParseDungeonRankReward() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/dungeonrankreward.xml"));
+        var data = dungeonRankRewardSerializer.Deserialize(reader) as DungeonRankRewardRoot;
+        Debug.Assert(data != null);
+
+        foreach (DungeonRankReward reward in data.dungeonRankReward) {
+            yield return (reward.rewardID, reward);
+        }
+    }
+
+    public IEnumerable<(int Id, DungeonMission Mission)> ParseDungeonMission() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/dungeonmission.xml"));
+        var data = dungeonMissionSerializer.Deserialize(reader) as DungeonMissionRoot;
+        Debug.Assert(data != null);
+
+        foreach (DungeonMission mission in data.dungeonMission) {
+            yield return (mission.id, mission);
+        }
+    }
+
+    public IEnumerable<DungeonConfig> ParseDungeonConfig() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/na/dungeonconfig.xml"));
+        var data = dungeonConfigSerializer.Deserialize(reader) as DungeonConfigRoot;
+        Debug.Assert(data != null);
+
+        foreach (DungeonConfig config in data.dungeonConfig) {
+            yield return config;
+        }
+    }
+
+    public IEnumerable<ReverseRaidConfig> ParseReverseRaidConfig() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/na/dungeonconfig.xml"));
+        var data = dungeonConfigSerializer.Deserialize(reader) as DungeonConfigRoot;
+        Debug.Assert(data != null);
+
+        foreach (ReverseRaidConfig config in data.reverseRaidConfig) {
+            yield return config;
+        }
+    }
+
+    public IEnumerable<UnitedWeeklyReward> ParseUnitedWeeklyReward() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/na/dungeonconfig.xml"));
+        var data = dungeonConfigSerializer.Deserialize(reader) as DungeonConfigRoot;
+        Debug.Assert(data != null);
+
+        foreach (UnitedWeeklyReward config in data.unitedWeeklyReward) {
+            yield return config;
         }
     }
 
