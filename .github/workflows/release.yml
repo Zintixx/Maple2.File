@@ -4,8 +4,8 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 jobs:
   build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+    runs-on: windows-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -23,4 +23,24 @@ jobs:
         run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
       - name: Push
         run: dotnet nuget push Maple2.File.Parser.Tadeucci.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }}
-
+      - name: Check Available NuGet Package
+        uses: BMTLab/nuget-package-check-action@v1.4.5
+        with:
+          package: Maple2.File.Parser.Tadeucci
+          version: ${VERSION}
+          attempts: 10
+        continue-on-error: true
+      - uses: hugoalh/send-discord-webhook-ghaction@v6.0.0
+        with:
+          key: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          username: Github
+          avatar_url: https://cdn.discordapp.com/icons/1233581457470128209/e3ec579ceb94fa49d096e6dba0ef4931.webp
+          content: "New version published! <:widebeanhappy1:1234223129015091210><:widebeanhappy2:1234223164322611354><:widebeanhappy3:1234223182383284276>"
+          embeds: |
+            [
+              {
+                "title": "Maple2.File.Parser.Tadeucci",
+                "url": "https://www.nuget.org/packages/Maple2.File.Parser.Tadeucci",
+                "color": "rgb(87, 242, 135)",
+              }
+            ]
