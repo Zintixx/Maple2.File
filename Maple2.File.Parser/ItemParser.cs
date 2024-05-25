@@ -15,8 +15,8 @@ public class ItemParser {
 
     public ItemParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.NameSerializer = new XmlSerializer(typeof(StringMapping));
-        this.ItemSerializer = new XmlSerializer(typeof(ItemDataRoot));
+        NameSerializer = new XmlSerializer(typeof(StringMapping));
+        ItemSerializer = new XmlSerializer(typeof(ItemDataRoot));
     }
 
     public IEnumerable<(int Id, string Name, ItemData Data)> Parse() {

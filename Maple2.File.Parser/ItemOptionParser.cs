@@ -58,12 +58,12 @@ public class ItemOptionParser {
 
     public ItemOptionParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.itemOptionConstantSerializer = new XmlSerializer(typeof(ItemOptionConstantRoot));
-        this.itemOptionSerializer = new XmlSerializer(typeof(ItemOptionRoot));
-        this.itemMergeOptionSerializer = new XmlSerializer(typeof(ItemMergeOptionRoot));
-        this.itemOptionPickSerializer = new XmlSerializer(typeof(ItemOptionPickRoot));
-        this.itemVariationSerializer = new XmlSerializer(typeof(ItemOptionVariation));
-        this.itemVariationIndexSerializer = new XmlSerializer(typeof(ItemOptionVariationEquip));
+        itemOptionConstantSerializer = new XmlSerializer(typeof(ItemOptionConstantRoot));
+        itemOptionSerializer = new XmlSerializer(typeof(ItemOptionRoot));
+        itemMergeOptionSerializer = new XmlSerializer(typeof(ItemMergeOptionRoot));
+        itemOptionPickSerializer = new XmlSerializer(typeof(ItemOptionPickRoot));
+        itemVariationSerializer = new XmlSerializer(typeof(ItemOptionVariation));
+        itemVariationIndexSerializer = new XmlSerializer(typeof(ItemOptionVariationEquip));
     }
 
     public IEnumerable<ItemOptionConstantData> ParseConstant() {

@@ -16,8 +16,8 @@ public class QuestParser {
 
     public QuestParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.descriptionSerializer = new XmlSerializer(typeof(QuestDescriptionRoot));
-        this.questSerializer = new XmlSerializer(typeof(QuestDataRootRoot));
+        descriptionSerializer = new XmlSerializer(typeof(QuestDescriptionRoot));
+        questSerializer = new XmlSerializer(typeof(QuestDataRootRoot));
     }
 
     public IEnumerable<(int Id, string Name, QuestData Data)> Parse() {

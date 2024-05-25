@@ -16,8 +16,8 @@ public class SkillParser {
 
     public SkillParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.nameSerializer = new XmlSerializer(typeof(StringMapping));
-        this.skillSerializer = new XmlSerializer(typeof(SkillData));
+        nameSerializer = new XmlSerializer(typeof(StringMapping));
+        skillSerializer = new XmlSerializer(typeof(SkillData));
     }
 
     public IEnumerable<(int Id, string Name, SkillData Data)> Parse() {

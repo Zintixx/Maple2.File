@@ -16,7 +16,7 @@ namespace Maple2.File.IO.Crypto.Stream {
         public List<PackFileEntry> FileList { get; }
 
         private PackStreamVer2() {
-            this.FileList = new List<PackFileEntry>();
+            FileList = new List<PackFileEntry>();
         }
 
         public static PackStreamVer2 ParseHeader(BinaryReader reader) {
@@ -32,13 +32,13 @@ namespace Maple2.File.IO.Crypto.Stream {
         }
 
         public void Encode(BinaryWriter pWriter) {
-            pWriter.Write(this.FileListCount);
-            pWriter.Write(this.CompressedDataSize);
-            pWriter.Write(this.EncodedDataSize);
-            pWriter.Write(this.HeaderSize);
-            pWriter.Write(this.CompressedHeaderSize);
-            pWriter.Write(this.EncodedHeaderSize);
-            pWriter.Write(this.DataSize);
+            pWriter.Write(FileListCount);
+            pWriter.Write(CompressedDataSize);
+            pWriter.Write(EncodedDataSize);
+            pWriter.Write(HeaderSize);
+            pWriter.Write(CompressedHeaderSize);
+            pWriter.Write(EncodedHeaderSize);
+            pWriter.Write(DataSize);
         }
 
         public void InitFileList(BinaryReader reader) {

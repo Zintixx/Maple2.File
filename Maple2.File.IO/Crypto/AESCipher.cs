@@ -18,10 +18,10 @@ namespace Maple2.File.IO.Crypto {
         public AESCipher(byte[] userKey, byte[] iv) {
             this.iv = iv;
 
-            this.algorithm = Aes.Create();
-            this.algorithm.Mode = CipherMode.ECB;
-            this.algorithm.Padding = PaddingMode.None;
-            this.encryptor = algorithm.CreateEncryptor(userKey, new byte[BlockSize]);
+            algorithm = Aes.Create();
+            algorithm.Mode = CipherMode.ECB;
+            algorithm.Padding = PaddingMode.None;
+            encryptor = algorithm.CreateEncryptor(userKey, new byte[BlockSize]);
         }
 
         /*

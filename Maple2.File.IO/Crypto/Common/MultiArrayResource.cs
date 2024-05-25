@@ -6,29 +6,29 @@ namespace Maple2.File.IO.Crypto.Common {
         private readonly string resourceName;
         private readonly Lazy<byte[][]> lazyResource; // TODO: maybe array of lazy (Lazy<byte[]>[])
 
-        string IMultiArray.Name => this.resourceName;
+        string IMultiArray.Name => resourceName;
         public int ArraySize { get; }
         public int Count { get; }
 
-        public byte[] this[uint index] => this.lazyResource.Value[index % this.Count];
+        public byte[] this[uint index] => lazyResource.Value[index % Count];
 
         public MultiArrayResource(ResourceManager resourceManager, string resourceName, int count, int arraySize) {
             this.resourceManager = resourceManager;
             this.resourceName = resourceName;
-            this.Count = count;
-            this.ArraySize = arraySize;
+            Count = count;
+            ArraySize = arraySize;
 
-            this.lazyResource = new Lazy<byte[][]>(this.CreateLazyImplementation);
+            lazyResource = new Lazy<byte[][]>(CreateLazyImplementation);
         }
 
         private byte[][] CreateLazyImplementation() {
-            byte[][] result = new byte[this.Count][];
+            byte[][] result = new byte[Count][];
 
-            byte[] data = (byte[]) this.resourceManager.GetObject(this.resourceName);
+            byte[] data = (byte[]) resourceManager.GetObject(resourceName);
             using (var reader = new BinaryReader(new MemoryStream(data))) {
-                for (int i = 0; i < this.Count; i++) {
-                    byte[] bytes = reader.ReadBytes(this.ArraySize);
-                    if (bytes.Length == this.ArraySize) {
+                for (int i = 0; i < Count; i++) {
+                    byte[] bytes = reader.ReadBytes(ArraySize);
+                    if (bytes.Length == ArraySize) {
                         result[i] = bytes;
                     }
                 }

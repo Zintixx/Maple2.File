@@ -19,8 +19,8 @@ namespace Maple2.File.IO.Crypto.Stream {
         private uint reserved;
 
         private PackStreamVer3(PackVersion version) {
-            this.Version = version;
-            this.FileList = new List<PackFileEntry>();
+            Version = version;
+            FileList = new List<PackFileEntry>();
         }
 
         public static PackStreamVer3 ParseHeader(BinaryReader reader, PackVersion version) {
@@ -37,14 +37,14 @@ namespace Maple2.File.IO.Crypto.Stream {
         }
 
         public void Encode(BinaryWriter pWriter) {
-            pWriter.Write(this.FileListCount);
-            pWriter.Write(this.reserved);
-            pWriter.Write(this.CompressedDataSize);
-            pWriter.Write(this.EncodedDataSize);
-            pWriter.Write(this.CompressedHeaderSize);
-            pWriter.Write(this.EncodedHeaderSize);
-            pWriter.Write(this.DataSize);
-            pWriter.Write(this.HeaderSize);
+            pWriter.Write(FileListCount);
+            pWriter.Write(reserved);
+            pWriter.Write(CompressedDataSize);
+            pWriter.Write(EncodedDataSize);
+            pWriter.Write(CompressedHeaderSize);
+            pWriter.Write(EncodedHeaderSize);
+            pWriter.Write(DataSize);
+            pWriter.Write(HeaderSize);
         }
 
         public void InitFileList(BinaryReader reader) {

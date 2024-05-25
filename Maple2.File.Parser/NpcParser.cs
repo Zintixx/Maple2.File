@@ -16,8 +16,8 @@ public class NpcParser {
 
     public NpcParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.NameSerializer = new XmlSerializer(typeof(StringMapping));
-        this.NpcSerializer = new XmlSerializer(typeof(NpcDataRoot));
+        NameSerializer = new XmlSerializer(typeof(StringMapping));
+        NpcSerializer = new XmlSerializer(typeof(NpcDataRoot));
     }
 
     public IEnumerable<(int Id, string Name, NpcData Data, List<EffectDummy> Dummy)> Parse() {

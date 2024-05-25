@@ -15,8 +15,8 @@ public class RidingParser {
 
     public RidingParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.ridingSerializer = new XmlSerializer(typeof(RidingRoot));
-        this.passengerRidingSerializer = new XmlSerializer(typeof(PassengerRidingRoot));
+        ridingSerializer = new XmlSerializer(typeof(RidingRoot));
+        passengerRidingSerializer = new XmlSerializer(typeof(PassengerRidingRoot));
     }
 
     public IEnumerable<(int Id, Riding Data)> Parse() {

@@ -14,7 +14,7 @@ public class FunctionCubeParser {
 
     public FunctionCubeParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.FunctionCubeSerializer = new XmlSerializer(typeof(FunctionCubeRoot));
+        FunctionCubeSerializer = new XmlSerializer(typeof(FunctionCubeRoot));
     }
 
     public IEnumerable<(int Id, FunctionCube Data)> Parse() {

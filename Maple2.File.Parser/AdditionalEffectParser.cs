@@ -12,7 +12,7 @@ public class AdditionalEffectParser {
 
     public AdditionalEffectParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.effectSerializer = new XmlSerializer(typeof(AdditionalEffectLevelData));
+        effectSerializer = new XmlSerializer(typeof(AdditionalEffectLevelData));
     }
 
     public IEnumerable<(int Id, IList<AdditionalEffectData> Data)> Parse() {

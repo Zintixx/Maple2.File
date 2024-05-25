@@ -17,9 +17,9 @@ public class PetParser {
 
     public PetParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.nameSerializer = new XmlSerializer(typeof(StringMapping));
-        this.petSerializer = new XmlSerializer(typeof(PetDataRoot));
-        this.petPropertySerializer = new XmlSerializer(typeof(PetPropertyRoot));
+        nameSerializer = new XmlSerializer(typeof(StringMapping));
+        petSerializer = new XmlSerializer(typeof(PetDataRoot));
+        petPropertySerializer = new XmlSerializer(typeof(PetPropertyRoot));
     }
 
     public IEnumerable<(int Id, string Name, PetData data)> Parse() {

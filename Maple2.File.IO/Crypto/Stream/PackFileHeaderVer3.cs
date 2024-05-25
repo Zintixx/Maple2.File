@@ -15,18 +15,18 @@ namespace Maple2.File.IO.Crypto.Stream {
         private readonly int[] reserved;
 
         private PackFileHeaderVer3(PackVersion version) {
-            this.Version = version;
-            this.reserved = new int[1];
+            Version = version;
+            reserved = new int[1];
         }
 
         public PackFileHeaderVer3(PackVersion version, BinaryReader reader) : this(version) {
-            this.BufferFlag = (Encryption) reader.ReadUInt32(); //[ecx+8]
-            this.FileIndex = reader.ReadInt32(); //[ecx+12]
-            this.EncodedFileSize = reader.ReadUInt32(); //[ecx+16]
-            this.reserved[0] = reader.ReadInt32(); //[ecx+20]
-            this.CompressedFileSize = reader.ReadUInt64(); //[ecx+24] | [ecx+28]
-            this.FileSize = reader.ReadUInt64(); //[ecx+32] | [ecx+36]
-            this.Offset = reader.ReadUInt64(); //[ecx+40] | [ecx+44]
+            BufferFlag = (Encryption) reader.ReadUInt32(); //[ecx+8]
+            FileIndex = reader.ReadInt32(); //[ecx+12]
+            EncodedFileSize = reader.ReadUInt32(); //[ecx+16]
+            reserved[0] = reader.ReadInt32(); //[ecx+20]
+            CompressedFileSize = reader.ReadUInt64(); //[ecx+24] | [ecx+28]
+            FileSize = reader.ReadUInt64(); //[ecx+32] | [ecx+36]
+            Offset = reader.ReadUInt64(); //[ecx+40] | [ecx+44]
         }
 
         public static PackFileHeaderVer3 CreateHeader(PackVersion version, int index, Encryption flag, ulong offset,
@@ -44,13 +44,13 @@ namespace Maple2.File.IO.Crypto.Stream {
         }
 
         public void Encode(BinaryWriter pWriter) {
-            pWriter.Write((uint) this.BufferFlag);
-            pWriter.Write(this.FileIndex);
-            pWriter.Write(this.EncodedFileSize);
-            pWriter.Write(this.reserved[0]);
-            pWriter.Write(this.CompressedFileSize);
-            pWriter.Write(this.FileSize);
-            pWriter.Write(this.Offset);
+            pWriter.Write((uint) BufferFlag);
+            pWriter.Write(FileIndex);
+            pWriter.Write(EncodedFileSize);
+            pWriter.Write(reserved[0]);
+            pWriter.Write(CompressedFileSize);
+            pWriter.Write(FileSize);
+            pWriter.Write(Offset);
         }
     }
 }

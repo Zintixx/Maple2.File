@@ -12,7 +12,7 @@ public class AniKeyTextParser {
 
     public AniKeyTextParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.aniSerializer = new XmlSerializer(typeof(AnimationData));
+        aniSerializer = new XmlSerializer(typeof(AnimationData));
     }
 
     public IEnumerable<AnimationData> Parse() {

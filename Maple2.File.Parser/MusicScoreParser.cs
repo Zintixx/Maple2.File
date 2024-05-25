@@ -12,7 +12,7 @@ public class MusicScoreParser {
 
     public MusicScoreParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.musicSerializer = new XmlSerializer(typeof(MusicScoreData));
+        musicSerializer = new XmlSerializer(typeof(MusicScoreData));
     }
 
     public IEnumerable<(int Id, MusicScoreData Data)> Parse() {

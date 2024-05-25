@@ -14,18 +14,18 @@ namespace Maple2.File.IO.Crypto.Common {
         public PackFileEntry CreateCopy(byte[] data = null) {
             return new PackFileEntry {
                 Index = int.MaxValue,
-                Hash = this.Hash,
-                Name = this.Name,
-                TreeName = this.TreeName,
+                Hash = Hash,
+                Name = Name,
+                TreeName = TreeName,
                 //FileHeader = this.FileHeader,
-                Data = data ?? this.Data,
+                Data = data ?? Data,
                 Changed = true
             };
         }
 
         public int CompareTo(PackFileEntry entry) {
-            if (this.Index == entry.Index) return 0;
-            if (this.Index > entry.Index) return 1;
+            if (Index == entry.Index) return 0;
+            if (Index > entry.Index) return 1;
             return -1;
         }
 

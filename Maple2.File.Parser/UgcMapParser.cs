@@ -13,8 +13,8 @@ public class UgcMapParser {
 
     public UgcMapParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.ugcMapSerializer = new XmlSerializer(typeof(UgcMap));
-        this.exportedUgcMapSerializer = new XmlSerializer(typeof(ExportedUgcMap));
+        ugcMapSerializer = new XmlSerializer(typeof(UgcMap));
+        exportedUgcMapSerializer = new XmlSerializer(typeof(ExportedUgcMap));
     }
 
     public IEnumerable<(int Id, UgcMap Data)> Parse() {

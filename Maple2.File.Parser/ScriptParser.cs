@@ -15,9 +15,9 @@ public class ScriptParser {
 
     public ScriptParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.npcScriptSerializer = new XmlSerializer(typeof(NpcScript));
-        this.questScriptSerializer = new XmlSerializer(typeof(QuestScriptRoot));
-        this.scriptStringSerializer = new XmlSerializer(typeof(StringMapping));
+        npcScriptSerializer = new XmlSerializer(typeof(NpcScript));
+        questScriptSerializer = new XmlSerializer(typeof(QuestScriptRoot));
+        scriptStringSerializer = new XmlSerializer(typeof(StringMapping));
     }
 
     public IEnumerable<(int Id, NpcScript Script)> ParseNpc() {

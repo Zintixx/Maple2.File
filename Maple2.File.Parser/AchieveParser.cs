@@ -16,8 +16,8 @@ public class AchieveParser {
 
     public AchieveParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.nameSerializer = new XmlSerializer(typeof(StringMapping));
-        this.achieveSerializer = new XmlSerializer(typeof(AchievesData));
+        nameSerializer = new XmlSerializer(typeof(StringMapping));
+        achieveSerializer = new XmlSerializer(typeof(AchievesData));
     }
 
     public IEnumerable<(int Id, string Name, AchieveData Data)> Parse() {

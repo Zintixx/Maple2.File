@@ -16,8 +16,8 @@ public class MapParser {
 
     public MapParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
-        this.NameSerializer = new XmlSerializer(typeof(StringMapping));
-        this.MapSerializer = new XmlSerializer(typeof(MapDataRoot));
+        NameSerializer = new XmlSerializer(typeof(StringMapping));
+        MapSerializer = new XmlSerializer(typeof(MapDataRoot));
     }
 
     public IEnumerable<(int Id, string Name, MapData Data)> Parse() {
