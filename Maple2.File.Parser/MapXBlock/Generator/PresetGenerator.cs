@@ -69,11 +69,11 @@ public class PresetGenerator {
         builder.Replace("\t", "    ");
 
         var imports = new StringBuilder();
-        string[] replaces = new[] {
+        string[] replaces = [
             "System.Collections.Generic",
             "System.Drawing",
             "System.Numerics",
-        };
+        ];
         foreach (string replace in replaces) {
             int before = builder.Length;
             builder.Replace($"{replace}.", "");

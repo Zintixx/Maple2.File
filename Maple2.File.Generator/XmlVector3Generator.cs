@@ -24,10 +24,10 @@ public class XmlVector3Generator : XmlGenerator {
     protected override string ProcessClass(GeneratorExecutionContext context, ISymbol @class,
         IEnumerable<IFieldSymbol> fields, INamedTypeSymbol attribute) {
         var builder = new SourceBuilder(@class.ContainingNamespace);
-        builder.Imports.AddRange(new[] {
+        builder.Imports.AddRange([
             "System",
             "System.Xml.Serialization",
-        });
+        ]);
         builder.Classes.AddRange(@class.ContainingTypes().Select(symbol => symbol.Name));
         builder.Classes.Add(@class.Name);
 

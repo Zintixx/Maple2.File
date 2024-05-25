@@ -10,7 +10,7 @@ public class AssetIndex {
 
     private readonly Dictionary<string, List<string>> llidLookup;
     private readonly Dictionary<string, Dictionary<string, string>> ntLookup;
-    private static readonly string[] NtTagFiles = {
+    private static readonly string[] NtTagFiles = [
         "application",
         "cn",
         "dds",
@@ -31,12 +31,12 @@ public class AssetIndex {
         "shader",
         "x-shockwave-flash",
         "x-world",
-    };
-    private static readonly string[] NtFiles = {
+    ];
+    private static readonly string[] NtFiles = [
         "llid",
         "name",
         "relpath",
-    };
+    ];
 
     public AssetIndex(M2dReader reader) {
         ntLookup = new Dictionary<string, Dictionary<string, string>>();

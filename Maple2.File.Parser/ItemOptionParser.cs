@@ -9,7 +9,7 @@ using Maple2.File.Parser.Xml.Table;
 namespace Maple2.File.Parser;
 
 public class ItemOptionParser {
-    private readonly string[] constantSuffix = {
+    private readonly string[] constantSuffix = [
         "equip",
         "equip_fighter",
         "equip_pet",
@@ -19,8 +19,8 @@ public class ItemOptionParser {
         "gemstone",
         "mergematerial",
         "skin",
-    };
-    private readonly string[] randomSuffix = {
+    ];
+    private readonly string[] randomSuffix = [
         "12", "13", "14", "15", "16", "17", "18", "19",
         "20", "21", "22",
         "30", "31", "32", "33", "34",
@@ -30,8 +30,8 @@ public class ItemOptionParser {
         "armormanual",
         "pet_60",
         "weaponmanual",
-    };
-    private readonly string[] staticSuffix = {
+    ];
+    private readonly string[] staticSuffix = [
         "12", "13", "14", "15", "16", "17", "18", "19",
         "20", "21", "22",
         "30", "31", "32", "33", "34",
@@ -40,13 +40,13 @@ public class ItemOptionParser {
         "armormanual",
         "mergematerial",
         "petequipment",
-    };
-    private readonly string[] variationSuffix = {
+    ];
+    private readonly string[] variationSuffix = [
         "acc",
         "armor",
         "pet",
         "weapon",
-    };
+    ];
 
     private readonly M2dReader xmlReader;
     private readonly XmlSerializer itemOptionConstantSerializer;
