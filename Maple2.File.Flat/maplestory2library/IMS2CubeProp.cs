@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Maple2.File.Flat.maplestory2library {
     public interface IMS2CubeProp : IMS2PhysXProp, ICubeBrushable {

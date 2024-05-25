@@ -1,5 +1,4 @@
-﻿using System;
-using M2dXmlGenerator;
+﻿using M2dXmlGenerator;
 
 namespace Maple2.File.Parser.Xml.Npc;
 

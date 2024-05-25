@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Maple2.File.Parser.Flat;
+﻿namespace Maple2.File.Parser.Flat;
 
 public class FlatBehavior {
     public string Name { get; set; }

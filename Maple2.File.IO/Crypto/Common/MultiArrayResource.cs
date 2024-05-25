@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Resources;
+﻿using System.Resources;
 
 namespace Maple2.File.IO.Crypto.Common {
     public class MultiArrayResource : IMultiArray {

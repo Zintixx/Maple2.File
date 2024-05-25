@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Maple2.File.Parser.Xml.AI;
+﻿namespace Maple2.File.Parser.Xml.AI;
 
 public abstract class Entry {
     public string name;

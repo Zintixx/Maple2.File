@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Maple2.File.Flat.standardmodellibrary {
+﻿namespace Maple2.File.Flat.standardmodellibrary {
     public interface ITimeOfDayEditable : IMapEntity {
         string ModelName => "TimeOfDayEditable";
         string TimeOfDayAssetPath => "";

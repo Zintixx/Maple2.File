@@ -1,5 +1,4 @@
-﻿using System;
-using Maple2.File.Parser.Enum;
+﻿using Maple2.File.Parser.Enum;
 
 namespace Maple2.File.Parser.Xml.AI;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Maple2.File.Flat.standardmodellibrary {
+﻿namespace Maple2.File.Flat.standardmodellibrary {
     public interface ITerrain : IRenderable, IShadowable, ILightable, IPreloadable {
         string ModelName => "Terrain";
         ushort TerrainShadowLOD => 1;

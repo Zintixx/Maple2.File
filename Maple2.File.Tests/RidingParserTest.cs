@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Maple2.File.Parser;
+﻿using Maple2.File.Parser;
 using Maple2.File.Parser.Xml.Riding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

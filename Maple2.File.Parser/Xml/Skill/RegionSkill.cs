@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using System;
 using System.Xml.Serialization;
 using M2dXmlGenerator;
 

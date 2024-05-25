@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Maple2.File.IO.Crypto.Common;
+﻿using Maple2.File.IO.Crypto.Common;
 
 namespace Maple2.File.IO.Crypto.Stream {
     public interface IPackStream {

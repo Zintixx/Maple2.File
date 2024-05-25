@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Maple2.File.IO.Crypto.Common;
+﻿using Maple2.File.IO.Crypto.Common;
 
 namespace Maple2.File.IO.Crypto.Stream {
     public class PackFileHeaderVer3 : IPackFileHeader {

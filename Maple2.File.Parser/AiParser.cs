@@ -1,9 +1,5 @@
-﻿using System;
-using Maple2.File.Parser.Xml.AI;
-using System.Collections.Generic;
+﻿using Maple2.File.Parser.Xml.AI;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using Maple2.File.IO;

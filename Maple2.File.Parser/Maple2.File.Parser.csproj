@@ -16,6 +16,8 @@
         <PackageVersion>2.1.11</PackageVersion>
         <TargetFramework>net8.0</TargetFramework>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

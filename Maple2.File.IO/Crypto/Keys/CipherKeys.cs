@@ -1,5 +1,4 @@
-﻿using System;
-using Maple2.File.IO.Crypto.Common;
+﻿using Maple2.File.IO.Crypto.Common;
 
 namespace Maple2.File.IO.Crypto.Keys {
     public static class CipherKeys {

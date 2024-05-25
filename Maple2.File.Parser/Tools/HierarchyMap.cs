@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Maple2.File.Parser.Tools;
+﻿namespace Maple2.File.Parser.Tools;
 
 public class HierarchyMap<T> {
     private readonly Dictionary<string, HierarchyMap<T>> directories;

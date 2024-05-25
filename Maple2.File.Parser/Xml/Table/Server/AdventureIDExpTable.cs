@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Maple2.File.Parser.Enum;
 
 namespace Maple2.File.Parser.Xml.Table.Server;

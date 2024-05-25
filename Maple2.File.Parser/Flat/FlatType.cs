@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Maple2.File.Parser.Flat;
+﻿namespace Maple2.File.Parser.Flat;
 
 public class FlatType {
     private static readonly Dictionary<string, Guid> BuiltIn = new() {

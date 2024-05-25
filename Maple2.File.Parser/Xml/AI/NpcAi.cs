@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Maple2.File.Parser.Xml.AI;
+﻿namespace Maple2.File.Parser.Xml.AI;
 
 // ./data/server/ai/**/%s.xml
 public class NpcAi {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO.MemoryMappedFiles;
+﻿using System.IO.MemoryMappedFiles;
 using System.Text;
 using Ionic.Zlib;
 using Maple2.File.IO.Crypto.Common;

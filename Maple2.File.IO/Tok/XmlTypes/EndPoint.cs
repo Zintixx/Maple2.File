@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Maple2.File.IO.Tok.XmlTypes {
     [XmlRoot("endPoints")]

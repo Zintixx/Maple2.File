@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Maple2.File.IO.Crypto.Common {
+﻿namespace Maple2.File.IO.Crypto.Common {
     [Flags]
     public enum Encryption : uint {
         // Standard crypto: Base64 Encoded + AES Encrypted buffers.

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Maple2.File.IO.Crypto.Stream;
+﻿using Maple2.File.IO.Crypto.Stream;
 
 namespace Maple2.File.IO.Crypto.Common {
     [Serializable]

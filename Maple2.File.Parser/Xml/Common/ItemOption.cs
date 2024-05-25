@@ -1,6 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
-using M2dXmlGenerator;
+﻿using System.Xml.Serialization;
 
 namespace Maple2.File.Parser.Xml.Common;
 
