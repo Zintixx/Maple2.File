@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Build
-        run: dotnet build --configuration Release /p:Version=${VERSION}
+      # - name: Build
+      #   run: dotnet build --configuration Release /p:Version=${VERSION}
       - name: Pack
         run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
       - name: Push
@@ -28,7 +28,7 @@ jobs:
         with:
           package: Maple2.File.Parser.Tadeucci
           version: ${VERSION}
-          attempts: 10
+          attempts: 15
         continue-on-error: true
       - uses: hugoalh/send-discord-webhook-ghaction@v6.0.0
         with:
