@@ -116,6 +116,10 @@ public partial class IndividualItemDrop {
             public bool ShouldSerializeLocale() => Locale != null && Locale.Length > 0;
 
             public bool ShouldSerializeFeature() => Feature != null && Feature.Length > 0;
+
+            public bool ShouldSerializeitemLifeType() => itemLifeType != 0;
+
+            public bool ShouldSerializeitemLifeValue() => itemLifeValue != 0;
         }
     }
 }
