@@ -20,7 +20,7 @@ jobs:
       # - name: Build
       #   run: dotnet build --configuration Release /p:Version=${VERSION}
       - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
+        run: dotnet pack --configuration Release --output .
       - name: Push
         run: dotnet nuget push Maple2.File.Parser.Tadeucci.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_TOKEN }}
       - name: Check Available NuGet Package
