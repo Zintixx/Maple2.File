@@ -27,7 +27,7 @@ jobs:
         uses: BMTLab/nuget-package-check-action@v1.4.5
         with:
           package: Maple2.File.Parser.Tadeucci
-          version: ${VERSION}
+          version: ${{ env.VERSION }}
           attempts: 15
         continue-on-error: true
       - uses: hugoalh/send-discord-webhook-ghaction@v6.0.0
