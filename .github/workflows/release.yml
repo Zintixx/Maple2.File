@@ -30,7 +30,8 @@ jobs:
           version: ${{ env.VERSION }}
           attempts: 15
         continue-on-error: true
-      - uses: hugoalh/send-discord-webhook-ghaction@v6.0.0
+      - name: Send Discord Webhook
+        uses: hugoalh/send-discord-webhook-ghaction@v6.0.0
         with:
           key: ${{ secrets.DISCORD_WEBHOOK_URL }}
           username: Github
@@ -44,3 +45,10 @@ jobs:
                 "color": "rgb(87, 242, 135)",
               }
             ]
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          generate_release_notes: true
+          files: |
+            Maple2.File.Parser.Tadeucci.${VERSION}.nupkg
