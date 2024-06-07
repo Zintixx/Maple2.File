@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Xml.Serialization;
 using Maple2.File.IO;
+using Maple2.File.Parser.Flat.Convert;
+using Maple2.File.IO.Nif;
 using Maple2.File.Parser.Tools;
 using Maple2.File.Tests.helpers;
 
@@ -11,6 +13,8 @@ public static class TestUtils {
     public static readonly M2dReader ServerReader;
     public static readonly M2dReader ExportedReader;
     public static readonly M2dReader AssetMetadataReader;
+    public static readonly AssetIndex AssetIndex;
+    public static readonly List<PrefixedM2dReader> ModelM2dReaders;
 
     static TestUtils() {
         DotEnv.Load();
@@ -24,6 +28,19 @@ public static class TestUtils {
         ExportedReader = new M2dReader(@$"{m2dPath}\Resource\Exported.m2d");
         ServerReader = new M2dReader(@$"{m2dPath}\Server.m2d");
         AssetMetadataReader = new M2dReader(@$"{m2dPath}\Resource\asset-web-metadata.m2d");
+        AssetIndex = new AssetIndex(AssetMetadataReader);
+        ModelM2dReaders = new List<PrefixedM2dReader>() {
+            new PrefixedM2dReader("/library/", $@"{m2dPath}\Resource\Library.m2d"),
+            new PrefixedM2dReader("/model/map/", $@"{m2dPath}\Resource\Model\Map.m2d"),
+            new PrefixedM2dReader("/model/effect/", $@"{m2dPath}\Resource\Model\Effect.m2d"),
+            new PrefixedM2dReader("/model/camera/", $@"{m2dPath}\Resource\Model\Camera.m2d"),
+            new PrefixedM2dReader("/model/tool/", $@"{m2dPath}\Resource\Model\Tool.m2d"),
+            new PrefixedM2dReader("/model/item/", $@"{m2dPath}\Resource\Model\Item.m2d"),
+            new PrefixedM2dReader("/model/npc/", $@"{m2dPath}\Resource\Model\Npc.m2d"),
+            new PrefixedM2dReader("/model/path/", $@"{m2dPath}\Resource\Model\Path.m2d"),
+            new PrefixedM2dReader("/model/character/", $@"{m2dPath}\Resource\Model\Character.m2d"),
+            new PrefixedM2dReader("/model/textures/", $@"{m2dPath}\Resource\Model\Textures.m2d"),
+        };
     }
 
     public static void UnknownElementHandler(object? sender, XmlElementEventArgs e) {
