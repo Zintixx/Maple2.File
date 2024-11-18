@@ -13,7 +13,7 @@
         <PackageTags>MapleStory2, File, Parser, m2d, xml</PackageTags>
         <!-- Use following lines to write the generated files to disk. -->
         <EmitCompilerGeneratedFiles Condition=" '$(Configuration)' == 'Debug' ">true</EmitCompilerGeneratedFiles>
-        <PackageVersion>2.1.33</PackageVersion>
+        <PackageVersion>2.2.0</PackageVersion>
         <TargetFramework>net8.0</TargetFramework>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -36,7 +36,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
+      <PackageReference Include="Tenekon.MSBuild.Packaging.ProjectBuildInPackage" Version="2.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
