@@ -1,0 +1,45 @@
+﻿name: create_tag.yml
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name (e.g., v1.2.3)'
+        required: true
+      release_message:
+        description: 'Release message/description'
+        required: false
+        default: 'Release'
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed to fetch all history for tags
+
+      - name: Check if commit is already tagged
+        id: check_tag
+        run: |
+          TAG=$(git tag --contains ${{ github.sha }} | head -n 1)
+          if [ -n "$TAG" ]; then
+            echo "::set-output name=tagged::true"
+            echo "::set-output name=existing_tag::$TAG"
+            echo "Commit ${{ github.sha }} is already tagged with $TAG"
+          else
+            echo "::set-output name=tagged::false"
+            echo "Commit ${{ github.sha }} is not tagged"
+          fi
+
+      - name: Create tag
+        if: steps.check_tag.outputs.tagged == 'false'
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git tag -a ${{ github.event.inputs.tag_name }} ${{ github.sha }} -m "${{ github.event.inputs.release_message }}"
+          git push origin ${{ github.event.inputs.tag_name }}
+
+      - name: Output Existing Tag (if any)
+        if: steps.check_tag.outputs.tagged == 'true'
+        run: |
+          echo "Existing tag: ${{ steps.check_tag.outputs.existing_tag }}"
