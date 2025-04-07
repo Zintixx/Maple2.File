@@ -100,7 +100,7 @@ public class ServerTableParser {
     }
 
     public IEnumerable<(int NpcId, IDictionary<int, NpcScriptCondition> ScriptConditions)> ParseNpcScriptCondition() {
-        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/Server/npcScriptCondition_Final.xml")));
+        string xml = xmlReader.GetString(xmlReader.GetEntry("table/Server/npcScriptCondition_Final.xml"));
         var reader = XmlReader.Create(new StringReader(xml));
         var data = npcScriptConditionSerializer.Deserialize(reader) as NpcScriptConditionRoot;
         Debug.Assert(data != null);
@@ -111,7 +111,7 @@ public class ServerTableParser {
     }
 
     public IEnumerable<(int QuestId, IDictionary<int, QuestScriptCondition> ScriptConditions)> ParseQuestScriptCondition() {
-        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/Server/QuestScriptCondition_final.xml")));
+        string xml = xmlReader.GetString(xmlReader.GetEntry("table/Server/QuestScriptCondition_final.xml"));
         var reader = XmlReader.Create(new StringReader(xml));
         var data = questScriptConditionSerializer.Deserialize(reader) as QuestScriptConditionRoot;
         Debug.Assert(data != null);
