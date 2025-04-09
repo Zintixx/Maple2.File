@@ -2,6 +2,7 @@
 
 namespace Maple2.File.Parser.Xml.Skill;
 
+[XmlType(Namespace = "Common")]
 public class CompareRange {
     [XmlAttribute] public float str;
     [XmlAttribute] public float dex;
@@ -43,4 +44,43 @@ public class CompareRange {
 
     [XmlAttribute] public string func = string.Empty;
     [XmlAttribute] public int type;
+
+    public float this[byte i] => i switch {
+        0 => str,
+        1 => dex,
+        2 => @int,
+        3 => luk,
+        4 => hp,
+        5 => hp_rgp,
+        6 => hp_inv,
+        7 => sp,
+        8 => sp_rgp,
+        9 => sp_inv,
+        10 => ep,
+        11 => ep_rgp,
+        12 => ep_inv,
+        13 => asp,
+        14 => msp,
+        15 => atp,
+        16 => evp,
+        17 => cap,
+        18 => cad,
+        19 => car,
+        20 => ndd,
+        21 => abp,
+        22 => jmp,
+        23 => pap,
+        24 => map,
+        25 => par,
+        26 => mar,
+        27 => wapmin,
+        28 => wapmax,
+        29 => dmg,
+        30 => dmg,
+        31 => pen,
+        32 => rmsp,
+        33 => bap,
+        34 => bap_pet,
+        _ => throw new ArgumentOutOfRangeException(nameof(i), i, "Invalid CompareRange index."),
+    };
 }
