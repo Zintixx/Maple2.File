@@ -99,6 +99,7 @@ public class TableParser {
     private readonly XmlSerializer weddingRewardSerializer;
     private readonly XmlSerializer weddingSkillSerializer;
     private readonly XmlSerializer smartPushSerializer;
+    private readonly XmlSerializer seasonDataSerializer;
 
     private readonly string locale;
 
@@ -191,6 +192,7 @@ public class TableParser {
         weddingRewardSerializer = new XmlSerializer(typeof(WeddingRewardRoot));
         weddingSkillSerializer = new XmlSerializer(typeof(WeddingSkillRoot));
         smartPushSerializer = new XmlSerializer(typeof(SmartPushRoot));
+        seasonDataSerializer = new XmlSerializer(typeof(SeasonDataRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
 
@@ -1397,6 +1399,105 @@ public class TableParser {
 
         foreach (SmartPush entry in data.push) {
             yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataArcade() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_arcade.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataBossColosseum() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_bosscolosseum.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataDarkStream() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_darkstream.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataGuildPvp() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_guildpvp.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataMapleSurvival() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_maplesurvival.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataMapleSurvivalSquad() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_maplesurvival_squad.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataPvp() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_pvp.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataUgcMapCommendation() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_ugcmapcommendation.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, SeasonData Data)> ParseSeasonDataWorldChampion() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/seasondata_worldchampion.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = seasonDataSerializer.Deserialize(reader) as SeasonDataRoot;
+        Debug.Assert(data != null);
+
+        foreach (SeasonData entry in data.Season) {
+            yield return (entry.seasonID, entry);
         }
     }
 }

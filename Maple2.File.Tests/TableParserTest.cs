@@ -678,5 +678,44 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestSeasonData() {
+        foreach ((_, _) in _parser.ParseSeasonDataArcade()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataBossColosseum()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataDarkStream()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataGuildPvp()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataMapleSurvival()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataMapleSurvivalSquad()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataPvp()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataUgcMapCommendation()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSeasonDataWorldChampion()) {
+            continue;
+        }
+    }
 }
 
