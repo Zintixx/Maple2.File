@@ -14,11 +14,11 @@ public class ItemParser {
     private readonly XmlSerializer itemSerializer;
     private readonly XmlSerializer itemNewSerializer;
     private readonly bool newXml;
-    private readonly string locale;
+    private readonly string language;
 
-    public ItemParser(M2dReader xmlReader, string locale) {
+    public ItemParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
-        this.locale = locale.ToLower();
+        this.language = language.ToLower();
         nameSerializer = new XmlSerializer(typeof(StringMapping));
         itemSerializer = new XmlSerializer(typeof(ItemDataRoot));
         itemNewSerializer = new XmlSerializer(typeof(ItemDataNew));
@@ -50,7 +50,7 @@ public class ItemParser {
     }
 
     public Dictionary<int, string> ItemNames() {
-        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{locale}/itemname.xml"));
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/itemname.xml"));
         var mapping = nameSerializer.Deserialize(reader) as StringMapping;
         Debug.Assert(mapping != null);
 

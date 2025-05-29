@@ -10,9 +10,8 @@ namespace Maple2.File.Tests;
 public class ItemParserTest {
     [TestMethod]
     public void TestItemParser() {
-        string locale = "NA";
-        Filter.Load(TestUtils.XmlReader, locale, "Live");
-        var parser = new ItemParser(TestUtils.XmlReader, locale);
+        Filter.Load(TestUtils.XmlReader, "NA", "Live");
+        var parser = new ItemParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -32,9 +31,8 @@ public class ItemParserTest {
 
     [TestMethod]
     public void TestItemParserNew() {
-        string locale = "KR";
-        Filter.Load(TestUtils.XmlReader, locale, "Live");
-        var parser = new ItemParser(TestUtils.XmlReader, locale);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new ItemParser(TestUtils.XmlReader, "kr");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -53,9 +51,8 @@ public class ItemParserTest {
 
     [TestMethod]
     public void TestItemNames() {
-        string locale = "NA";
-        Filter.Load(TestUtils.XmlReader, locale, "Live");
-        var parser = new ItemParser(TestUtils.XmlReader, locale);
+        Filter.Load(TestUtils.XmlReader, "NA", "Live");
+        var parser = new ItemParser(TestUtils.XmlReader, "en");
         var itemNames = parser.ItemNames();
 
         Assert.AreEqual(34038, itemNames.Count);
