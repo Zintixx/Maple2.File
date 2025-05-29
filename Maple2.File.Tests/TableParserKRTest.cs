@@ -11,8 +11,8 @@ public class TableParserKrTest {
 
     [ClassInitialize]
     public static void ClassInit(TestContext context) {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        _parser = new TableParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        _parser = new TableParser(TestUtils.XmlReader);
     }
 
     [TestMethod]

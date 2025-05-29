@@ -23,8 +23,8 @@ public class SkillParserTest {
 
     [TestMethod]
     public void TestSkillParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new SkillParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new SkillParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach ((int id, string name, SkillKR data) in parser.ParseKr()) {
@@ -47,8 +47,8 @@ public class SkillParserTest {
 
     [TestMethod]
     public void TestSkillNamesKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new SkillParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new SkillParser(TestUtils.XmlReader);
         Dictionary<int, string> skillNames = parser.LoadSkillNames();
 
         Assert.AreEqual(1421, skillNames.Count);

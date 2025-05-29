@@ -37,8 +37,8 @@ public class XBlockParserTest {
 
     [TestMethod]
     public void TestXBlockParserKr() {
-        var index = new FlatTypeIndex(TestUtilsKr.ExportedReader);
-        var parser = new XBlockParser(TestUtilsKr.ExportedReader, index);
+        var index = new FlatTypeIndex(TestUtils.ExportedReader);
+        var parser = new XBlockParser(TestUtils.ExportedReader, index);
         // Console.WriteLine(index.GetType("Portal_entrance").GetProperty("frontOffset"));
 
         parser.ParseMap("02000070_in", entities => {

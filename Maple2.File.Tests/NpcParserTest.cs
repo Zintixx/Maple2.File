@@ -29,8 +29,8 @@ public class NpcParserTest {
 
     [TestMethod]
     public void TestNpcParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new NpcParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new NpcParser(TestUtils.XmlReader);
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -64,8 +64,8 @@ public class NpcParserTest {
 
     [TestMethod]
     public void TestNpcNameParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new NpcParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new NpcParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach ((int id, string name) in parser.ParseNpcNames()) {

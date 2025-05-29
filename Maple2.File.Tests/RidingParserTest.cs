@@ -39,8 +39,8 @@ public class RidingParserTest {
 
     [TestMethod]
     public void TestRidingParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new RidingParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new RidingParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach ((int id, RidingKR data) in parser.ParseKr()) {

@@ -60,8 +60,8 @@ public class ItemOptionParserTest {
 
     [TestMethod]
     public void TestItemOptionParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new ItemOptionParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new ItemOptionParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach (var data in parser.ParseConstantKr()) {
@@ -85,8 +85,8 @@ public class ItemOptionParserTest {
 
     [TestMethod]
     public void TestItemMergeOptionParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new ItemOptionParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new ItemOptionParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach (var data in parser.ParseMergeOptionBaseKr()) {
@@ -107,8 +107,8 @@ public class ItemOptionParserTest {
 
     [TestMethod]
     public void TestItemOptionVariationParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new ItemOptionParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new ItemOptionParser(TestUtils.XmlReader);
 
         foreach (var data in parser.ParseVariation()) {
             Assert.IsNotNull(data);

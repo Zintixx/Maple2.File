@@ -29,8 +29,8 @@ public class MapParserTest {
 
     [TestMethod]
     public void TestMapParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new MapParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new MapParser(TestUtils.XmlReader);
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -58,8 +58,8 @@ public class MapParserTest {
 
     [TestMethod]
     public void TestMapNamesKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new MapParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new MapParser(TestUtils.XmlReader);
         var mapNames = parser.ParseMapNames();
 
         Assert.AreEqual(1282, mapNames.Count);

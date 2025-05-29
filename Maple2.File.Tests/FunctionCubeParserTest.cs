@@ -26,8 +26,8 @@ public class FunctionCubeParserTest {
 
     [TestMethod]
     public void TestFunctionCubeParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new FunctionCubeParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new FunctionCubeParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach ((int id, FunctionCubeRoot data) in parser.Parse()) {

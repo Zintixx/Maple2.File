@@ -67,8 +67,8 @@ public class ScriptParserTest {
 
     [TestMethod]
     public void TestNpcScriptParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new ScriptParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new ScriptParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach ((int id, NpcScriptKR script) in parser.ParseNpcKr()) {
@@ -81,8 +81,8 @@ public class ScriptParserTest {
 
     [TestMethod]
     public void TestQuestScriptParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new ScriptParser(TestUtilsKr.XmlReader);
+        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var parser = new ScriptParser(TestUtils.XmlReader);
 
         int count = 0;
         foreach ((int id, QuestScript script) in parser.ParseQuestKr()) {
