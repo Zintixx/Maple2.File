@@ -46,7 +46,7 @@ public class TableParser {
     private readonly XmlSerializer itemSocketSerializer;
     private readonly XmlSerializer itemSocketScrollSerializer;
     private readonly XmlSerializer jobSerializer;
-    private readonly XmlSerializer jobKRSerializer;
+    private readonly XmlSerializer jobNewSerializer;
     private readonly XmlSerializer magicPathSerializer;
     private readonly XmlSerializer mapSpawnTagSerializer;
     private readonly XmlSerializer masteryRecipeSerializer;
@@ -60,10 +60,10 @@ public class TableParser {
     private readonly XmlSerializer premiumClubPackageSerializer;
     private readonly XmlSerializer setItemInfoSerializer;
     private readonly XmlSerializer setItemOptionSerializer;
-    private readonly XmlSerializer setItemOptionKRSerializer;
+    private readonly XmlSerializer setItemOptionNewSerializer;
     private readonly XmlSerializer titleTagSerializer;
     private readonly XmlSerializer individualItemDropSerializer;
-    private readonly XmlSerializer individualItemDropKRSerializer;
+    private readonly XmlSerializer individualItemDropNewSerializer;
     private readonly XmlSerializer gachaInfoSerializer;
     private readonly XmlSerializer shopBeautyCouponSerializer;
     private readonly XmlSerializer shopFurnishingSerializer;
@@ -102,9 +102,9 @@ public class TableParser {
     private readonly XmlSerializer seasonDataSerializer;
 
     private readonly string locale;
-    private readonly string language;
+    private readonly Language language;
 
-    public TableParser(M2dReader xmlReader, string language) {
+    public TableParser(M2dReader xmlReader, Language language) {
         this.xmlReader = xmlReader;
         nameSerializer = new XmlSerializer(typeof(StringMapping));
         bankTypeSerializer = new XmlSerializer(typeof(BankTypeRoot));
@@ -140,7 +140,7 @@ public class TableParser {
         itemSocketSerializer = new XmlSerializer(typeof(ItemSocketRoot));
         itemSocketScrollSerializer = new XmlSerializer(typeof(ItemSocketScrollRoot));
         jobSerializer = new XmlSerializer(typeof(JobRoot));
-        jobKRSerializer = new XmlSerializer(typeof(JobRootNew));
+        jobNewSerializer = new XmlSerializer(typeof(JobRootNew));
         magicPathSerializer = new XmlSerializer(typeof(MagicPath));
         mapSpawnTagSerializer = new XmlSerializer(typeof(MapSpawnTag));
         masteryRecipeSerializer = new XmlSerializer(typeof(MasteryRecipeRoot));
@@ -154,10 +154,10 @@ public class TableParser {
         premiumClubPackageSerializer = new XmlSerializer(typeof(PremiumClubPackageRoot));
         setItemInfoSerializer = new XmlSerializer(typeof(SetItemInfoRoot));
         setItemOptionSerializer = new XmlSerializer(typeof(SetItemOptionRoot));
-        setItemOptionKRSerializer = new XmlSerializer(typeof(SetItemOptionRootNew));
+        setItemOptionNewSerializer = new XmlSerializer(typeof(SetItemOptionRootNew));
         titleTagSerializer = new XmlSerializer(typeof(TitleTagRoot));
         individualItemDropSerializer = new XmlSerializer(typeof(IndividualItemDropRoot));
-        individualItemDropKRSerializer = new XmlSerializer(typeof(IndividualItemDropRootNew));
+        individualItemDropNewSerializer = new XmlSerializer(typeof(IndividualItemDropRootNew));
         gachaInfoSerializer = new XmlSerializer(typeof(GachaInfoRoot));
         shopBeautyCouponSerializer = new XmlSerializer(typeof(ShopBeautyCouponRoot));
         shopFurnishingSerializer = new XmlSerializer(typeof(ShopFurnishingRoot));
@@ -196,7 +196,7 @@ public class TableParser {
         seasonDataSerializer = new XmlSerializer(typeof(SeasonDataRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
-        this.language = language.ToLower();
+        this.language = language;
 
         // var seen = new HashSet<string>();
         // this.bankTypeSerializer.UnknownAttribute += (sender, args) => {
@@ -344,7 +344,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, string Name, Fish Fish)> ParseFish() {
-        XmlReader nameReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/stringfishname.xml"));
+        XmlReader nameReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/stringfishname.xml"));
         var mapping = nameSerializer.Deserialize(nameReader) as StringMapping;
         Debug.Assert(mapping != null);
 
@@ -623,7 +623,7 @@ public class TableParser {
     public IEnumerable<JobTableNew> ParseJobTableNew() {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/job.xml")));
         var reader = XmlReader.Create(new StringReader(xml));
-        var data = jobKRSerializer.Deserialize(reader) as JobRootNew;
+        var data = jobNewSerializer.Deserialize(reader) as JobRootNew;
         Debug.Assert(data != null);
 
         foreach (JobTableNew job in data.job) {
@@ -732,7 +732,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, string Name, SetItemInfo Info)> ParseSetItemInfo() {
-        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/setitemname.xml"));
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/setitemname.xml"));
         var mapping = nameSerializer.Deserialize(reader) as StringMapping;
         Debug.Assert(mapping != null);
 
@@ -761,7 +761,7 @@ public class TableParser {
         IO.Crypto.Common.PackFileEntry entry = xmlReader.GetEntry("table/setiteminfo.xml");
         var strinte = xmlReader.GetString(entry);
         XmlReader reader = xmlReader.GetXmlReader(entry);
-        var data = setItemOptionKRSerializer.Deserialize(reader) as SetItemOptionRootNew;
+        var data = setItemOptionNewSerializer.Deserialize(reader) as SetItemOptionRootNew;
         Debug.Assert(data != null);
 
         foreach (SetItemOptionNew option in data.option) {
@@ -806,7 +806,7 @@ public class TableParser {
         xml = Sanitizer.SanitizeBool(xml);
         xml = Sanitizer.RemoveUtf8Bom(xml);
         var reader = XmlReader.Create(new StringReader(xml));
-        var data = individualItemDropKRSerializer.Deserialize(reader) as IndividualItemDropRootNew;
+        var data = individualItemDropNewSerializer.Deserialize(reader) as IndividualItemDropRootNew;
         Debug.Assert(data != null);
 
         foreach (IndividualItemDropBox dropBox in data.DropBoxes) {
