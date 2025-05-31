@@ -204,7 +204,7 @@ public partial class SkillLevelDataNew : IFeatureLocale {
     [XmlAttribute] public string stringParam = string.Empty;
 
 
-   // [XmlElement] public BeginCondition beginCondition;
+    // [XmlElement] public BeginCondition beginCondition;
     /*[XmlElement] public ChangeSkill changeSkill;
     [XmlElement] public MagicControl magicControl;
     [XmlElement] public AutoTargeting autoTargeting;
@@ -225,47 +225,47 @@ public partial class SkillLevelDataNew : IFeatureLocale {
 }
 
 public partial class SkillMotionDataNew {
-     [XmlAttribute] public string sequenceName = string.Empty;
-     [XmlAttribute] public string motionEffect = string.Empty;
-     [XmlAttribute] public string loopEffect = string.Empty;
-     [XmlAttribute] public string endEffect = string.Empty;
-     [XmlAttribute] public string splashInvokeEffect = string.Empty;
-     [XmlAttribute] public string splashEndEffect = string.Empty;
-     [M2dArray] public string[] strTagEffects = Array.Empty<string>();
-     [XmlAttribute] public string selfInputCombo = string.Empty;
-     [XmlAttribute] public string weaponSequenceName = string.Empty;
-     [XmlAttribute] public string loopKeepEffect = string.Empty;
-     [XmlAttribute] public string loopEndEffect = string.Empty;
-     [XmlAttribute] public string splashDurationCastEffect = string.Empty;
-     [XmlAttribute] public bool IgnoreOptimalHideCastEffect;
+    [XmlAttribute] public string sequenceName = string.Empty;
+    [XmlAttribute] public string motionEffect = string.Empty;
+    [XmlAttribute] public string loopEffect = string.Empty;
+    [XmlAttribute] public string endEffect = string.Empty;
+    [XmlAttribute] public string splashInvokeEffect = string.Empty;
+    [XmlAttribute] public string splashEndEffect = string.Empty;
+    [M2dArray] public string[] strTagEffects = Array.Empty<string>();
+    [XmlAttribute] public string selfInputCombo = string.Empty;
+    [XmlAttribute] public string weaponSequenceName = string.Empty;
+    [XmlAttribute] public string loopKeepEffect = string.Empty;
+    [XmlAttribute] public string loopEndEffect = string.Empty;
+    [XmlAttribute] public string splashDurationCastEffect = string.Empty;
+    [XmlAttribute] public bool IgnoreOptimalHideCastEffect;
     // [XmlAttribute] public bool IgnoreOptimalHideEndEffect;
     // [XmlAttribute] public bool IgnoreOptimalHideSplashInvokeEffect;
     // [XmlAttribute] public bool IgnoreOptimalHideSplashEndEffect;
-     [XmlAttribute] public bool splashCastEffectStartDelay;
-     [XmlAttribute] public int splashLifeTick; // 0,6000,8000,10000,12000,14000,16000,18000,20000,22000,24000,26000,28000
-     [XmlAttribute] public int splashInvokeCoolTick; // 0,100
-     [XmlAttribute] public float sequenceSpeed;
-     [XmlAttribute] public float keyMove;
-     [XmlAttribute] public int movetype; // 0,3
-     [XmlAttribute] public float moveangle;
+    [XmlAttribute] public bool splashCastEffectStartDelay;
+    [XmlAttribute] public int splashLifeTick; // 0,6000,8000,10000,12000,14000,16000,18000,20000,22000,24000,26000,28000
+    [XmlAttribute] public int splashInvokeCoolTick; // 0,100
+    [XmlAttribute] public float sequenceSpeed;
+    [XmlAttribute] public float keyMove;
+    [XmlAttribute] public int movetype; // 0,3
+    [XmlAttribute] public float moveangle;
     // [XmlAttribute] public float movevangle;
-     [XmlAttribute] public float movedistance;
-     [XmlAttribute] public int moveEaseType; // 0,1,2
-    // [XmlAttribute] public float moveMid;
-    // [XmlAttribute] public float moveHeight;
-    // [XmlAttribute] public int hide; // 0
-     [XmlAttribute] public int ignoreCollisionGroups; // 0,4,16,20
-     [XmlAttribute] public bool holdWeapon;
-     [XmlAttribute] public int loopCount;
-     [XmlAttribute] public bool faceTarget;
-     [XmlAttribute] public bool doesPlayIdleOnSkillEnd;
-     [XmlAttribute] public bool startNoneBlendDelay;
+    [XmlAttribute] public float movedistance;
+    [XmlAttribute] public int moveEaseType; // 0,1,2
+                                            // [XmlAttribute] public float moveMid;
+                                            // [XmlAttribute] public float moveHeight;
+                                            // [XmlAttribute] public int hide; // 0
+    [XmlAttribute] public int ignoreCollisionGroups; // 0,4,16,20
+    [XmlAttribute] public bool holdWeapon;
+    [XmlAttribute] public int loopCount;
+    [XmlAttribute] public bool faceTarget;
+    [XmlAttribute] public bool doesPlayIdleOnSkillEnd;
+    [XmlAttribute] public bool startNoneBlendDelay;
     // [XmlAttribute] public bool ignoreASP;
-     [XmlAttribute] public float pushCylinderVelH;
-     [XmlAttribute] public float pushCylinderVelV;
-     [XmlAttribute] public float pushCylinderOuter;
-     [XmlAttribute] public float pushCylinderInner;
-     [XmlAttribute] public float pushCylinderHeight;
-     [XmlAttribute] public float aniSkipTime;
-     [XmlElement] public List<SkillAttackDataNew> attack;
+    [XmlAttribute] public float pushCylinderVelH;
+    [XmlAttribute] public float pushCylinderVelV;
+    [XmlAttribute] public float pushCylinderOuter;
+    [XmlAttribute] public float pushCylinderInner;
+    [XmlAttribute] public float pushCylinderHeight;
+    [XmlAttribute] public float aniSkipTime;
+    [XmlElement] public List<SkillAttackDataNew> attack;
 }

@@ -29,7 +29,7 @@ public class SkillParserTest {
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new SkillParser(TestUtils.XmlReader, Language.kr);
 
-       // parser.skillNewSerializer.UnknownElement += TestUtils.UnknownElementHandler;
+        // parser.skillNewSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         //parser.skillNewSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
 
 

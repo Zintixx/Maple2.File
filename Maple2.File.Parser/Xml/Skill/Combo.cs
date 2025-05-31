@@ -15,12 +15,12 @@ public partial class Combo {
 }
 
 public partial class ComboNew {
-     [XmlAttribute] public int comboSkill;
-     [XmlAttribute] public int chargingSkill;
+    [XmlAttribute] public int comboSkill;
+    [XmlAttribute] public int chargingSkill;
     // [XmlAttribute] public int comboOriginSkill;
     // [XmlAttribute] public int npcComboSkillID;
     // [XmlAttribute] public short npcComboSkillLevel = 1;
-     [XmlAttribute] public bool disableChargingAttackSkipFrame;
+    [XmlAttribute] public bool disableChargingAttackSkipFrame;
     [M2dArray] public int[] inputSkill = Array.Empty<int>();
     [M2dArray] public int[] outputSkill = Array.Empty<int>();
 }

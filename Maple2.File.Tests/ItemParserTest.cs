@@ -39,7 +39,7 @@ public class ItemParserTest {
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
-         //parser.ItemSerializer.UnknownElement += TestUtils.UnknownElementHandler;
+        //parser.ItemSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.ItemSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
 
         int count = 0;

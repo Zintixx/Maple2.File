@@ -49,7 +49,7 @@ public class SkillParser {
             if (data.FeatureLocale() == null) continue;
 
             foreach (SkillNew skill in data.Skills) {
-               // if (skill.id == 10900178) Console.WriteLine(skill);
+                // if (skill.id == 10900178) Console.WriteLine(skill);
                 yield return (skill.id, skillNames.GetValueOrDefault(skill.id, string.Empty), skill);
             }
         }

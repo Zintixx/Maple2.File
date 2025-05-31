@@ -1,4 +1,4 @@
-﻿﻿using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Maple2.File.Parser.Xml.Skill;
 using M2dXmlGenerator;
 
@@ -148,7 +148,7 @@ public partial class Condition {
     [M2dArray] public int[] fieldIDs = Array.Empty<int>();
     [M2dArray] public string[] requireStates = Array.Empty<string>();
     [M2dArray] public string[] requireSubStates = Array.Empty<string>();
-    [M2dArray] public string[]  requireMasteryTypes = Array.Empty<string>();
+    [M2dArray] public string[] requireMasteryTypes = Array.Empty<string>();
     [M2dArray] public int[] requireMasteryValues = Array.Empty<int>();
     [XmlAttribute] public int mapCategory;
     [XmlAttribute] public int mapContinent;

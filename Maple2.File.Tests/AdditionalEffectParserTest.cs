@@ -1,6 +1,6 @@
-﻿﻿using Maple2.File.Parser;
- using Maple2.File.Parser.Enum;
- using Maple2.File.Parser.Tools;
+﻿using Maple2.File.Parser;
+using Maple2.File.Parser.Enum;
+using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml.AdditionalEffect;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
