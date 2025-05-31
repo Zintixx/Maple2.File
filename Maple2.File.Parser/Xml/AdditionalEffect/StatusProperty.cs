@@ -76,16 +76,6 @@ public partial class StatusPropertyNew {
     [XmlAttribute] public string rate = string.Empty;
 }
 
-public class StatNew {
-    [XmlElement] public List<StatEntry> v;
-}
-
-public class StatEntry {
-    [XmlAttribute] public string type = string.Empty;
-    [XmlAttribute] public float value;
-    [XmlAttribute] public bool isRate = false;
-}
-
 public class SpecialAbilityNew {
     [XmlElement] public List<SpecialAbilityEntry> v;
 }
@@ -93,7 +83,6 @@ public class SpecialAbilityNew {
 public class SpecialAbilityEntry {
     [XmlAttribute] public string type = string.Empty;
     [XmlAttribute] public float value;
-    [XmlAttribute] public bool isRate = false;
 }
 
 public class Stat {

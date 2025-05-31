@@ -13,7 +13,6 @@ public class ItemParser {
     private readonly XmlSerializer nameSerializer;
     private readonly XmlSerializer itemSerializer;
     private readonly XmlSerializer itemNewSerializer;
-    private readonly bool newXml;
     private readonly string language;
 
     public ItemParser(M2dReader xmlReader, string language) {

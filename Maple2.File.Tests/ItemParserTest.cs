@@ -1,5 +1,6 @@
 ﻿using M2dXmlGenerator;
 using Maple2.File.Parser;
+using Maple2.File.Parser.Enum;
 using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml.Item;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +11,8 @@ namespace Maple2.File.Tests;
 public class ItemParserTest {
     [TestMethod]
     public void TestItemParser() {
-        Filter.Load(TestUtils.XmlReader, "NA", "Live");
+        var locale = Locale.NA;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new ItemParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
@@ -31,12 +33,13 @@ public class ItemParserTest {
 
     [TestMethod]
     public void TestItemParserNew() {
-        Filter.Load(TestUtils.XmlReader, "KR", "Live");
+        var locale = Locale.KR;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new ItemParser(TestUtils.XmlReader, "kr");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
-        // parser.ItemSerializer.UnknownElement += TestUtils.UnknownElementHandler;
+         //parser.ItemSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.ItemSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
 
         int count = 0;
@@ -51,7 +54,8 @@ public class ItemParserTest {
 
     [TestMethod]
     public void TestItemNames() {
-        Filter.Load(TestUtils.XmlReader, "NA", "Live");
+        var locale = Locale.NA;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new ItemParser(TestUtils.XmlReader, "en");
         var itemNames = parser.ItemNames();
 

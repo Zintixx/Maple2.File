@@ -1,5 +1,6 @@
 ﻿﻿using Maple2.File.Parser;
-using Maple2.File.Parser.Tools;
+ using Maple2.File.Parser.Enum;
+ using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml.AdditionalEffect;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,8 +10,8 @@ namespace Maple2.File.Tests;
 public class AdditionalEffectParserTest {
     [TestMethod]
     public void TestAdditionalEffectParser() {
-        string locale = "NA";
-        Filter.Load(TestUtils.XmlReader, locale, "Live");
+        var locale = Locale.NA;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new AdditionalEffectParser(TestUtils.XmlReader);
 
         int count = 0;
@@ -24,8 +25,8 @@ public class AdditionalEffectParserTest {
 
     [TestMethod]
     public void TestAdditionalEffectParserNew() {
-        string locale = "KR";
-        Filter.Load(TestUtils.XmlReader, locale, "Live");
+        var locale = Locale.KR;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new AdditionalEffectParser(TestUtils.XmlReader);
 
         int count = 0;
@@ -34,7 +35,7 @@ public class AdditionalEffectParserTest {
             Assert.IsNotNull(data);
             count++;
         }
-        Assert.AreEqual(6070, count);
+        Assert.AreEqual(5881, count);
     }
 }
 

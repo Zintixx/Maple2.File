@@ -48,4 +48,7 @@ public partial class BasicProperty {
     [XmlAttribute] public int tailEffect = 0; // 0,1001,1002
     [M2dArray] public int[] upgradeSkillLevelID = Array.Empty<int>();
     [M2dArray] public int[] upgradeSkillLevelValue = Array.Empty<int>();
+
+    // only on new xml
+    [XmlAttribute] public int attackPossibleIndividualEffectID;
 }

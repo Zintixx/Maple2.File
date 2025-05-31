@@ -2,7 +2,6 @@
 using System.Xml.Serialization;
 using Maple2.File.IO;
 using Maple2.File.IO.Crypto.Common;
-using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml.AdditionalEffect;
 
 namespace Maple2.File.Parser;
@@ -39,9 +38,9 @@ public class AdditionalEffectParser {
             Debug.Assert(root != null);
 
             foreach (AdditionalEffectLevelDataNew data in root.additional) {
-                if (data.id != 10200201) continue;
-                /*if (data.level.Count == 0) continue;*/
-                yield return (data.id, null);
+                //if (data.id != 10200201) continue;
+                if (data.level.Count == 0) continue;
+                yield return (data.id, data.level);
             }
         }
     }
