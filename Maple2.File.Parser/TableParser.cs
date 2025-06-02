@@ -100,6 +100,7 @@ public class TableParser {
     private readonly XmlSerializer weddingSkillSerializer;
     private readonly XmlSerializer smartPushSerializer;
     private readonly XmlSerializer seasonDataSerializer;
+    private readonly XmlSerializer statStringSerializer;
 
     private readonly string locale;
     private readonly Language language;
@@ -194,6 +195,7 @@ public class TableParser {
         weddingSkillSerializer = new XmlSerializer(typeof(WeddingSkillRoot));
         smartPushSerializer = new XmlSerializer(typeof(SmartPushRoot));
         seasonDataSerializer = new XmlSerializer(typeof(SeasonDataRoot));
+        statStringSerializer = new XmlSerializer(typeof(StatStringRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -757,15 +759,20 @@ public class TableParser {
         }
     }
 
-    public IEnumerable<(int Id, SetItemOptionNew Option)> ParseSetItemOptionNew() {
+    public IEnumerable<(int Id, string Name, SetItemOptionNew Option)> ParseSetItemOptionNew() {
+        XmlReader nameXmlReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/setitemname.xml"));
+        var mapping = nameSerializer.Deserialize(nameXmlReader) as StringMapping;
+        Debug.Assert(mapping != null);
+
+        Dictionary<int, string> setNames = mapping.key.ToDictionary(key => int.Parse(key.id), key => key.name);
+
         IO.Crypto.Common.PackFileEntry entry = xmlReader.GetEntry("table/setiteminfo.xml");
-        var strinte = xmlReader.GetString(entry);
         XmlReader reader = xmlReader.GetXmlReader(entry);
         var data = setItemOptionNewSerializer.Deserialize(reader) as SetItemOptionRootNew;
         Debug.Assert(data != null);
 
         foreach (SetItemOptionNew option in data.option) {
-            yield return (option.id, option);
+            yield return (option.id, setNames.GetValueOrDefault(option.id, string.Empty), option);
         }
     }
 
@@ -1340,7 +1347,14 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, MapleSurvivalSkinInfo Info)> ParseMapleSurvivalSkinInfo() {
-        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/maplesurvivalskininfo.xml")));
+        string fileName = $"table/{locale}/maplesurvivalskininfo.xml";
+        if (xmlReader.Files.All(f => f.Name != fileName)) {
+            fileName = "table/maplesurvivalskininfo.xml";
+            if (xmlReader.Files.All(f => f.Name != fileName)) {
+                yield break; // Return empty if no matching file exists
+            }
+        }
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry(fileName)));
         var reader = XmlReader.Create(new StringReader(xml));
         var data = mapleSurvivalSkinInfoSerializer.Deserialize(reader) as MapleSurvivalSkinInfoRoot;
         Debug.Assert(data != null);
@@ -1501,6 +1515,28 @@ public class TableParser {
 
         foreach (SeasonData entry in data.Season) {
             yield return (entry.seasonID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, StatString Data)> ParseStatString() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/statstringtable.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = statStringSerializer.Deserialize(reader) as StatStringRoot;
+        Debug.Assert(data != null);
+
+        foreach (StatString entry in data.key) {
+            yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, StatString Data)> ParseSpecialAbilityString() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/specialabilitystringtable.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = statStringSerializer.Deserialize(reader) as StatStringRoot;
+        Debug.Assert(data != null);
+
+        foreach (StatString entry in data.key) {
+            yield return (entry.id, entry);
         }
     }
 }

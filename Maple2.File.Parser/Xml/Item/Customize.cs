@@ -13,9 +13,9 @@ public partial class Customize {
     [XmlAttribute] public int colordetail;
     [XmlAttribute] public int defaultColorIndex = -1;
 
-    [XmlElement] public Hair HR;
-    [XmlElement] public FaceDecal FD;
-    [XmlElement] public Cap CP;
+    [XmlElement] public Hair HR = new();
+    [XmlElement] public FaceDecal FD = new();
+    [XmlElement] public Cap CP = new();
 
     public class Hair {
         [XmlAttribute] public int scale;
@@ -35,7 +35,7 @@ public partial class Customize {
         [XmlAttribute] public int scale;
         [XmlAttribute] public int attach;
 
-        [XmlElement] public List<Transform> transform;
+        [XmlElement] public List<Transform> transform = [];
     }
 
     public partial class Transform {

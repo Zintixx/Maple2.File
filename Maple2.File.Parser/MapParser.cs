@@ -23,7 +23,7 @@ public class MapParser {
         this.language = language;
         NameSerializer = new XmlSerializer(typeof(StringMapping));
         MapSerializer = new XmlSerializer(typeof(MapDataRoot));
-        MapNewSerializer = new XmlSerializer(typeof(MapDataRootKR));
+        MapNewSerializer = new XmlSerializer(typeof(MapDataRootNew));
     }
 
     public IEnumerable<(int Id, string Name, MapData Data)> Parse() {
@@ -48,10 +48,10 @@ public class MapParser {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/fielddata.xml")));
         xml = Sanitizer.SanitizeBool(xml);
         var reader = XmlReader.Create(new StringReader(xml));
-        var data = MapNewSerializer.Deserialize(reader) as MapDataRootKR;
+        var data = MapNewSerializer.Deserialize(reader) as MapDataRootNew;
         Debug.Assert(data != null);
 
-        foreach (MapDataRootKR item in data.fieldData) {
+        foreach (MapDataRootNew item in data.fieldData) {
             if (item.environment == null) continue;
             MapData mapData = item.environment;
             yield return (item.id, mapNames.GetValueOrDefault(item.id, string.Empty), mapData);

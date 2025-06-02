@@ -32,6 +32,6 @@ public partial class Require {
     [M2dArray] public int[] selectableQuest = Array.Empty<int>();
     [M2dArray] public int[] unrequireGroup = Array.Empty<int>();
     [XmlAttribute] public int guildLevel;
-    [M2dArray] public Enum.DayOfWeek[] dayOfWeek; // DayOfWeek?
+    [M2dArray] public Enum.DayOfWeek[] dayOfWeek = Array.Empty<Enum.DayOfWeek>(); // DayOfWeek?
     [XmlAttribute] public int groupID;
 }

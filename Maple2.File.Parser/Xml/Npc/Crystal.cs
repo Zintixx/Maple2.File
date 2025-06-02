@@ -4,7 +4,7 @@ using M2dXmlGenerator;
 namespace Maple2.File.Parser.Xml.Npc;
 
 public class Crystals {
-    [XmlElement] public List<Crystal> crystal;
+    [XmlElement] public List<Crystal> crystal = [];
 }
 
 public partial class Crystal {

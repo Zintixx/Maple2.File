@@ -25,10 +25,10 @@ public partial class Reward {
     [XmlAttribute] public int slotIndex;
 
     //[XmlElement] public List<Item> selectedItem; // Never set
-    [XmlElement] public List<Item> essentialItem;
-    [XmlElement] public List<Item> essentialJobItem;
-    [XmlElement] public List<Item> globalEssentialItem; // Feature 149
-    [XmlElement] public List<Item> globalEssentialJobItem; // Feature 149
+    [XmlElement] public List<Item> essentialItem = [];
+    [XmlElement] public List<Item> essentialJobItem = [];
+    [XmlElement] public List<Item> globalEssentialItem = []; // Feature 149
+    [XmlElement] public List<Item> globalEssentialJobItem = []; // Feature 149
 
     public class Item {
         [XmlAttribute] public int count;

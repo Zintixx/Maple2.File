@@ -26,5 +26,5 @@ public partial class Install {
     [XmlAttribute] public string mapAttribute = string.Empty;
     [XmlAttribute] public string propCollisionGroup = string.Empty;
     [XmlAttribute] public bool useInstancing = true;
-    [M2dVector3] public Vector3 physXdimension;
+    [M2dVector3] public Vector3 physXdimension = default;
 }

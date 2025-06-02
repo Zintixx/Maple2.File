@@ -68,3 +68,21 @@ public class ItemOptionVariationEquip {
         };
     }
 }
+
+[XmlRoot("ms2")]
+public class ItemOptionVariationNewRoot {
+    [XmlElement] public List<Option> option;
+
+    public class Option {
+        [XmlAttribute] public int id;
+        [XmlAttribute] public int groupType;
+        [XmlAttribute] public string name = string.Empty;
+        [XmlAttribute] public int levelGroupID;
+        [XmlAttribute] public int highStat;
+        [XmlElement] public List<ItemOptionStat> v;
+
+        public class ItemOptionStat {
+            [XmlAttribute] public int stat;
+        }
+    }
+}

@@ -3,7 +3,7 @@
 namespace Maple2.File.Parser.Xml.Item;
 
 public class Cutting {
-    [XmlElement] public List<Mesh> mesh;
+    [XmlElement] public List<Mesh> mesh = [];
 
     public class Mesh {
         [XmlAttribute] public string name = string.Empty;

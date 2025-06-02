@@ -11,12 +11,12 @@ public partial class RidingRoot {
 }
 
 public partial class Riding : IFeatureLocale {
-    [XmlElement] public Basic basic;
-    [XmlElement] public Collision collision;
-    [XmlElement] public Capsule capsule;
-    [XmlElement] public Shadow shadow;
-    [XmlElement] public StatValue stat;
-    [XmlElement] public FaceCamera faceCamera;
+    [XmlElement] public Basic basic = new();
+    [XmlElement] public Collision collision = new();
+    [XmlElement] public Capsule capsule = new();
+    [XmlElement] public Shadow shadow = new();
+    [XmlElement] public StatValue stat = new();
+    [XmlElement] public FaceCamera faceCamera = new();
 }
 
 // KMS2: ./data/xml/riding/%08d.xml
@@ -26,6 +26,6 @@ public class RidingNewRoot {
 }
 
 public class RidingNew : Riding {
-    [XmlElement("passengers")] public List<PassengerRiding> passengers;
+    [XmlElement("passengers")] public List<PassengerRiding> passengers = [];
 }
 

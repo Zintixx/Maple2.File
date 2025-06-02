@@ -41,7 +41,7 @@ public class RidingParserTest {
     }
 
     [TestMethod]
-    public void TestRidingParserKr() {
+    public void TestRidingParserNew() {
         var locale = Locale.KR;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new RidingParser(TestUtils.XmlReader);

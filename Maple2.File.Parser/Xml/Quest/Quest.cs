@@ -15,27 +15,27 @@ public partial class QuestDataRoot : IFeatureLocale {
 }
 
 public partial class QuestData {
-    [XmlElement] public Basic basic;
-    [XmlElement] public Notify notify;
-    [XmlElement] public Require require;
+    [XmlElement] public Basic basic = new();
+    [XmlElement] public Notify notify = new();
+    [XmlElement] public Require require = new();
 
-    [XmlElement] public List<Condition> condition;
+    [XmlElement] public List<Condition> condition = [];
 
     //[XmlElement] public Navigation navi;
-    [XmlElement] public Start start;
-    [XmlElement] public Complete complete;
-    [XmlElement] public Reward completeReward;
-    [XmlElement] public Reward acceptReward;
-    [XmlElement] public ProgressMap progressMap;
-    [XmlElement] public Guide guide;
-    [XmlElement] public EventMission eventMission;
-    [XmlElement] public MentoringMission mentoringMission; // feature="Mentoring"
-    [XmlElement] public Dispatch dispatch;
-    [XmlElement] public GotoNpc gotoNpc;
-    [XmlElement] public GotoDungeon gotoDungeon;
-    [XmlElement] public Remote remoteAccept;
-    [XmlElement] public Remote remoteComplete;
-    [XmlElement] public SummonPortal summonPortal;
+    [XmlElement] public Start start = new();
+    [XmlElement] public Complete complete = new();
+    [XmlElement] public Reward completeReward = new();
+    [XmlElement] public Reward acceptReward = new();
+    [XmlElement] public ProgressMap progressMap = new();
+    [XmlElement] public Guide guide = new();
+    [XmlElement] public EventMission eventMission = new();
+    [XmlElement] public MentoringMission mentoringMission = new(); // feature="Mentoring"
+    [XmlElement] public Dispatch dispatch = new();
+    [XmlElement] public GotoNpc gotoNpc = new();
+    [XmlElement] public GotoDungeon gotoDungeon = new();
+    [XmlElement] public Remote remoteAccept = new();
+    [XmlElement] public Remote remoteComplete = new();
+    [XmlElement] public SummonPortal summonPortal = new();
 
     public class Start {
         [XmlAttribute] public int npc;
@@ -56,7 +56,7 @@ public partial class QuestData {
 
 [XmlRoot("ms2")]
 public partial class QuestDataRootNew {
-    [XmlElement("quest")] public List<QuestDataNew> quests;
+    [XmlElement("quest")] public List<QuestDataNew> quests = [];
 }
 
 public partial class QuestDataNew : QuestData, IFeatureLocale {

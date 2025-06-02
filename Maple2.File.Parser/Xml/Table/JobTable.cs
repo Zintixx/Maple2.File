@@ -93,6 +93,7 @@ public partial class SkillsNew {
     public partial class Skill : IFeatureLocale {
         [XmlAttribute] public int skillID;
         [M2dArray] public int[] subSkillIDs = Array.Empty<int>();
+        [XmlAttribute] public bool isLearn;
         [XmlAttribute] public int jobLevel;
         [XmlAttribute] public short maxLevel = 1;
         [XmlAttribute] public int quickSlotPriority;

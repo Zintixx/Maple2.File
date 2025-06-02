@@ -1,14 +1,15 @@
 ﻿using System.Xml.Serialization;
+using M2dXmlGenerator;
 
 namespace Maple2.File.Parser.Xml.Table;
 
 // ./data/xml/table/gacha_info.xml
 [XmlRoot("ms2")]
 public partial class GachaInfoRoot {
-    [XmlElement] public List<GachaInfo> randomBox;
+    [M2dFeatureLocale(Selector = "randomBoxID")] private IList<GachaInfo> _randomBox;
 }
 
-public partial class GachaInfo {
+public partial class GachaInfo : IFeatureLocale {
     [XmlAttribute] public int randomBoxID;
     [XmlAttribute] public byte randomBoxGroup;
     [XmlAttribute] public byte randomBoxSeasonKR;

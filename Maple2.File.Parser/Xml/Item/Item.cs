@@ -10,35 +10,35 @@ public partial class ItemDataRoot {
 }
 
 public partial class ItemData : IFeatureLocale {
-    [XmlElement] public Basic basic;
-    [XmlElement] public Slots slots;
-    [XmlElement] public Customize customize;
-    [XmlElement] public Mutation mutation;
-    [XmlElement] public Cutting cutting;
-    [XmlElement] public Install install;
-    [XmlElement] public Property property;
-    [XmlElement] public Material material;
-    [XmlElement] public Life life;
-    [XmlElement] public Limit limit;
-    [XmlElement] public Skill skill;
-    [XmlElement] public Skill objectWeaponSkill;
-    [XmlElement] public Title title;
-    [XmlElement] public Drop drop;
-    [XmlElement] public UCC ucc;
-    [XmlElement] public Effect effect;
-    [XmlElement] public Fusion fusion;
-    [XmlElement] public Pet pet;
-    [XmlElement] public Ride ride;
-    [XmlElement] public Badge gem;
-    [XmlElement] public AdditionalEffect AdditionalEffect;
-    [XmlElement] public Function function;
-    [XmlElement] public Tool tool;
-    [XmlElement] public Option option;
-    [XmlElement] public Maid maid;
-    [XmlElement] public PCBang PCBang;
-    [XmlElement] public MusicScore MusicScore;
-    [XmlElement] public Housing housing;
-    [XmlElement] public Shop Shop;
+    [XmlElement] public Basic basic = new();
+    [XmlElement] public Slots slots = new();
+    [XmlElement] public Customize customize = new();
+    [XmlElement] public Mutation mutation = new();
+    [XmlElement] public Cutting cutting = new();
+    [XmlElement] public Install install = new();
+    [XmlElement] public Property property = new();
+    [XmlElement] public Material material = new();
+    [XmlElement] public Life life = new();
+    [XmlElement] public Limit limit = new();
+    [XmlElement] public Skill skill = new();
+    [XmlElement] public Skill objectWeaponSkill = new();
+    [XmlElement] public Title title = new();
+    [XmlElement] public Drop drop = new();
+    [XmlElement] public UCC ucc = new();
+    [XmlElement] public Effect effect = new();
+    [XmlElement] public Fusion fusion = new();
+    [XmlElement] public Pet pet = new();
+    [XmlElement] public Ride ride = new();
+    [XmlElement] public Badge gem = new();
+    [XmlElement] public AdditionalEffect AdditionalEffect = new();
+    [XmlElement] public Function function = new();
+    [XmlElement] public Tool tool = new();
+    [XmlElement] public Option option = new();
+    [XmlElement] public Maid maid = new();
+    [XmlElement] public PCBang PCBang = new();
+    [XmlElement] public MusicScore MusicScore = new();
+    [XmlElement] public Housing housing = new();
+    [XmlElement] public Shop Shop = new();
 }
 
 // ./data/xml/itemdata/%03d.xml
@@ -53,33 +53,33 @@ public partial class ItemDataRootNew {
 }
 
 public partial class ItemDataNew : IFeatureLocale {
-    [XmlElement] public Basic basic;
-    [XmlElement] public Slots slots;
-    [XmlElement] public Customize customize;
-    [XmlElement] public Mutation mutation;
-    [XmlElement] public Cutting cutting;
-    [XmlElement] public Install install;
-    [XmlElement] public Property property;
-    [XmlElement] public Material material;
-    [XmlElement] public Life life;
-    [XmlElement] public Limit limit;
-    [XmlElement] public Skill skill;
-    [XmlElement] public Skill objectWeaponSkill;
-    [XmlElement] public Title title;
-    [XmlElement] public Drop drop;
-    [XmlElement] public UCC ucc;
-    [XmlElement] public Effect effect;
-    [XmlElement] public Fusion fusion;
-    [XmlElement] public Pet pet;
-    [XmlElement] public Ride ride;
-    [XmlElement] public Badge gem;
-    [XmlElement] public AdditionalEffect AdditionalEffect;
-    [XmlElement] public Function function;
-    [XmlElement] public Tool tool;
-    [XmlElement] public Option option;
-    [XmlElement] public Maid maid;
-    [XmlElement] public PCBang PCBang;
-    [XmlElement] public MusicScore MusicScore;
-    [XmlElement] public Housing housing;
-    [XmlElement] public Shop Shop;
+    [XmlElement] public Basic basic = new();
+    [XmlElement] public Slots slots = new();
+    [XmlElement] public Customize customize = new();
+    [XmlElement] public Mutation mutation = new();
+    [XmlElement] public Cutting cutting = new();
+    [XmlElement] public Install install = new();
+    [XmlElement] public Property property = new();
+    [XmlElement] public Material material = new();
+    [XmlElement] public Life life = new();
+    [XmlElement] public Limit limit = new();
+    [XmlElement] public Skill skill = new();
+    [XmlElement] public Skill objectWeaponSkill = new();
+    [XmlElement] public Title title = new();
+    [XmlElement] public Drop drop = new();
+    [XmlElement] public UCC ucc = new();
+    [XmlElement] public Effect effect = new();
+    [XmlElement] public Fusion fusion = new();
+    [XmlElement] public Pet pet = new();
+    [XmlElement] public Ride ride = new();
+    [XmlElement] public Badge gem = new();
+    [XmlElement] public AdditionalEffect AdditionalEffect = new();
+    [XmlElement] public Function function = new();
+    [XmlElement] public Tool tool = new();
+    [XmlElement] public Option option = new();
+    [XmlElement] public Maid maid = new();
+    [XmlElement] public PCBang PCBang = new();
+    [XmlElement] public MusicScore MusicScore = new();
+    [XmlElement] public Housing housing = new();
+    [XmlElement] public Shop Shop = new();
 }

@@ -54,7 +54,7 @@ public class TableParserNewTest {
     [TestMethod]
     public void TestParseSetItemOptionNew() {
         int count = 0;
-        foreach (var (Id, option) in _parser.ParseSetItemOptionNew()) {
+        foreach (var (Id, name, option) in _parser.ParseSetItemOptionNew()) {
             if (Id == 15123101) {
                 Assert.AreEqual(2, option.part[0].count);
                 Assert.AreEqual(9, option.part[0].str_value_base);
@@ -76,5 +76,18 @@ public class TableParserNewTest {
         }
         Assert.AreEqual(4625, count);
     }
+
+    [TestMethod]
+    public void TestStatString() {
+        foreach ((_, _) in _parser.ParseStatString()) {
+            continue;
+        }
+
+        foreach ((_, _) in _parser.ParseSpecialAbilityString()) {
+            continue;
+        }
+    }
+
+
 }
 

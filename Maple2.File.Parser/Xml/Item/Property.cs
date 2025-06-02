@@ -40,14 +40,14 @@ public partial class Property {
     [XmlAttribute] public int rePackingItemConsumeCount;
     [M2dNullable] public int? globalRePackingItemConsumeCount;
     [M2dArray] public int[] rePackingScrollID = Array.Empty<int>();
-    [M2dArray] public int[] globalRePackingScrollID;
+    [M2dArray] public int[] globalRePackingScrollID = Array.Empty<int>();
     [XmlAttribute] public int socketDataId;
     [XmlAttribute] public string functionTags = string.Empty;
     [XmlAttribute] public bool moveDisable;
     [XmlAttribute] public bool disableDrop;
 
-    [XmlElement] public Sell sell;
-    [XmlElement] public Exp exp;
+    [XmlElement] public Sell sell = new();
+    [XmlElement] public Exp exp = new();
 
     public partial class Sell {
         [M2dArray] public long[] price = Array.Empty<long>();

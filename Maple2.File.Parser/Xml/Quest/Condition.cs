@@ -3,5 +3,5 @@
 namespace Maple2.File.Parser.Xml.Quest;
 
 public class Condition : Common.Condition {
-    [XmlElement] public List<Navigation> navi;
+    [XmlElement] public List<Navigation> navi = [];
 }

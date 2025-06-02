@@ -64,6 +64,15 @@ public class ItemOptionParserTest {
     }
 
     [TestMethod]
+    public void TestItemOptionVariationParserNew() {
+        var parser = new ItemOptionParser(TestUtils.XmlReader);
+
+        foreach (var data in parser.ParseVariationNew()) {
+            Assert.IsNotNull(data);
+        }
+    }
+
+    [TestMethod]
     public void TestItemOptionParserNew() {
         var locale = Locale.KR;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
