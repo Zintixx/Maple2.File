@@ -33,7 +33,7 @@ public class ScriptParserTest {
     public void TestQuestScriptParser() {
         var locale = Locale.NA;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new ScriptParser(TestUtils.XmlReader, "en'");
+        var parser = new ScriptParser(TestUtils.XmlReader, "en");
 
         // parser.scriptStringSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.scriptStringSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -74,7 +74,7 @@ public class ScriptParserTest {
     public void TestNpcScriptParserNew() {
         var locale = Locale.KR;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new ScriptParser(TestUtils.XmlReader, "kr'");
+        var parser = new ScriptParser(TestUtils.XmlReader, "kr");
 
         int count = 0;
         foreach ((int id, NpcScriptNew script) in parser.ParseNpcNew()) {

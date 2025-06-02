@@ -157,14 +157,6 @@ public partial class SkillAttackDataNew {
     [XmlAttribute] public int grabTargetType; // 0,1,2,3
     [M2dArray] public string[] grabNodeCategory = Array.Empty<string>();
     [XmlAttribute] public int splashActiveSkillID;
-
-    /*[XmlElement] public PetTamingProperty petTamingProperty;
-    [XmlElement] public SplashManualActiveProperty splashManualActiveProperty;
-    [XmlElement] public PauseProperty pauseProperty;
-    [XmlElement] public RegionSkill rangeProperty;
-    [XmlElement] public ChainProperty chainProperty;
-    [XmlElement] public ArrowProperty arrowProperty;
-    [XmlElement] public DamageProperty damageProperty;*/
     [XmlElement] public PauseProperty pause;
     [XmlElement] public RegionSkillNew range;
     [XmlElement] public ChainProperty chain;
@@ -202,23 +194,6 @@ public partial class SkillLevelDataNew : IFeatureLocale {
     [XmlAttribute] public int meso;
     [XmlAttribute] public float stanceDamageRate;
     [XmlAttribute] public string stringParam = string.Empty;
-
-
-    // [XmlElement] public BeginCondition beginCondition;
-    /*[XmlElement] public ChangeSkill changeSkill;
-    [XmlElement] public MagicControl magicControl;
-    [XmlElement] public AutoTargeting autoTargeting;
-    [XmlElement] public Push push;
-    [XmlElement] public Consume consume;
-    [XmlElement] public TargetItem targetItem;
-    [XmlElement] public Upgrade upgrade;
-    [XmlElement] public RegionSkill detectProperty;
-    [XmlElement] public RegionSkill sensorProperty;
-    [XmlElement] public SplashManualActiveProperty splashManualActiveProperty;
-    [XmlElement] public SkillGlideData glideProperty;
-    [XmlElement] public Combo combo;
-    [XmlElement] public RecoveryProperty recoveryProperty;
-    [XmlElement] public List<TriggerSkill> conditionSkill;*/
     [XmlElement] public RegionSkillNew detectProperty;
     [XmlElement] public List<ActionAdditional> actionAdditional;
     [XmlElement] public List<SkillMotionDataNew> motion;
@@ -251,9 +226,9 @@ public partial class SkillMotionDataNew {
     // [XmlAttribute] public float movevangle;
     [XmlAttribute] public float movedistance;
     [XmlAttribute] public int moveEaseType; // 0,1,2
-                                            // [XmlAttribute] public float moveMid;
-                                            // [XmlAttribute] public float moveHeight;
-                                            // [XmlAttribute] public int hide; // 0
+    // [XmlAttribute] public float moveMid;
+    // [XmlAttribute] public float moveHeight;
+    // [XmlAttribute] public int hide; // 0
     [XmlAttribute] public int ignoreCollisionGroups; // 0,4,16,20
     [XmlAttribute] public bool holdWeapon;
     [XmlAttribute] public int loopCount;
