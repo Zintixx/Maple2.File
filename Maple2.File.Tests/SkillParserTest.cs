@@ -12,7 +12,7 @@ public class SkillParserTest {
     public void TestSkillParser() {
         var locale = Locale.NA;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new SkillParser(TestUtils.XmlReader, Language.en);
+        var parser = new SkillParser(TestUtils.XmlReader, "en");
 
         int count = 0;
         foreach ((int id, string name, SkillData data) in parser.Parse()) {
@@ -27,7 +27,7 @@ public class SkillParserTest {
     public void TestSkillParserNew() {
         var locale = Locale.KR;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new SkillParser(TestUtils.XmlReader, Language.kr);
+        var parser = new SkillParser(TestUtils.XmlReader, "kr");
 
         // parser.skillNewSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         //parser.skillNewSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -46,14 +46,15 @@ public class SkillParserTest {
     [TestMethod]
     public void TestSkillNames() {
         var locale = Locale.NA;
+        string language = "en";
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new SkillParser(TestUtils.XmlReader, Language.en);
+        var parser = new SkillParser(TestUtils.XmlReader, language);
         Dictionary<int, string> skillNames = parser.LoadSkillNames();
 
-        switch (locale) {
-            case Locale.NA:
+        switch (language) {
+            case "en":
                 break;
-            case Locale.KR:
+            case "kr":
                 break;
         }
         Assert.AreEqual(1392, skillNames.Count);

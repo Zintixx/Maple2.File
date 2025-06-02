@@ -15,9 +15,9 @@ public class ScriptParser {
     private readonly XmlSerializer npcScriptNewSerializer;
     private readonly XmlSerializer questScriptSerializer;
     private readonly XmlSerializer scriptStringSerializer;
-    private readonly Language language;
+    private readonly string language;
 
-    public ScriptParser(M2dReader xmlReader, Language language) {
+    public ScriptParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
         this.language = language;
         npcScriptSerializer = new XmlSerializer(typeof(NpcScript));
@@ -71,7 +71,7 @@ public class ScriptParser {
 
     public IDictionary<string, string> ParseStrings() {
         var result = new Dictionary<string, string>();
-        string prefix = $"string/{language.ToString()}/scriptnpc";
+        string prefix = $"string/{language}/scriptnpc";
         foreach (PackFileEntry entry in xmlReader.Files.Where(entry => entry.Name.StartsWith(prefix))) {
             var mapping = scriptStringSerializer.Deserialize(xmlReader.GetXmlReader(entry)) as StringMapping;
             Debug.Assert(mapping != null);

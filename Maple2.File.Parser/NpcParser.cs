@@ -16,9 +16,9 @@ public class NpcParser {
     private readonly XmlSerializer nameSerializer;
     private readonly XmlSerializer npcSerializer;
     private readonly XmlSerializer npcNewSerializer;
-    private readonly Language language;
+    private readonly string language;
 
-    public NpcParser(M2dReader xmlReader, Language language) {
+    public NpcParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
         this.language = language;
         nameSerializer = new XmlSerializer(typeof(StringMapping));
@@ -27,7 +27,7 @@ public class NpcParser {
     }
 
     public Dictionary<int, string> ParseNpcNames() {
-        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/npcname.xml"));
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/npcname.xml"));
         var npcNames = nameSerializer.Deserialize(reader) as StringMapping;
         Debug.Assert(npcNames != null);
         return npcNames.key.ToDictionary(key => int.Parse(key.id), key => key.name);

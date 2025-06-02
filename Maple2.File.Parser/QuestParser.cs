@@ -16,9 +16,9 @@ public class QuestParser {
     private readonly XmlSerializer descriptionSerializer;
     private readonly XmlSerializer questSerializer;
     private readonly XmlSerializer questNewSerializer;
-    private readonly Language language;
+    private readonly string language;
 
-    public QuestParser(M2dReader xmlReader, Language language) {
+    public QuestParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
         this.language = language;
         descriptionSerializer = new XmlSerializer(typeof(QuestDescriptionRoot));
@@ -60,7 +60,7 @@ public class QuestParser {
 
     public Dictionary<int, string> ParseQuestDescriptions() {
         Dictionary<int, string> questNames = new();
-        foreach (PackFileEntry entry in xmlReader.Files.Where(entry => entry.Name.StartsWith($"string/{language.ToString()}/questdescription"))) {
+        foreach (PackFileEntry entry in xmlReader.Files.Where(entry => entry.Name.StartsWith($"string/{language}/questdescription"))) {
             // Match match = Regex.Match(entry.Name, "questdescription_event(\\w{2})\\.xml");
             // if (match.Success && !filter.Locale.Equals(match.Groups[1].Value, StringComparison.OrdinalIgnoreCase)) {
             //     Console.WriteLine($"Skipping {entry.Name}");

@@ -11,9 +11,8 @@ public class NpcParserTest {
     [TestMethod]
     public void TestNpcParser() {
         var locale = Locale.NA;
-        var language = Language.en;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new NpcParser(TestUtils.XmlReader, language);
+        var parser = new NpcParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -33,9 +32,8 @@ public class NpcParserTest {
     [TestMethod]
     public void TestNpcParserNew() {
         var locale = Locale.KR;
-        var language = Language.kr;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new NpcParser(TestUtils.XmlReader, language);
+        var parser = new NpcParser(TestUtils.XmlReader, "kr");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -55,7 +53,7 @@ public class NpcParserTest {
     [TestMethod]
     public void TestNpcNameParser() {
         var locale = Locale.NA;
-        var language = Language.en;
+        string language = "en";
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new NpcParser(TestUtils.XmlReader, language);
 
@@ -66,11 +64,11 @@ public class NpcParserTest {
             Assert.IsNotNull(name);
             count++;
         }
-        switch (locale) {
-            case Locale.NA:
+        switch (language) {
+            case "en":
                 Assert.AreEqual(7114, count);
                 break;
-            case Locale.KR:
+            case "kr":
                 Assert.AreEqual(7850, count);
                 break;
         }

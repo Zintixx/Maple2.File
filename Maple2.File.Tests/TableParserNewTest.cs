@@ -13,7 +13,7 @@ public class TableParserNewTest {
     [ClassInitialize]
     public static void ClassInit(TestContext context) {
         Filter.Load(TestUtils.XmlReader, Locale.KR.ToString(), "Live");
-        _parser = new TableParser(TestUtils.XmlReader, Language.kr);
+        _parser = new TableParser(TestUtils.XmlReader, "kr");
     }
 
     [TestMethod]

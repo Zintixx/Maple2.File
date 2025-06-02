@@ -103,9 +103,9 @@ public class TableParser {
     private readonly XmlSerializer statStringSerializer;
 
     private readonly string locale;
-    private readonly Language language;
+    private readonly string language;
 
-    public TableParser(M2dReader xmlReader, Language language) {
+    public TableParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
         nameSerializer = new XmlSerializer(typeof(StringMapping));
         bankTypeSerializer = new XmlSerializer(typeof(BankTypeRoot));
@@ -346,7 +346,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, string Name, Fish Fish)> ParseFish() {
-        XmlReader nameReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/stringfishname.xml"));
+        XmlReader nameReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/stringfishname.xml"));
         var mapping = nameSerializer.Deserialize(nameReader) as StringMapping;
         Debug.Assert(mapping != null);
 
@@ -734,7 +734,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, string Name, SetItemInfo Info)> ParseSetItemInfo() {
-        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/setitemname.xml"));
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/setitemname.xml"));
         var mapping = nameSerializer.Deserialize(reader) as StringMapping;
         Debug.Assert(mapping != null);
 
@@ -760,7 +760,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, string Name, SetItemOptionNew Option)> ParseSetItemOptionNew() {
-        XmlReader nameXmlReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language.ToString()}/setitemname.xml"));
+        XmlReader nameXmlReader = xmlReader.GetXmlReader(xmlReader.GetEntry($"{language}/setitemname.xml"));
         var mapping = nameSerializer.Deserialize(nameXmlReader) as StringMapping;
         Debug.Assert(mapping != null);
 

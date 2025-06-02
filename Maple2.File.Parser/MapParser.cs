@@ -16,9 +16,9 @@ public class MapParser {
     public readonly XmlSerializer NameSerializer;
     public readonly XmlSerializer MapSerializer;
     public readonly XmlSerializer MapNewSerializer;
-    private readonly Language language;
+    private readonly string language;
 
-    public MapParser(M2dReader xmlReader, Language language) {
+    public MapParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
         this.language = language;
         NameSerializer = new XmlSerializer(typeof(StringMapping));

@@ -11,7 +11,7 @@ public class ScriptParserTest {
     [TestMethod]
     public void TestNpcScriptParser() {
         var locale = Locale.NA;
-        var language = Language.en;
+        string language = "en";
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new ScriptParser(TestUtils.XmlReader, language);
 
@@ -32,9 +32,8 @@ public class ScriptParserTest {
     [TestMethod]
     public void TestQuestScriptParser() {
         var locale = Locale.NA;
-        var language = Language.en;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new ScriptParser(TestUtils.XmlReader, language);
+        var parser = new ScriptParser(TestUtils.XmlReader, "en'");
 
         // parser.scriptStringSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.scriptStringSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -53,9 +52,8 @@ public class ScriptParserTest {
     [TestMethod]
     public void TestStringsParser() {
         var locale = Locale.NA;
-        var language = Language.en;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new ScriptParser(TestUtils.XmlReader, language);
+        var parser = new ScriptParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -75,9 +73,8 @@ public class ScriptParserTest {
     [TestMethod]
     public void TestNpcScriptParserNew() {
         var locale = Locale.KR;
-        var language = Language.kr;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new ScriptParser(TestUtils.XmlReader, language);
+        var parser = new ScriptParser(TestUtils.XmlReader, "kr'");
 
         int count = 0;
         foreach ((int id, NpcScriptNew script) in parser.ParseNpcNew()) {
@@ -91,9 +88,8 @@ public class ScriptParserTest {
     [TestMethod]
     public void TestQuestScriptParserNew() {
         var locale = Locale.KR;
-        var language = Language.kr;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new ScriptParser(TestUtils.XmlReader, language);
+        var parser = new ScriptParser(TestUtils.XmlReader, "kr");
 
         int count = 0;
         foreach ((int id, QuestScript script) in parser.ParseQuestNew()) {

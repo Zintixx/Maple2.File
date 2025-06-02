@@ -15,9 +15,9 @@ public class SkillParser {
     private readonly XmlSerializer nameSerializer;
     private readonly XmlSerializer skillSerializer;
     private readonly XmlSerializer skillNewSerializer;
-    private readonly Language language;
+    private readonly string language;
 
-    public SkillParser(M2dReader xmlReader, Language language) {
+    public SkillParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
         this.language = language;
         nameSerializer = new XmlSerializer(typeof(StringMapping));
@@ -57,7 +57,7 @@ public class SkillParser {
 
     public Dictionary<int, string> LoadSkillNames() {
         Dictionary<int, string> skillNames = new();
-        foreach (PackFileEntry entry in xmlReader.Files.Where(entry => entry.Name.StartsWith($"string/{language.ToString()}/skillname"))) {
+        foreach (PackFileEntry entry in xmlReader.Files.Where(entry => entry.Name.StartsWith($"string/{language}/skillname"))) {
             XmlReader reader = xmlReader.GetXmlReader(entry);
             var mapping = nameSerializer.Deserialize(reader) as StringMapping;
             Debug.Assert(mapping != null);

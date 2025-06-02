@@ -11,9 +11,8 @@ public class QuestParserTest {
     [TestMethod]
     public void TestQuestParser() {
         var locale = Locale.NA;
-        var language = Language.en;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new QuestParser(TestUtils.XmlReader, language);
+        var parser = new QuestParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -33,9 +32,8 @@ public class QuestParserTest {
     [TestMethod]
     public void TestQuestParserNew() {
         var locale = Locale.KR;
-        var language = Language.kr;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new QuestParser(TestUtils.XmlReader, language);
+        var parser = new QuestParser(TestUtils.XmlReader, "kr");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -55,7 +53,7 @@ public class QuestParserTest {
     [TestMethod]
     public void TestQuestDescriptionParser() {
         var locale = Locale.NA;
-        var language = Language.en;
+        string language = "en";
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new QuestParser(TestUtils.XmlReader, language);
 
@@ -67,10 +65,10 @@ public class QuestParserTest {
             count++;
         }
         switch (language) {
-            case Language.en:
+            case "en":
                 Assert.AreEqual(5612, count);
                 break;
-            case Language.kr:
+            case "kr":
                 Assert.AreEqual(5793, count);
                 break;
         }

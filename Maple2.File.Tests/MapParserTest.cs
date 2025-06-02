@@ -12,7 +12,7 @@ public class MapParserTest {
     public void TestMapParser() {
         var locale = Locale.NA;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new MapParser(TestUtils.XmlReader, Language.en);
+        var parser = new MapParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -33,7 +33,7 @@ public class MapParserTest {
     public void TestMapParserNew() {
         var locale = Locale.KR;
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
-        var parser = new MapParser(TestUtils.XmlReader, Language.kr);
+        var parser = new MapParser(TestUtils.XmlReader, "kr");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -53,16 +53,16 @@ public class MapParserTest {
     [TestMethod]
     public void TestMapNames() {
         var locale = Locale.NA;
-        var language = Language.en;
+        string language = "en";
         Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
         var parser = new MapParser(TestUtils.XmlReader, language);
         var mapNames = parser.ParseMapNames();
 
         switch (language) {
-            case Language.en:
+            case "en":
                 Assert.AreEqual(1152, mapNames.Count);
                 break;
-            case Language.kr:
+            case "kr":
                 Assert.AreEqual(1282, mapNames.Count);
                 break;
         }
