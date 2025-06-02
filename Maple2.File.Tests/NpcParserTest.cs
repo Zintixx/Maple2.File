@@ -1,4 +1,5 @@
 ﻿using Maple2.File.Parser;
+using Maple2.File.Parser.Enum;
 using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml.Npc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,8 +10,9 @@ namespace Maple2.File.Tests;
 public class NpcParserTest {
     [TestMethod]
     public void TestNpcParser() {
-        Filter.Load(TestUtils.XmlReader, "NA", "Live");
-        var parser = new NpcParser(TestUtils.XmlReader);
+        var locale = Locale.NA;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
+        var parser = new NpcParser(TestUtils.XmlReader, "en");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -28,9 +30,10 @@ public class NpcParserTest {
     }
 
     [TestMethod]
-    public void TestNpcParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new NpcParser(TestUtilsKr.XmlReader);
+    public void TestNpcParserNew() {
+        var locale = Locale.KR;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
+        var parser = new NpcParser(TestUtils.XmlReader, "kr");
 
         // parser.NameSerializer.UnknownElement += TestUtils.UnknownElementHandler;
         // parser.NameSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
@@ -38,7 +41,7 @@ public class NpcParserTest {
         // parser.NpcSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
 
         int count = 0;
-        foreach ((int id, string name, NpcDataKR data, List<EffectDummy> dummy) in parser.ParseKr()) {
+        foreach ((int id, string name, NpcDataNew data, List<EffectDummy> dummy) in parser.ParseNew()) {
             // Debug.WriteLine($"Parsing Npc: {id} ({name})");
             Assert.IsTrue(id > 0);
             Assert.IsNotNull(data);
@@ -49,8 +52,10 @@ public class NpcParserTest {
 
     [TestMethod]
     public void TestNpcNameParser() {
-        Filter.Load(TestUtils.XmlReader, "NA", "Live");
-        var parser = new NpcParser(TestUtils.XmlReader);
+        var locale = Locale.NA;
+        string language = "en";
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
+        var parser = new NpcParser(TestUtils.XmlReader, language);
 
         int count = 0;
         foreach ((int id, string name) in parser.ParseNpcNames()) {
@@ -59,22 +64,14 @@ public class NpcParserTest {
             Assert.IsNotNull(name);
             count++;
         }
-        Assert.AreEqual(7114, count);
-    }
-
-    [TestMethod]
-    public void TestNpcNameParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new NpcParser(TestUtilsKr.XmlReader);
-
-        int count = 0;
-        foreach ((int id, string name) in parser.ParseNpcNames()) {
-            // Debug.WriteLine($"Parsing Npc Name: {id} ({name})");
-            Assert.IsTrue(id > 0);
-            Assert.IsNotNull(name);
-            count++;
+        switch (language) {
+            case "en":
+                Assert.AreEqual(7114, count);
+                break;
+            case "kr":
+                Assert.AreEqual(7850, count);
+                break;
         }
-        Assert.AreEqual(7850, count);
     }
 }
 

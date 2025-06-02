@@ -11,6 +11,6 @@ public partial class Corpse {
     [XmlAttribute] public float added;
     [XmlAttribute] public float offsetNametag;
     [XmlAttribute] public int hitAble;
-    [M2dVector3] public Vector3 rotation;
+    [M2dVector3] public Vector3 rotation = default;
     [XmlAttribute] public string corpseEffect = string.Empty;
 }

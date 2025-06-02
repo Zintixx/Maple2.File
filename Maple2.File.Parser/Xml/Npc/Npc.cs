@@ -11,44 +11,44 @@ public partial class NpcDataRoot {
 }
 
 public partial class NpcData : IFeatureLocale {
-    [XmlElement] public Model model;
-    [XmlElement] public Basic basic;
-    [XmlElement] public Stat stat;
-    [XmlElement] public Speed speed;
-    [XmlElement] public Distance distance;
-    [XmlElement] public Crystals crystals;
-    [XmlElement] public Skill skill;
-    [XmlElement] public AdditionalEffect additionalEffect;
-    [XmlElement] public Interact interact;
-    [XmlElement] public Combat combat; // Ignored by client.
-    [XmlElement] public Assist assist;
-    [XmlElement] public AiInfo aiInfo;
-    [XmlElement] public Collision collision;
-    [XmlElement] public NodeCollisions nodeCollisions;
-    [XmlElement] public NodeServerCollisions nodeServerCollisions;
-    [XmlElement] public Capsule capsule;
-    [XmlElement] public ValidBattleCylinder validBattleCylinder;
-    [XmlElement] public Dead dead;
-    [XmlElement] public Push push;
-    [XmlElement] public Exp exp;
-    [XmlElement] public Shadow shadow;
-    [XmlElement] public Normal normal;
-    [XmlElement] public DropItemInfo dropiteminfo;
-    [XmlElement] public LookAtTarget lookattarget;
-    [XmlElement] public Corpse corpse;
-    [XmlElement] public Ride ride; // Ignored by client.
+    [XmlElement] public Model model = new();
+    [XmlElement] public Basic basic = new();
+    [XmlElement] public Stat stat = new();
+    [XmlElement] public Speed speed = new();
+    [XmlElement] public Distance distance = new();
+    [XmlElement] public Crystals crystals = new();
+    [XmlElement] public Skill skill = new();
+    [XmlElement] public AdditionalEffect additionalEffect = new();
+    [XmlElement] public Interact interact = new();
+    [XmlElement] public Combat combat = new(); // Ignored by client.
+    [XmlElement] public Assist assist = new();
+    [XmlElement] public AiInfo aiInfo = new();
+    [XmlElement] public Collision collision = new();
+    [XmlElement] public NodeCollisions nodeCollisions = new();
+    [XmlElement] public NodeServerCollisions nodeServerCollisions = new();
+    [XmlElement] public Capsule capsule = new();
+    [XmlElement] public ValidBattleCylinder validBattleCylinder = new();
+    [XmlElement] public Dead dead = new();
+    [XmlElement] public Push push = new();
+    [XmlElement] public Exp exp = new();
+    [XmlElement] public Shadow shadow = new();
+    [XmlElement] public Normal normal = new();
+    [XmlElement] public DropItemInfo dropiteminfo = new();
+    [XmlElement] public LookAtTarget lookattarget = new();
+    [XmlElement] public Corpse corpse = new();
+    [XmlElement] public Ride ride = new(); // Ignored by client.
 }
 
 [XmlRoot("ms2")]
-public partial class NpcDataListKR {
-    [XmlElement("npc")] public List<NpcDataRootKR> npcs;
+public partial class NpcDataListNew {
+    [XmlElement("npc")] public List<NpcDataRootNew> npcs = [];
 }
 
-public partial class NpcDataRootKR {
+public partial class NpcDataRootNew {
     [XmlAttribute] public int id;
-    [XmlElement] public NpcDataKR environment;
+    [XmlElement] public NpcDataNew environment = new();
 }
 
-public partial class NpcDataKR : NpcData {
-    [XmlElement] public List<EffectDummy> effectdummy;
+public partial class NpcDataNew : NpcData {
+    [XmlElement] public List<EffectDummy> effectdummy = [];
 }

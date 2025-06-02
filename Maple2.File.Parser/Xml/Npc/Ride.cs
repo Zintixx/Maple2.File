@@ -8,8 +8,8 @@ public partial class Ride {
     [XmlAttribute] public float rideScale;
     [XmlAttribute] public string rideBone = string.Empty;
     [XmlAttribute] public string rideAnimation = string.Empty;
-    [M2dVector3] public Vector3 rideTranslation;
-    [M2dVector3] public Vector3 rideRotation;
+    [M2dVector3] public Vector3 rideTranslation = default;
+    [M2dVector3] public Vector3 rideRotation = default;
     [XmlAttribute] public float rideSpeed;
     [XmlAttribute] public string rideSkill = string.Empty;
     [XmlAttribute] public int rideSkill2;

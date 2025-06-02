@@ -10,31 +10,31 @@ public partial class MapDataRoot {
 }
 
 public partial class MapData : IFeatureLocale {
-    [XmlElement] public XBlock xblock;
-    [XmlElement] public Property property;
-    [XmlElement] public Drop drop;
-    [XmlElement] public Split split;
-    [XmlElement] public CashCall cashCall;
-    [XmlElement] public Indoor indoor;
-    [XmlElement] public UI ui;
-    [XmlElement] public BGM bgm;
-    [XmlElement] public HDR hdr;
-    [XmlElement] public Survival survival;
-    [XmlElement] public Camera camera;
-    [XmlElement] public Shadow shadow;
-    [XmlElement] public FOV fov;
-    [XmlElement] public Optimize optimize;
-    [XmlElement] public WorldMap worldmap; // Ignored by client.
+    [XmlElement] public XBlock xblock = new();
+    [XmlElement] public Property property = new();
+    [XmlElement] public Drop drop = new();
+    [XmlElement] public Split split = new();
+    [XmlElement] public CashCall cashCall = new();
+    [XmlElement] public Indoor indoor = new();
+    [XmlElement] public UI ui = new();
+    [XmlElement] public BGM bgm = new();
+    [XmlElement] public HDR hdr = new();
+    [XmlElement] public Survival survival = new();
+    [XmlElement] public Camera camera = new();
+    [XmlElement] public Shadow shadow = new();
+    [XmlElement] public FOV fov = new();
+    [XmlElement] public Optimize optimize = new();
+    [XmlElement] public WorldMap worldmap = new(); // Ignored by client.
 }
 
 // .data/xml/table/fielddata.xml
 [XmlRoot("ms2")]
-public partial class MapDataRootKR {
+public partial class MapDataRootNew {
     // list of fieldData with ID as mapId, then inside its environment as MapDataRoot
-    [XmlElement("fieldData")] public List<MapDataRootKR> fieldData = [];
+    [XmlElement("fieldData")] public List<MapDataRootNew> fieldData = [];
 }
 
-public partial class MapDataRootKR {
+public partial class MapDataRootNew {
     [XmlAttribute] public int id;
-    [M2dFeatureLocale] private MapData _environment;
+    [M2dFeatureLocale] private MapData _environment = new();
 }

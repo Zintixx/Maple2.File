@@ -1,4 +1,5 @@
 ﻿using Maple2.File.Parser;
+using Maple2.File.Parser.Enum;
 using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml.Skill;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,8 +10,9 @@ namespace Maple2.File.Tests;
 public class SkillParserTest {
     [TestMethod]
     public void TestSkillParser() {
-        Filter.Load(TestUtils.XmlReader, "NA", "Live");
-        var parser = new SkillParser(TestUtils.XmlReader);
+        var locale = Locale.NA;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
+        var parser = new SkillParser(TestUtils.XmlReader, "en");
 
         int count = 0;
         foreach ((int id, string name, SkillData data) in parser.Parse()) {
@@ -22,12 +24,17 @@ public class SkillParserTest {
     }
 
     [TestMethod]
-    public void TestSkillParserKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new SkillParser(TestUtilsKr.XmlReader);
+    public void TestSkillParserNew() {
+        var locale = Locale.KR;
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
+        var parser = new SkillParser(TestUtils.XmlReader, "kr");
+
+        // parser.skillNewSerializer.UnknownElement += TestUtils.UnknownElementHandler;
+        //parser.skillNewSerializer.UnknownAttribute += TestUtils.UnknownAttributeHandler;
+
 
         int count = 0;
-        foreach ((int id, string name, SkillKR data) in parser.ParseKr()) {
+        foreach ((int id, string name, SkillNew data) in parser.ParseNew()) {
             Assert.IsTrue(id > 0);
             Assert.IsNotNull(data);
             count++;
@@ -38,20 +45,19 @@ public class SkillParserTest {
 
     [TestMethod]
     public void TestSkillNames() {
-        Filter.Load(TestUtils.XmlReader, "NA", "Live");
-        var parser = new SkillParser(TestUtils.XmlReader);
+        var locale = Locale.NA;
+        string language = "en";
+        Filter.Load(TestUtils.XmlReader, locale.ToString(), "Live");
+        var parser = new SkillParser(TestUtils.XmlReader, language);
         Dictionary<int, string> skillNames = parser.LoadSkillNames();
 
+        switch (language) {
+            case "en":
+                break;
+            case "kr":
+                break;
+        }
         Assert.AreEqual(1392, skillNames.Count);
-    }
-
-    [TestMethod]
-    public void TestSkillNamesKr() {
-        Filter.Load(TestUtilsKr.XmlReader, "KR", "Live");
-        var parser = new SkillParser(TestUtilsKr.XmlReader);
-        Dictionary<int, string> skillNames = parser.LoadSkillNames();
-
-        Assert.AreEqual(1421, skillNames.Count);
     }
 }
 

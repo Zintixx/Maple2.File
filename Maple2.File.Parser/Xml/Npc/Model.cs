@@ -10,5 +10,5 @@ public partial class Model {
     [XmlAttribute] public float anispeed = 1.0f;
     [XmlAttribute] public bool anispeedfix;
     [XmlAttribute] public int spawnAlphaAnimation = 1;
-    [M2dVector3] public Vector3 offset;
+    [M2dVector3] public Vector3 offset = default;
 }

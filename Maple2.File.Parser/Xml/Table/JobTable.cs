@@ -69,11 +69,11 @@ public partial class Learn {
 
 
 [XmlRoot("ms2")]
-public partial class JobRootKR {
-    [M2dFeatureLocale(Selector = "jobGroupID")] private IList<JobTableKR> _job;
+public partial class JobRootNew {
+    [M2dFeatureLocale(Selector = "jobGroupID")] private IList<JobTableNew> _job;
 }
 
-public partial class JobTableKR : IFeatureLocale {
+public partial class JobTableNew : IFeatureLocale {
     [XmlAttribute] public int jobGroupID = 1;
     [XmlAttribute] public int subJob1 = 1;
     [XmlAttribute] public int subJob2 = 1;
@@ -84,15 +84,16 @@ public partial class JobTableKR : IFeatureLocale {
 
     [M2dArray] public int[] startItems = Array.Empty<int>();
 
-    [XmlElement("skills")] public SkillsKR skills;
+    [XmlElement("skills")] public SkillsNew skills;
 }
 
-public partial class SkillsKR {
+public partial class SkillsNew {
     [XmlElement("v")] public List<Skill> skills;
 
     public partial class Skill : IFeatureLocale {
         [XmlAttribute] public int skillID;
         [M2dArray] public int[] subSkillIDs = Array.Empty<int>();
+        [XmlAttribute] public bool isLearn;
         [XmlAttribute] public int jobLevel;
         [XmlAttribute] public short maxLevel = 1;
         [XmlAttribute] public int quickSlotPriority;

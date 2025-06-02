@@ -5,15 +5,15 @@ using M2dXmlGenerator;
 namespace Maple2.File.Parser.Xml.Item;
 
 public class Slots {
-    [XmlElement] public List<Slot> slot;
+    [XmlElement] public List<Slot> slot = [];
 }
 
 public partial class Slot {
     [XmlAttribute] public string name = string.Empty;
 
-    [XmlElement] public List<Asset> asset;
-    [XmlElement] public List<Scale> scale;
-    [XmlElement] public Decal decal;
+    [XmlElement] public List<Asset> asset = [];
+    [XmlElement] public List<Scale> scale = [];
+    [XmlElement] public Decal decal = new();
 
     public class Asset {
         [XmlAttribute] public string name = string.Empty;
@@ -32,11 +32,11 @@ public partial class Slot {
         [XmlAttribute] public int weapon;
         [XmlAttribute] public int placeable;
 
-        [XmlElement] public List<Custom> custom;
-        [XmlElement] public List<UserRotation> userrotation;
-        [XmlElement] public List<JointAngle> jointangle;
-        [XmlElement] public List<Dummy> dummy;
-        [XmlElement] public PhysX physx;
+        [XmlElement] public List<Custom> custom = [];
+        [XmlElement] public List<UserRotation> userrotation = [];
+        [XmlElement] public List<JointAngle> jointangle = [];
+        [XmlElement] public List<Dummy> dummy = [];
+        [XmlElement] public PhysX physx = new();
     }
 
     public partial class Scale {
@@ -50,13 +50,13 @@ public partial class Slot {
         [XmlAttribute] public string texture = string.Empty;
         [XmlAttribute] public string controlTexture = string.Empty;
 
-        [XmlElement] public List<Custom> custom;
+        [XmlElement] public List<Custom> custom = [];
     }
 
     public partial class Custom {
         [XmlAttribute] public string icon = string.Empty;
-        [M2dVector3] public Vector3 position;
-        [M2dVector3] public Vector3 rotation;
+        [M2dVector3] public Vector3 position = default;
+        [M2dVector3] public Vector3 rotation = default;
     }
 
     public partial class UserRotation {
@@ -81,8 +81,8 @@ public partial class Slot {
         [XmlAttribute] public bool worldmode;
         [XmlAttribute] public bool worldlerp;
         [XmlAttribute] public float step;
-        [M2dVector3] public Vector3 rotation;
-        [M2dVector3] public Vector3 translation;
+        [M2dVector3] public Vector3 rotation = default;
+        [M2dVector3] public Vector3 translation = default;
     }
 
     public partial class PhysX {

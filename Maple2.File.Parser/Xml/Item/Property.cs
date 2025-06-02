@@ -5,6 +5,7 @@ namespace Maple2.File.Parser.Xml.Item;
 
 public partial class Property {
     [XmlAttribute] public bool skin;
+    [XmlAttribute] public short rank = 1;
     [XmlAttribute] public int skinType;
     [XmlAttribute] public int slotMax = 1; // if > 99999, set to 99999
     [XmlAttribute] public int type;
@@ -39,14 +40,14 @@ public partial class Property {
     [XmlAttribute] public int rePackingItemConsumeCount;
     [M2dNullable] public int? globalRePackingItemConsumeCount;
     [M2dArray] public int[] rePackingScrollID = Array.Empty<int>();
-    [M2dArray] public int[] globalRePackingScrollID;
+    [M2dArray] public int[] globalRePackingScrollID = Array.Empty<int>();
     [XmlAttribute] public int socketDataId;
     [XmlAttribute] public string functionTags = string.Empty;
     [XmlAttribute] public bool moveDisable;
     [XmlAttribute] public bool disableDrop;
 
-    [XmlElement] public Sell sell;
-    [XmlElement] public Exp exp;
+    [XmlElement] public Sell sell = new();
+    [XmlElement] public Exp exp = new();
 
     public partial class Sell {
         [M2dArray] public long[] price = Array.Empty<long>();
