@@ -14,7 +14,7 @@ public partial class SmartPush : IFeatureLocale {
     [XmlAttribute] public string content = string.Empty;
     [XmlAttribute] public string actionType = string.Empty;
     [XmlAttribute] public int actionValue;
-    [XmlAttribute] public long requireMeret;
-    [XmlAttribute] public string[] requiredItem = Array.Empty<string>();
+    [XmlAttribute] public long requireMerat;
+    [M2dArray] public string[] requireItem = Array.Empty<string>();
     [XmlAttribute] public string imgPath = string.Empty;
 }
