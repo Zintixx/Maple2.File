@@ -101,6 +101,7 @@ public class TableParser {
     private readonly XmlSerializer smartPushSerializer;
     private readonly XmlSerializer seasonDataSerializer;
     private readonly XmlSerializer statStringSerializer;
+    private readonly XmlSerializer autoActionPricePackageSerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -196,6 +197,7 @@ public class TableParser {
         smartPushSerializer = new XmlSerializer(typeof(SmartPushRoot));
         seasonDataSerializer = new XmlSerializer(typeof(SeasonDataRoot));
         statStringSerializer = new XmlSerializer(typeof(StatStringRoot));
+        autoActionPricePackageSerializer = new XmlSerializer(typeof(AutoActionPricePackageRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -799,9 +801,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(individualItemDrop => new {
-            individualItemDrop.individualDropBoxID,
-            individualItemDrop.dropGroup
-        })
+                individualItemDrop.individualDropBoxID,
+                individualItemDrop.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -833,9 +835,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -849,9 +851,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -865,9 +867,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -881,9 +883,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -897,9 +899,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -913,9 +915,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -929,9 +931,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -945,9 +947,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -961,9 +963,9 @@ public class TableParser {
         var data = individualItemDropSerializer.Deserialize(reader) as IndividualItemDropRoot;
         Debug.Assert(data != null);
         var groups = data.individualDropBox.GroupBy(dropbox => new {
-            dropbox.individualDropBoxID,
-            dropbox.dropGroup
-        })
+                dropbox.individualDropBoxID,
+                dropbox.dropGroup
+            })
             .ToDictionary(group => group.Key, group => group.ToList());
         foreach (var group in groups) {
             yield return (group.Key.individualDropBoxID, group.Value.GroupBy(drop => drop.dropGroup).ToDictionary(drop => drop.Key, drop => drop.ToList()));
@@ -1536,6 +1538,17 @@ public class TableParser {
         Debug.Assert(data != null);
 
         foreach (StatString entry in data.key) {
+            yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, AutoActionPricePackage Data)> ParseAutoActionPricePackage() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/autoactionpricepackage.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = autoActionPricePackageSerializer.Deserialize(reader) as AutoActionPricePackageRoot;
+        Debug.Assert(data != null);
+
+        foreach (AutoActionPricePackage entry in data.package) {
             yield return (entry.id, entry);
         }
     }
