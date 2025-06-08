@@ -101,6 +101,7 @@ public class TableParser {
     private readonly XmlSerializer smartPushSerializer;
     private readonly XmlSerializer seasonDataSerializer;
     private readonly XmlSerializer statStringSerializer;
+    private readonly XmlSerializer autoActionPricePackageSerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -196,6 +197,7 @@ public class TableParser {
         smartPushSerializer = new XmlSerializer(typeof(SmartPushRoot));
         seasonDataSerializer = new XmlSerializer(typeof(SeasonDataRoot));
         statStringSerializer = new XmlSerializer(typeof(StatStringRoot));
+        autoActionPricePackageSerializer = new XmlSerializer(typeof(AutoActionPricePackageRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -1536,6 +1538,17 @@ public class TableParser {
         Debug.Assert(data != null);
 
         foreach (StatString entry in data.key) {
+            yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, AutoActionPricePackage Data)> ParseAutoActionPricePackage() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/autoactionpricepackage.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = autoActionPricePackageSerializer.Deserialize(reader) as AutoActionPricePackageRoot;
+        Debug.Assert(data != null);
+
+        foreach (AutoActionPricePackage entry in data.package) {
             yield return (entry.id, entry);
         }
     }

@@ -718,5 +718,12 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestAutoActionPackage() {
+        foreach ((_, _) in _parser.ParseAutoActionPricePackage()) {
+            continue;
+        }
+    }
 }
 
