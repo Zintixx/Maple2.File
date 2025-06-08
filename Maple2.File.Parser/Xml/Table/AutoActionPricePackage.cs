@@ -12,5 +12,6 @@ public class AutoActionPricePackage {
     [XmlAttribute] public string content = string.Empty;
     [XmlAttribute] public int id;
     [XmlAttribute] public int duration;
-    [XmlAttribute] public int merat;
+    [XmlAttribute] public long merat;
+    [XmlAttribute] public long meso;
 }
