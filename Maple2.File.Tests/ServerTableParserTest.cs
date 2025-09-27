@@ -1,4 +1,5 @@
 ﻿using Maple2.File.Parser;
+using Maple2.File.Parser.Xml.Table;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Maple2.File.Tests;
@@ -432,6 +433,15 @@ public class ServerTableParserTest {
         var parser = new ServerTableParser(TestUtils.ServerReader);
 
         foreach ((_, _) in parser.ParseItemOptionRandom()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
+    public void TestConstants() {
+        var parser = new ServerTableParser(TestUtils.ServerReader);
+
+        foreach ((_, _) in parser.ParseConstants()) {
             continue;
         }
     }

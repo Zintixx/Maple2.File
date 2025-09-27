@@ -4,7 +4,17 @@ using System.Xml.Serialization;
 using Maple2.File.IO;
 using Maple2.File.Parser.Enum;
 using Maple2.File.Parser.Tools;
+using Maple2.File.Parser.Xml.Table;
 using Maple2.File.Parser.Xml.Table.Server;
+using Fish = Maple2.File.Parser.Xml.Table.Server.Fish;
+using FishingSpot = Maple2.File.Parser.Xml.Table.Server.FishingSpot;
+using FishingSpotRoot = Maple2.File.Parser.Xml.Table.Server.FishingSpotRoot;
+using FishRoot = Maple2.File.Parser.Xml.Table.Server.FishRoot;
+using IndividualItemDrop = Maple2.File.Parser.Xml.Table.Server.IndividualItemDrop;
+using IndividualItemDropRoot = Maple2.File.Parser.Xml.Table.Server.IndividualItemDropRoot;
+using ItemMergeOptionRoot = Maple2.File.Parser.Xml.Table.Server.ItemMergeOptionRoot;
+using ItemOptionVariation = Maple2.File.Parser.Xml.Table.Server.ItemOptionVariation;
+using MergeOption = Maple2.File.Parser.Xml.Table.Server.MergeOption;
 
 namespace Maple2.File.Parser;
 
@@ -48,6 +58,7 @@ public class ServerTableParser {
     private readonly XmlSerializer itemOptionProbabilitySerializer;
     private readonly XmlSerializer itemOptionVariationSerializer;
     private readonly XmlSerializer itemOptionRandomSerializer;
+    private readonly XmlSerializer constantsSerializer;
 
     public ServerTableParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
@@ -89,6 +100,7 @@ public class ServerTableParser {
         itemOptionProbabilitySerializer = new XmlSerializer(typeof(ItemOptionProbabilityRoot));
         itemOptionVariationSerializer = new XmlSerializer(typeof(ItemOptionVariationRoot));
         itemOptionRandomSerializer = new XmlSerializer(typeof(ItemOptionRandomRoot));
+        constantsSerializer = new XmlSerializer(typeof(Constants));
 
         // var seen = new HashSet<string>();
         // this.bankTypeSerializer.UnknownAttribute += (sender, args) => {
@@ -677,6 +689,17 @@ public class ServerTableParser {
 
         foreach (ItemOptionRandom option in data.option) {
             yield return (option.code, option);
+        }
+    }
+
+    public IEnumerable<(string Key, Constants.Key key)> ParseConstants() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/Server/constants.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = constantsSerializer.Deserialize(reader) as Constants;
+        Debug.Assert(data != null);
+
+        foreach (Constants.Key key in data.v) {
+            yield return (key.key, key);
         }
     }
 }
