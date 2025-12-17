@@ -32,7 +32,11 @@ public class NiPhysXActorDesc : NifBlock {
         int numPoses = document.Reader.ReadAdjustedInt32();
 
         Poses = new List<Matrix4x4>();
+#if NETSTANDARD2_1
+        Poses.EnsureCapacityCompat(numPoses);
+#else
         Poses.EnsureCapacity(numPoses);
+#endif
 
         for (int i = 0; i < numPoses; ++i) {
             Poses.Add(document.Reader.ReadAdjustedMatrix4x3());

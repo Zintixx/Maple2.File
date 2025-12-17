@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>Maple2.File.Unity</PackageId>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Title>MapleStory2 File Parser for Unity</Title>
+        <Authors>Tadeucci</Authors>
+        <Description>Lightweight MapleStory2 m2d XBlock Parser for Unity</Description>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/AngeloTadeucci/Maple2.File</RepositoryUrl>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <!-- Reference IO project -->
+    <ItemGroup>
+      <ProjectReference Include="..\Maple2.File.IO\Maple2.File.IO.csproj" />
+      <ProjectReference Include="..\Maple2.File.Flat\Maple2.File.Flat.csproj" />
+    </ItemGroup>
+
+    <!-- Include only XBlock-related files from Parser -->
+    <ItemGroup>
+        <!-- Flat types -->
+        <Compile Include="..\Maple2.File.Parser\Flat\*.cs" Link="Flat\%(Filename)%(Extension)" />
+
+        <!-- MapXBlock -->
+        <Compile Include="..\Maple2.File.Parser\MapXBlock\*.cs" Link="MapXBlock\%(Filename)%(Extension)" />
+        <Compile Include="..\Maple2.File.Parser\MapXBlock\Generator\*.cs" Link="MapXBlock\Generator\%(Filename)%(Extension)" />
+
+        <!-- Tools (needed by Flat and MapXBlock) -->
+        <Compile Include="..\Maple2.File.Parser\Tools\HierarchyMap.cs" Link="Tools\HierarchyMap.cs" />
+        <Compile Include="..\Maple2.File.Parser\Tools\ILEmitter.cs" Link="Tools\ILEmitter.cs" />
+    </ItemGroup>
+
+</Project>

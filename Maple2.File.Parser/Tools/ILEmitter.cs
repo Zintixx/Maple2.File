@@ -34,21 +34,21 @@ public static class ILEmitter {
             il.Emit(OpCodes.Ldstr, stringValue);
         } else if (value is Vector3 vector3Value) {
             ConstructorInfo constructor =
-                typeof(Vector3).GetConstructor([typeof(float), typeof(float), typeof(float)]);
+                typeof(Vector3).GetConstructor(new[] { typeof(float), typeof(float), typeof(float) });
 
             il.Emit(OpCodes.Ldc_R4, vector3Value.X);
             il.Emit(OpCodes.Ldc_R4, vector3Value.Y);
             il.Emit(OpCodes.Ldc_R4, vector3Value.Z);
             il.Emit(OpCodes.Newobj, constructor);
         } else if (value is Vector2 vector2Value) {
-            ConstructorInfo constructor = typeof(Vector2).GetConstructor([typeof(float), typeof(float)]);
+            ConstructorInfo constructor = typeof(Vector2).GetConstructor(new[] { typeof(float), typeof(float) });
 
             il.Emit(OpCodes.Ldc_R4, vector2Value.X);
             il.Emit(OpCodes.Ldc_R4, vector2Value.Y);
             il.Emit(OpCodes.Newobj, constructor);
         } else if (value is Color colorValue) {
             MethodInfo method =
-                typeof(Color).GetMethod("FromArgb", [typeof(int), typeof(int), typeof(int), typeof(int)]);
+                typeof(Color).GetMethod("FromArgb", new[] { typeof(int), typeof(int), typeof(int), typeof(int) });
 
             il.Emit(OpCodes.Ldc_I4, (int) colorValue.A);
             il.Emit(OpCodes.Ldc_I4, (int) colorValue.R);

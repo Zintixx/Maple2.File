@@ -71,15 +71,15 @@ public sealed class RuntimeClassLookup : ClassLookup {
             mixinType.Name[1..], // Remove "I" prefix from interface
             TypeAttributes.Class | TypeAttributes.Public,
             typeof(object),
-            [mixinType]
+            new[] { mixinType }
         );
 
         var backingFields = new List<(FlatProperty, FieldInfo)>();
-        (string, string)[] baseProps = [
+        (string, string)[] baseProps = new[] {
             ("ModelName", modelName),
             ("EntityId", string.Empty),
-            ("EntityName", string.Empty),
-        ];
+            ("EntityName", string.Empty)
+        };
         foreach ((string name, string value) in baseProps) {
             var property = new FlatProperty {
                 Name = name,

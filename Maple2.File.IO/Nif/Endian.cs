@@ -65,7 +65,12 @@ public class EndianReader : BinaryReader {
 
         for (int column = 0; column < 3; ++column) {
             for (int row = 0; row < 3; ++row) {
+#if NETSTANDARD2_1
+                float value = ReadAdjustedFloat32();
+                matrix = NetStandardExtensions.SetMatrixElement(matrix, row, column, value);
+#else
                 matrix[row, column] = ReadAdjustedFloat32();
+#endif
             }
         }
 

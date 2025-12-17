@@ -40,14 +40,22 @@ public class NiPhysXPropDesc : NifBlock {
 
         uint numStates = document.Reader.ReadAdjustedUInt32();
 
+#if NETSTANDARD2_1
+        StateNames.EnsureCapacityCompat((int) numStates);
+#else
         StateNames.EnsureCapacity((int) numStates);
+#endif
 
         for (uint i = 0; i < numStates; i++) {
             State state = new State();
 
             int numStrings = document.Reader.ReadAdjustedInt32();
 
+#if NETSTANDARD2_1
+            state.EnsureCapacityCompat((int) numStrings);
+#else
             state.EnsureCapacity((int) numStrings);
+#endif
 
             for (int j = 0; j < numStrings; j++) {
                 string key = document.ReadString();

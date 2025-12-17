@@ -92,8 +92,13 @@ public class PhysXMesh {
         uint unk8 = reader.ReadAdjustedUInt32();
         uint unk9 = reader.ReadAdjustedUInt32();
 
+#if NETSTANDARD2_1
+        Vertices.EnsureCapacityCompat(vertexCount);
+        Faces.EnsureCapacityCompat(faceCount);
+#else
         Vertices.EnsureCapacity(vertexCount);
         Faces.EnsureCapacity(faceCount);
+#endif
 
         for (int i = 0; i < vertexCount; ++i) {
             Vertices.Add(reader.ReadAdjustedVector3());
@@ -149,8 +154,13 @@ public class PhysXMesh {
         int vertexCount = reader.ReadAdjustedInt32();
         int faceCount = reader.ReadAdjustedInt32();
 
+#if NETSTANDARD2_1
+        Vertices.EnsureCapacityCompat(vertexCount);
+        Faces.EnsureCapacityCompat(faceCount);
+#else
         Vertices.EnsureCapacity(vertexCount);
         Faces.EnsureCapacity(faceCount);
+#endif
 
         for (int i = 0; i < vertexCount; ++i) {
             Vertices.Add(reader.ReadAdjustedVector3());

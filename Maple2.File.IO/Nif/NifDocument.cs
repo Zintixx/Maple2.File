@@ -83,7 +83,11 @@ public class NifDocument {
 
         int count = Reader.ReadAdjustedInt32();
 
+#if NETSTANDARD2_1
+        blocks.EnsureCapacityCompat(count);
+#else
         blocks.EnsureCapacity(count);
+#endif
 
         for (int i = 0; i < count; ++i) {
             T? block = ReadBlockRef<T>();
