@@ -24,6 +24,9 @@
         <!-- Flat types -->
         <Compile Include="..\Maple2.File.Parser\Flat\*.cs" Link="Flat\%(Filename)%(Extension)" />
 
+        <!-- Flat Convert (needed for AssetIndex) -->
+        <Compile Include="..\Maple2.File.Parser\Flat\Convert\AssetIndex.cs" Link="Flat\Convert\AssetIndex.cs" />
+
         <!-- MapXBlock -->
         <Compile Include="..\Maple2.File.Parser\MapXBlock\*.cs" Link="MapXBlock\%(Filename)%(Extension)" />
         <Compile Include="..\Maple2.File.Parser\MapXBlock\Generator\*.cs" Link="MapXBlock\Generator\%(Filename)%(Extension)" />
