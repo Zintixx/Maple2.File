@@ -22,6 +22,16 @@ public class ModelToNifResolver {
     }
 
     /// <summary>
+    /// Initializes a new instance of the ModelToNifResolver class with pre-built indices.
+    /// </summary>
+    /// <param name="flatIndex">Pre-built FlatTypeIndex</param>
+    /// <param name="assetIndex">Pre-built AssetIndex</param>
+    public ModelToNifResolver(FlatTypeIndex flatIndex, Convert.AssetIndex assetIndex) {
+        this.flatIndex = flatIndex;
+        this.assetIndex = assetIndex;
+    }
+
+    /// <summary>
     /// Resolves a model name to its NIF asset name.
     /// </summary>
     /// <param name="modelName">The name of the model to resolve</param>
