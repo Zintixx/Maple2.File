@@ -1,4 +1,4 @@
-using Maple2.File.IO;
+﻿using Maple2.File.IO;
 
 namespace Maple2.File.Parser.Flat;
 

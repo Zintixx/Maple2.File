@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Numerics;
 using Maple2.File.Parser.Flat;
 using Maple2.File.Parser.Flat.Convert;
@@ -536,47 +536,55 @@ public class FlatTypeIndexSerializationTest {
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakePoint3Property(
         string name, string id, string source, Vector3 value) =>
-        (name, id, source, "Point3", Array.Empty<string>(), w => { w.Write(value.X); w.Write(value.Y); w.Write(value.Z); });
+        (name, id, source, "Point3", Array.Empty<string>(), w => { w.Write(value.X); w.Write(value.Y); w.Write(value.Z); }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakePoint2Property(
         string name, string id, string source, Vector2 value) =>
-        (name, id, source, "Point2", Array.Empty<string>(), w => { w.Write(value.X); w.Write(value.Y); });
+        (name, id, source, "Point2", Array.Empty<string>(), w => { w.Write(value.X); w.Write(value.Y); }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakeColorProperty(
         string name, string id, string source, Color value) =>
-        (name, id, source, "Color", Array.Empty<string>(), w => { w.Write(value.R); w.Write(value.G); w.Write(value.B); });
+        (name, id, source, "Color", Array.Empty<string>(), w => { w.Write(value.R); w.Write(value.G); w.Write(value.B); }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakeColorAProperty(
         string name, string id, string source, Color value) =>
-        (name, id, source, "ColorA", Array.Empty<string>(), w => { w.Write(value.A); w.Write(value.R); w.Write(value.G); w.Write(value.B); });
+        (name, id, source, "ColorA", Array.Empty<string>(), w => { w.Write(value.A); w.Write(value.R); w.Write(value.G); w.Write(value.B); }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakeAssocStringProperty(
         string name, string id, string source, Dictionary<string, string> value) =>
         (name, id, source, "AssocString", Array.Empty<string>(), w => {
             w.Write(value.Count);
             foreach (var kvp in value) { w.Write(kvp.Key); w.Write(kvp.Value); }
-        });
+        }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakeAssocPoint3Property(
         string name, string id, string source, Dictionary<string, Vector3> value) =>
         (name, id, source, "AssocPoint3", Array.Empty<string>(), w => {
             w.Write(value.Count);
             foreach (var kvp in value) { w.Write(kvp.Key); w.Write(kvp.Value.X); w.Write(kvp.Value.Y); w.Write(kvp.Value.Z); }
-        });
+        }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakeAssocUInt32Property(
         string name, string id, string source, Dictionary<string, uint> value) =>
         (name, id, source, "AssocUInt32", Array.Empty<string>(), w => {
             w.Write(value.Count);
             foreach (var kvp in value) { w.Write(kvp.Key); w.Write(kvp.Value); }
-        });
+        }
+    );
 
     private static (string, string, string, string, string[], Action<BinaryWriter>) MakeAssocSInt32Property(
         string name, string id, string source, Dictionary<string, int> value) =>
         (name, id, source, "AssocSInt32", Array.Empty<string>(), w => {
             w.Write(value.Count);
             foreach (var kvp in value) { w.Write(kvp.Key); w.Write(kvp.Value); }
-        });
+        }
+    );
 
     private static (string Name, string Id, string Type, string Source, string[] Traits) MakeBehavior(
         string name, string id, string type, string source, string[] traits) =>

@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 using System.Drawing;
 using System.Numerics;
 using System.Xml;
@@ -219,33 +219,33 @@ public class FlatTypeIndex {
                 writer.Write((double) value);
                 break;
             case "Point3": {
-                Vector3 v = (Vector3) value;
-                writer.Write(v.X);
-                writer.Write(v.Y);
-                writer.Write(v.Z);
-                break;
-            }
+                    Vector3 v = (Vector3) value;
+                    writer.Write(v.X);
+                    writer.Write(v.Y);
+                    writer.Write(v.Z);
+                    break;
+                }
             case "Point2": {
-                Vector2 v = (Vector2) value;
-                writer.Write(v.X);
-                writer.Write(v.Y);
-                break;
-            }
+                    Vector2 v = (Vector2) value;
+                    writer.Write(v.X);
+                    writer.Write(v.Y);
+                    break;
+                }
             case "Color": {
-                Color c = (Color) value;
-                writer.Write(c.R);
-                writer.Write(c.G);
-                writer.Write(c.B);
-                break;
-            }
+                    Color c = (Color) value;
+                    writer.Write(c.R);
+                    writer.Write(c.G);
+                    writer.Write(c.B);
+                    break;
+                }
             case "ColorA": {
-                Color c = (Color) value;
-                writer.Write(c.A);
-                writer.Write(c.R);
-                writer.Write(c.G);
-                writer.Write(c.B);
-                break;
-            }
+                    Color c = (Color) value;
+                    writer.Write(c.A);
+                    writer.Write(c.R);
+                    writer.Write(c.G);
+                    writer.Write(c.B);
+                    break;
+                }
             case "String":
             case "EntityRef":
             case "AssetID":
@@ -254,43 +254,43 @@ public class FlatTypeIndex {
             case "AssocString":
             case "AssocEntityRef":
             case "AssocAttachedNifAsset": {
-                var dict = (Dictionary<string, string>) value;
-                writer.Write(dict.Count);
-                foreach (var kvp in dict) {
-                    writer.Write(kvp.Key ?? string.Empty);
-                    writer.Write(kvp.Value ?? string.Empty);
+                    var dict = (Dictionary<string, string>) value;
+                    writer.Write(dict.Count);
+                    foreach (var kvp in dict) {
+                        writer.Write(kvp.Key ?? string.Empty);
+                        writer.Write(kvp.Value ?? string.Empty);
+                    }
+                    break;
                 }
-                break;
-            }
             case "AssocPoint3": {
-                var dict = (Dictionary<string, Vector3>) value;
-                writer.Write(dict.Count);
-                foreach (var kvp in dict) {
-                    writer.Write(kvp.Key ?? string.Empty);
-                    writer.Write(kvp.Value.X);
-                    writer.Write(kvp.Value.Y);
-                    writer.Write(kvp.Value.Z);
+                    var dict = (Dictionary<string, Vector3>) value;
+                    writer.Write(dict.Count);
+                    foreach (var kvp in dict) {
+                        writer.Write(kvp.Key ?? string.Empty);
+                        writer.Write(kvp.Value.X);
+                        writer.Write(kvp.Value.Y);
+                        writer.Write(kvp.Value.Z);
+                    }
+                    break;
                 }
-                break;
-            }
             case "AssocUInt32": {
-                var dict = (Dictionary<string, uint>) value;
-                writer.Write(dict.Count);
-                foreach (var kvp in dict) {
-                    writer.Write(kvp.Key ?? string.Empty);
-                    writer.Write(kvp.Value);
+                    var dict = (Dictionary<string, uint>) value;
+                    writer.Write(dict.Count);
+                    foreach (var kvp in dict) {
+                        writer.Write(kvp.Key ?? string.Empty);
+                        writer.Write(kvp.Value);
+                    }
+                    break;
                 }
-                break;
-            }
             case "AssocSInt32": {
-                var dict = (Dictionary<string, int>) value;
-                writer.Write(dict.Count);
-                foreach (var kvp in dict) {
-                    writer.Write(kvp.Key ?? string.Empty);
-                    writer.Write(kvp.Value);
+                    var dict = (Dictionary<string, int>) value;
+                    writer.Write(dict.Count);
+                    foreach (var kvp in dict) {
+                        writer.Write(kvp.Key ?? string.Empty);
+                        writer.Write(kvp.Value);
+                    }
+                    break;
                 }
-                break;
-            }
             default:
                 throw new ArgumentException($"Unknown property type for serialization: {type}");
         }
@@ -325,37 +325,37 @@ public class FlatTypeIndex {
             case "AssocString":
             case "AssocEntityRef":
             case "AssocAttachedNifAsset": {
-                int count = reader.ReadInt32();
-                var dict = new Dictionary<string, string>(count);
-                for (int i = 0; i < count; i++) {
-                    dict[reader.ReadString()] = reader.ReadString();
+                    int count = reader.ReadInt32();
+                    var dict = new Dictionary<string, string>(count);
+                    for (int i = 0; i < count; i++) {
+                        dict[reader.ReadString()] = reader.ReadString();
+                    }
+                    return dict;
                 }
-                return dict;
-            }
             case "AssocPoint3": {
-                int count = reader.ReadInt32();
-                var dict = new Dictionary<string, Vector3>(count);
-                for (int i = 0; i < count; i++) {
-                    dict[reader.ReadString()] = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                    int count = reader.ReadInt32();
+                    var dict = new Dictionary<string, Vector3>(count);
+                    for (int i = 0; i < count; i++) {
+                        dict[reader.ReadString()] = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                    }
+                    return dict;
                 }
-                return dict;
-            }
             case "AssocUInt32": {
-                int count = reader.ReadInt32();
-                var dict = new Dictionary<string, uint>(count);
-                for (int i = 0; i < count; i++) {
-                    dict[reader.ReadString()] = reader.ReadUInt32();
+                    int count = reader.ReadInt32();
+                    var dict = new Dictionary<string, uint>(count);
+                    for (int i = 0; i < count; i++) {
+                        dict[reader.ReadString()] = reader.ReadUInt32();
+                    }
+                    return dict;
                 }
-                return dict;
-            }
             case "AssocSInt32": {
-                int count = reader.ReadInt32();
-                var dict = new Dictionary<string, int>(count);
-                for (int i = 0; i < count; i++) {
-                    dict[reader.ReadString()] = reader.ReadInt32();
+                    int count = reader.ReadInt32();
+                    var dict = new Dictionary<string, int>(count);
+                    for (int i = 0; i < count; i++) {
+                        dict[reader.ReadString()] = reader.ReadInt32();
+                    }
+                    return dict;
                 }
-                return dict;
-            }
             default:
                 throw new ArgumentException($"Unknown property type for deserialization: {type}");
         }

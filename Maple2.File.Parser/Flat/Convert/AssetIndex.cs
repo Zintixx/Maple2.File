@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Maple2.File.IO;
 using Maple2.File.IO.Crypto.Common;
