@@ -102,6 +102,7 @@ public class TableParser {
     private readonly XmlSerializer seasonDataSerializer;
     private readonly XmlSerializer statStringSerializer;
     private readonly XmlSerializer autoActionPricePackageSerializer;
+    private readonly XmlSerializer pvpRankingDuelModeSerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -198,6 +199,7 @@ public class TableParser {
         seasonDataSerializer = new XmlSerializer(typeof(SeasonDataRoot));
         statStringSerializer = new XmlSerializer(typeof(StatStringRoot));
         autoActionPricePackageSerializer = new XmlSerializer(typeof(AutoActionPricePackageRoot));
+        pvpRankingDuelModeSerializer = new XmlSerializer(typeof(PvpRankingDuelModeRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -1550,6 +1552,16 @@ public class TableParser {
 
         foreach (AutoActionPricePackage entry in data.package) {
             yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Grade, PvpRankingDuelMode Data)> ParsePvpRankingDuelMode() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/pvprankingduelmode.xml"));
+        var data = pvpRankingDuelModeSerializer.Deserialize(reader) as PvpRankingDuelModeRoot;
+        Debug.Assert(data != null);
+
+        foreach (PvpRankingDuelMode entry in data.gradeInfo) {
+            yield return (entry.grade, entry);
         }
     }
 }

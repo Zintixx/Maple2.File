@@ -725,5 +725,12 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestPvpRankingDuelMode() {
+        foreach ((_, _) in _parser.ParsePvpRankingDuelMode()) {
+            continue;
+        }
+    }
 }
 
