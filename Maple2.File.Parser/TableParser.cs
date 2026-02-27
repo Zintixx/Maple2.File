@@ -815,7 +815,6 @@ public class TableParser {
     public IEnumerable<(int Id, IDictionary<byte, List<IndividualItemDropItem>>)> ParseIndividualItemDropFinal() {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/individualitemdrop_final.xml")));
         xml = Sanitizer.SanitizeBool(xml);
-        xml = Sanitizer.RemoveUtf8Bom(xml);
         var reader = XmlReader.Create(new StringReader(xml));
         var data = individualItemDropNewSerializer.Deserialize(reader) as IndividualItemDropRootNew;
         Debug.Assert(data != null);
@@ -1000,7 +999,6 @@ public class TableParser {
 
     public IEnumerable<(int ItemId, ShopFurnishing UgcItem)> ParseFurnishingShopUgcAll() {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/shop_ugcall.xml")));
-        xml = Sanitizer.RemoveUtf8Bom(xml);
 
         var reader = XmlReader.Create(new StringReader(xml));
         var data = shopFurnishingSerializer.Deserialize(reader) as ShopFurnishingRoot;

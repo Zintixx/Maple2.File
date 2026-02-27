@@ -95,11 +95,4 @@ public static class Sanitizer {
         string pattern = $"({string.Join('|', attributes)})=\"(-?\\d+)(?:,(\\d+))\"";
         return Regex.Replace(xml, pattern, "$1=\"$2.$3\"");
     }
-
-    public static string RemoveUtf8Bom(string xml) {
-        if (!string.IsNullOrEmpty(xml) && xml[0] == '\uFEFF') {
-            return xml[1..];
-        }
-        return xml;
-    }
 }

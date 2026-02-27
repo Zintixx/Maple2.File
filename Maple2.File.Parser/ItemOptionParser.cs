@@ -131,7 +131,6 @@ public class ItemOptionParser {
 
     public IEnumerable<ItemOptionConstant> ParseConstantNew() {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/itemoptionconstant.xml")));
-        xml = Sanitizer.RemoveUtf8Bom(xml);
         var reader = XmlReader.Create(new StringReader(xml));
         var root = itemOptionConstantNewSerializer.Deserialize(reader) as ItemOptionConstantRootNew;
         Debug.Assert(root != null);
@@ -161,7 +160,6 @@ public class ItemOptionParser {
 
     public IEnumerable<ItemOptionRandomNew> ParseRandomNew() {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/itemoptionrandom.xml")));
-        xml = Sanitizer.RemoveUtf8Bom(xml);
         var reader = XmlReader.Create(new StringReader(xml));
         var root = itemOptionNewSerializer.Deserialize(reader) as ItemOptionRandomRootNew;
         Debug.Assert(root != null);
@@ -192,7 +190,6 @@ public class ItemOptionParser {
 
     public IEnumerable<MergeOptionNew> ParseMergeOptionBaseNew() {
         string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/itemmergeoptionbase.xml")));
-        xml = Sanitizer.RemoveUtf8Bom(xml);
         var reader = XmlReader.Create(new StringReader(xml));
         var root = itemMergeOptionNewSerializer.Deserialize(reader) as ItemMergeOptionRootNew;
         Debug.Assert(root != null);

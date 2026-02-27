@@ -63,7 +63,12 @@ namespace Maple2.File.IO {
 
         public string GetString(PackFileEntry entry) {
             byte[] data = CryptoManager.DecryptData(entry.FileHeader, m2dFile);
-            return Encoding.Default.GetString(data);
+            string result = Encoding.Default.GetString(data);
+            // Remove UTF-8 BOM if present
+            if (result.Length > 0 && result[0] == '\uFEFF') {
+                return result[1..];
+            }
+            return result;
         }
 
         public void Dispose() {
