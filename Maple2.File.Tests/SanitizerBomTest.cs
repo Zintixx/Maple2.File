@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using System.Xml.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -41,7 +41,7 @@ public class SanitizerBomTest {
     public void TestParseXmlWithBom() {
         byte[] bom = [0xEF, 0xBB, 0xBF];
         byte[] content = Encoding.UTF8.GetBytes(XML_CONTENT);
-        byte[] data = [..bom, ..content];
+        byte[] data = [.. bom, .. content];
 
         // Simulate M2dReader.GetString() which strips BOM
         string xml = Encoding.Default.GetString(data);
