@@ -732,5 +732,11 @@ public class TableParserTest {
             continue;
         }
     }
-}
 
+    [TestMethod]
+    public void TestQuestGroup() {
+        foreach ((_, _) in _parser.ParseQuestGroup()) {
+            continue;
+        }
+    }
+}
