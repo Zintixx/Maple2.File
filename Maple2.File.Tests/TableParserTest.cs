@@ -158,7 +158,6 @@ public class TableParserTest {
 
     [TestMethod]
     public void TestGuildEvent() {
-        var results = _parser.ParseGuildEvent().ToList();
         foreach ((_, _) in _parser.ParseGuildEvent()) {
             continue;
         }
