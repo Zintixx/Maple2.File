@@ -165,7 +165,7 @@ public class TableParserTest {
 
     [TestMethod]
     public void TestGuildExp() {
-        foreach ((_, _) in _parser.ParseGuildEvent()) {
+        foreach ((_, _) in _parser.ParseGuildExp()) {
             continue;
         }
     }

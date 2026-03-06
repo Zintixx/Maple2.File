@@ -418,7 +418,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, GuildEvent Event)> ParseGuildEvent() {
-        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/guildcontribution.xml"));
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/guildevent.xml"));
         var data = guildEventSerializer.Deserialize(reader) as GuildEventRoot;
         Debug.Assert(data != null);
 
