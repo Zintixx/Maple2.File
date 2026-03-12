@@ -739,4 +739,27 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestDarkStream() {
+        var results = new Dictionary<int, DarkStreamReward>();
+        foreach ((int round, DarkStreamReward reward) in _parser.ParseDarkStream()) {
+            results[round] = reward;
+        }
+
+        // darkstream.xml has 31 entries (rounds 0–30) for the default (non-locale) set
+        Assert.AreEqual(31, results.Count);
+        Assert.IsTrue(results.ContainsKey(0));
+        Assert.IsTrue(results.ContainsKey(30));
+
+        // Spot check round 0
+        Assert.AreEqual(0.1f, results[0].expRate);
+        Assert.AreEqual(100, results[0].meso);
+        Assert.AreEqual(10, results[0].habi);
+
+        // Spot check round 30
+        Assert.AreEqual(6f, results[30].expRate);
+        Assert.AreEqual(70000, results[30].meso);
+        Assert.AreEqual(2300, results[30].habi);
+    }
 }

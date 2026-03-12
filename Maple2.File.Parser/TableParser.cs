@@ -104,6 +104,7 @@ public class TableParser {
     private readonly XmlSerializer autoActionPricePackageSerializer;
     private readonly XmlSerializer pvpRankingDuelModeSerializer;
     private readonly XmlSerializer questGroupSerializer;
+    private readonly XmlSerializer darkStreamSerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -202,6 +203,7 @@ public class TableParser {
         autoActionPricePackageSerializer = new XmlSerializer(typeof(AutoActionPricePackageRoot));
         pvpRankingDuelModeSerializer = new XmlSerializer(typeof(PvpRankingDuelModeRoot));
         questGroupSerializer = new XmlSerializer(typeof(QuestGroupRoot));
+        darkStreamSerializer = new XmlSerializer(typeof(DarkStreamRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -1573,6 +1575,16 @@ public class TableParser {
 
         foreach (QuestGroup entry in data.group) {
             yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Round, DarkStreamReward Reward)> ParseDarkStream() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/darkstream.xml"));
+        var data = darkStreamSerializer.Deserialize(reader) as DarkStreamRoot;
+        Debug.Assert(data != null);
+
+        foreach (DarkStreamReward entry in data.reward) {
+            yield return (entry.round, entry);
         }
     }
 }
