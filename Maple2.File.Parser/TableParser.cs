@@ -33,6 +33,7 @@ public class TableParser {
     private readonly XmlSerializer guildHouseSerializer;
     private readonly XmlSerializer guildNpcSerializer;
     private readonly XmlSerializer guildPropertySerializer;
+    private readonly XmlSerializer guildQuestRewardFactorSerializer;
     private readonly XmlSerializer instrumentCategoryInfoSerializer;
     private readonly XmlSerializer instrumentInfoSerializer;
     private readonly XmlSerializer interactObjectSerializer;
@@ -132,6 +133,7 @@ public class TableParser {
         guildHouseSerializer = new XmlSerializer(typeof(GuildHouseRoot));
         guildNpcSerializer = new XmlSerializer(typeof(GuildNpcRoot));
         guildPropertySerializer = new XmlSerializer(typeof(GuildPropertyRoot));
+        guildQuestRewardFactorSerializer = new XmlSerializer(typeof(GuildQuestRewardFactorRoot));
         instrumentCategoryInfoSerializer = new XmlSerializer(typeof(InstrumentCategoryInfoRoot));
         instrumentInfoSerializer = new XmlSerializer(typeof(InstrumentInfoRoot));
         interactObjectSerializer = new XmlSerializer(typeof(InteractObjectRoot));
@@ -466,6 +468,16 @@ public class TableParser {
 
         foreach (GuildProperty property in data.property) {
             yield return (property.level, property);
+        }
+    }
+
+    public IEnumerable<(int Id, GuildQuestRewardFactor Factor)> ParseGuildQuestRewardFactor() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/guildquestrewardfactor.xml"));
+        var data = guildQuestRewardFactorSerializer.Deserialize(reader) as GuildQuestRewardFactorRoot;
+        Debug.Assert(data != null);
+
+        foreach (GuildQuestRewardFactor factor in data.guildNpc) {
+            yield return (factor.level, factor);
         }
     }
 
