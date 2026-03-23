@@ -192,6 +192,13 @@ public class TableParserTest {
     }
 
     [TestMethod]
+    public void TestGuildQuestRewardFactor() {
+        foreach ((_, _) in _parser.ParseGuildQuestRewardFactor()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
     public void TestParseInstrumentCategoryInfo() {
         foreach ((_, _) in _parser.ParseInstrumentCategoryInfo()) {
             continue;
