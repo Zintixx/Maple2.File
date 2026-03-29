@@ -12,6 +12,8 @@ namespace Maple2.File.Parser;
 
 public class TableParser {
     private readonly M2dReader xmlReader;
+    private readonly XmlSerializer featureSettingSerializer;
+    private readonly XmlSerializer featureSerializer;
     private readonly XmlSerializer nameSerializer;
     private readonly XmlSerializer bankTypeSerializer;
     private readonly XmlSerializer chatStickerSerializer;
@@ -112,6 +114,8 @@ public class TableParser {
 
     public TableParser(M2dReader xmlReader, string language) {
         this.xmlReader = xmlReader;
+        featureSettingSerializer = new XmlSerializer(typeof(FeatureSetting));
+        featureSerializer = new XmlSerializer(typeof(FeatureRoot));
         nameSerializer = new XmlSerializer(typeof(StringMapping));
         bankTypeSerializer = new XmlSerializer(typeof(BankTypeRoot));
         chatStickerSerializer = new XmlSerializer(typeof(ChatStickerRoot));
@@ -217,6 +221,26 @@ public class TableParser {
         //         seen.Add(args.Attr.Name);
         //     }
         // };
+    }
+
+    public IEnumerable<(string Type, Setting Setting)> ParseFeatureSetting() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/feature_setting.xml"));
+        var data = featureSettingSerializer.Deserialize(reader) as FeatureSetting;
+        Debug.Assert(data != null);
+
+        foreach (Setting setting in data.setting) {
+            yield return (setting.type, setting);
+        }
+    }
+
+    public IEnumerable<(string Name, Feature Feature)> ParseFeature() {
+        XmlReader reader = xmlReader.GetXmlReader(xmlReader.GetEntry("table/feature.xml"));
+        var data = featureSerializer.Deserialize(reader) as FeatureRoot;
+        Debug.Assert(data != null);
+
+        foreach (Feature feature in data.feature) {
+            yield return (feature.name, feature);
+        }
     }
 
     public IEnumerable<(int Id, BankType BankType)> ParseBankType() {

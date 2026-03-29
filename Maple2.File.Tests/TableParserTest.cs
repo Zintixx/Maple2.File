@@ -16,6 +16,19 @@ public class TableParserTest {
         _parser = new TableParser(TestUtils.XmlReader, "en");
     }
 
+    [TestMethod]
+    public void TestFeatureParser() {
+        var settingResults = _parser.ParseFeatureSetting();
+        foreach ((_, _) in _parser.ParseFeatureSetting()) {
+            continue;
+        }
+
+        var featureResults = _parser.ParseFeature();
+        foreach ((_, _) in _parser.ParseFeature()) {
+            continue;
+        }
+    }
+
 
     [TestMethod]
     public void TestColorPaletteParser() {
