@@ -18,12 +18,10 @@ public class TableParserTest {
 
     [TestMethod]
     public void TestFeatureParser() {
-        var settingResults = _parser.ParseFeatureSetting();
         foreach ((_, _) in _parser.ParseFeatureSetting()) {
             continue;
         }
 
-        var featureResults = _parser.ParseFeature();
         foreach ((_, _) in _parser.ParseFeature()) {
             continue;
         }
