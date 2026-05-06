@@ -37,4 +37,6 @@ public partial class NpcScriptCondition : IFeatureLocale {
     [XmlAttribute] public string achieve_complete = string.Empty;
     [XmlAttribute] public string meso = string.Empty;
     [XmlAttribute] public bool guild;
+    [XmlAttribute] public int receivedRewardDungeonID;
+    [XmlAttribute] public int completeRewardDungeonID;
 }
