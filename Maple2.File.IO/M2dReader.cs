@@ -41,12 +41,12 @@ namespace Maple2.File.IO {
         }
 
         public XmlReader GetXmlReader(PackFileEntry entry) {
-            return XmlReader.Create(new MemoryStream(CryptoManager.DecryptData(entry.FileHeader, m2dFile, m2dLock)));
+            return XmlReader.Create(new MemoryStream(DecryptEntry(entry)));
         }
 
         public XmlDocument GetXmlDocument(PackFileEntry entry) {
             var document = new XmlDocument();
-            byte[] data = CryptoManager.DecryptData(entry.FileHeader, m2dFile, m2dLock);
+            byte[] data = DecryptEntry(entry);
             try {
                 document.Load(new MemoryStream(data));
             } catch {
@@ -58,17 +58,29 @@ namespace Maple2.File.IO {
         }
 
         public byte[] GetBytes(PackFileEntry entry) {
-            return CryptoManager.DecryptData(entry.FileHeader, m2dFile, m2dLock);
+            return DecryptEntry(entry);
         }
 
         public string GetString(PackFileEntry entry) {
-            byte[] data = CryptoManager.DecryptData(entry.FileHeader, m2dFile, m2dLock);
+            byte[] data = DecryptEntry(entry);
             string result = Encoding.Default.GetString(data);
             // Remove UTF-8 BOM if present
             if (result.Length > 0 && result[0] == '\uFEFF') {
                 return result[1..];
             }
             return result;
+        }
+
+        private byte[] DecryptEntry(PackFileEntry entry) {
+            try {
+                return CryptoManager.DecryptData(entry.FileHeader, m2dFile, m2dLock);
+            } catch (Exception ex) {
+                throw new InvalidDataException(
+                    $"Failed to decrypt entry '{entry.Name}' from '{m2dFile.Name}' " +
+                    $"(offset={entry.FileHeader.Offset}, encoded={entry.FileHeader.EncodedFileSize}, " +
+                    $"compressed={entry.FileHeader.CompressedFileSize}, size={entry.FileHeader.FileSize}, " +
+                    $"flag={entry.FileHeader.BufferFlag}): {ex.Message}", ex);
+            }
         }
 
         public void Dispose() {
