@@ -1640,7 +1640,7 @@ public class TableParser {
     }
 
     public IEnumerable<(int Id, DungeonRewardCoupon Coupon)> ParseDungeonRewardCoupon() {
-        string xml = Sanitizer.RemoveSpaces(xmlReader.GetString(xmlReader.GetEntry("table/na/dungeonrewardcoupon.xml")));
+        string xml = Sanitizer.RemoveSpaces(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/dungeonrewardcoupon.xml")));
         var reader = XmlReader.Create(new StringReader(xml));
         var data = dungeonRewardCouponSerializer.Deserialize(reader) as DungeonRewardCouponRoot;
         Debug.Assert(data != null);
