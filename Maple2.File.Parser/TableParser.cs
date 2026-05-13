@@ -23,6 +23,7 @@ public class TableParser {
     private readonly XmlSerializer dungeonRoundDataSerializer;
     private readonly XmlSerializer dungeonRankRewardSerializer;
     private readonly XmlSerializer dungeonConfigSerializer;
+    private readonly XmlSerializer dungeonRewardCouponSerializer;
     private readonly XmlSerializer enchantScrollSerializer;
     private readonly XmlSerializer fishSerializer;
     private readonly XmlSerializer fishHabitatSerializer;
@@ -126,6 +127,7 @@ public class TableParser {
         dungeonRoundDataSerializer = new XmlSerializer(typeof(DungeonRoundDataRoot));
         dungeonRankRewardSerializer = new XmlSerializer(typeof(DungeonRankRewardRoot));
         dungeonConfigSerializer = new XmlSerializer(typeof(DungeonConfigRoot));
+        dungeonRewardCouponSerializer = new XmlSerializer(typeof(DungeonRewardCouponRoot));
         enchantScrollSerializer = new XmlSerializer(typeof(EnchantScrollRoot));
         fishSerializer = new XmlSerializer(typeof(FishRoot));
         fishHabitatSerializer = new XmlSerializer(typeof(FishHabitatRoot));
@@ -1633,6 +1635,17 @@ public class TableParser {
         Debug.Assert(data != null);
 
         foreach (ClubBuff entry in data.clubBuff) {
+            yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, DungeonRewardCoupon Coupon)> ParseDungeonRewardCoupon() {
+        string xml = Sanitizer.RemoveSpaces(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/dungeonrewardcoupon.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = dungeonRewardCouponSerializer.Deserialize(reader) as DungeonRewardCouponRoot;
+        Debug.Assert(data != null);
+
+        foreach (DungeonRewardCoupon entry in data.dungeonRewardCoupon) {
             yield return (entry.id, entry);
         }
     }

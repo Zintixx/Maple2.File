@@ -787,4 +787,11 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestDungeonRewardCoupon() {
+        foreach ((_, _) in _parser.ParseDungeonRewardCoupon()) {
+            continue;
+        }
+    }
 }

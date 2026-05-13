@@ -59,6 +59,7 @@ public class ServerTableParser {
     private readonly XmlSerializer itemOptionVariationSerializer;
     private readonly XmlSerializer itemOptionRandomSerializer;
     private readonly XmlSerializer constantsSerializer;
+    private readonly XmlSerializer npcStatFactorByPlayerCountSerializer;
 
     public ServerTableParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
@@ -101,6 +102,7 @@ public class ServerTableParser {
         itemOptionVariationSerializer = new XmlSerializer(typeof(ItemOptionVariationRoot));
         itemOptionRandomSerializer = new XmlSerializer(typeof(ItemOptionRandomRoot));
         constantsSerializer = new XmlSerializer(typeof(Constants));
+        npcStatFactorByPlayerCountSerializer = new XmlSerializer(typeof(NpcStatFactorByPlayerCountRoot));
 
         // var seen = new HashSet<string>();
         // this.bankTypeSerializer.UnknownAttribute += (sender, args) => {
@@ -700,6 +702,17 @@ public class ServerTableParser {
 
         foreach (Constants.Key key in data.v) {
             yield return (key.key, key);
+        }
+    }
+
+    public IEnumerable<NpcStatFactorByPlayerCount> ParseNpcStatFactorByPlayerCount() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/Server/npcStatFactorByPlayerCount.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = npcStatFactorByPlayerCountSerializer.Deserialize(reader) as NpcStatFactorByPlayerCountRoot;
+        Debug.Assert(data != null);
+
+        foreach (NpcStatFactorByPlayerCount entry in data.PlayerCountFactor) {
+            yield return (entry);
         }
     }
 }
