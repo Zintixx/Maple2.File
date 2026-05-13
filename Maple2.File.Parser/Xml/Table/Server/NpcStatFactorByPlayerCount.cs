@@ -13,6 +13,7 @@ public partial class NpcStatFactorByPlayerCount {
     [XmlAttribute] public int @class;
     [XmlAttribute] public int playerCount;
     [XmlAttribute] public float hpRate;
+    [XmlAttribute] public int hpValue;
     [XmlAttribute] public float papRate;
     [XmlAttribute] public int papValue;
     [XmlAttribute] public float mapRate;

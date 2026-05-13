@@ -455,5 +455,14 @@ public class ServerTableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestNpcStatFactorByLevel() {
+        var parser = new ServerTableParser(TestUtils.ServerReader);
+
+        foreach (NpcStatFactorByLevel _ in parser.ParseNpcStatFactorByLevel()) {
+            continue;
+        }
+    }
 }
 
