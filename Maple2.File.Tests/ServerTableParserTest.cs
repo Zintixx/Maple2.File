@@ -1,5 +1,6 @@
 ﻿using Maple2.File.Parser;
 using Maple2.File.Parser.Xml.Table;
+using Maple2.File.Parser.Xml.Table.Server;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Maple2.File.Tests;
@@ -442,6 +443,15 @@ public class ServerTableParserTest {
         var parser = new ServerTableParser(TestUtils.ServerReader);
 
         foreach ((_, _) in parser.ParseConstants()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
+    public void TestNpcStatFactorByPlayerCount() {
+        var parser = new ServerTableParser(TestUtils.ServerReader);
+
+        foreach (NpcStatFactorByPlayerCount _ in parser.ParseNpcStatFactorByPlayerCount()) {
             continue;
         }
     }
