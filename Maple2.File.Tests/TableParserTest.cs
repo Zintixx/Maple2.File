@@ -794,4 +794,11 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestCharacterCreateSelect() {
+        foreach ((_, _) in _parser.ParseCharacterCreateSelect()) {
+            continue;
+        }
+    }
 }
