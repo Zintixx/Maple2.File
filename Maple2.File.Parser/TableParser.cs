@@ -111,6 +111,11 @@ public class TableParser {
     private readonly XmlSerializer darkStreamSerializer;
     private readonly XmlSerializer clubBuffSerializer;
     private readonly XmlSerializer characterCreateSelectSerializer;
+    private readonly XmlSerializer fameSerializer;
+    private readonly XmlSerializer fameDefSerializer;
+    private readonly XmlSerializer fameLimitSerializer;
+    private readonly XmlSerializer fameLogSerializer;
+    private readonly XmlSerializer famePickMethodSerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -216,6 +221,11 @@ public class TableParser {
         darkStreamSerializer = new XmlSerializer(typeof(DarkStreamRoot));
         clubBuffSerializer = new XmlSerializer(typeof(ClubBuffRoot));
         characterCreateSelectSerializer = new XmlSerializer(typeof(CharacterCreateSelect));
+        fameSerializer = new XmlSerializer(typeof(FameRoot));
+        fameDefSerializer = new XmlSerializer(typeof(FameDef));
+        fameLimitSerializer  = new XmlSerializer(typeof(FameLimitRoot));
+        fameLogSerializer = new XmlSerializer(typeof(FameLogRoot));
+        famePickMethodSerializer = new XmlSerializer(typeof(FamePickMethod));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -1660,6 +1670,67 @@ public class TableParser {
 
         foreach (CharacterCreateSelectGroup entry in data.group) {
             yield return (entry.name, entry);
+        }
+    }
+
+    public IEnumerable<(string Alliance, int Grade, Fame Fame)> ParseFame() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/fame.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = fameSerializer.Deserialize(reader) as FameRoot;
+        Debug.Assert(data != null);
+
+        foreach (Fame entry in data.fame) {
+            yield return (entry.alliance, entry.grade, entry);
+        }
+    }
+
+    public IEnumerable<(string Name, FameSeason Fame)> ParseFameDef() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/famedef.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = fameDefSerializer.Deserialize(reader) as FameDef;
+        Debug.Assert(data != null);
+
+        foreach (FameSeason entry in data.season) {
+            yield return (entry.name, entry);
+        }
+    }
+
+    public IEnumerable<(string Alliance, FameLimit Fame)> ParseFameLimit() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/famelimit.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = fameLimitSerializer.Deserialize(reader) as FameLimitRoot;
+        Debug.Assert(data != null);
+
+        foreach (FameLimit entry in data.condition) {
+            yield return (entry.alliance, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, FameLog Fame)> ParseFameLog() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/famelog.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = fameLogSerializer.Deserialize(reader) as FameLogRoot;
+        Debug.Assert(data != null);
+
+        foreach (FameLog entry in data.fame) {
+            yield return (entry.id, entry);
+        }
+    }
+
+
+    public IEnumerable<(string Type, int RepeatType, FamePickMethod.PickMethod PickMethod)> ParseFamePickMethod() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/famepickmethod.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = famePickMethodSerializer.Deserialize(reader) as FamePickMethod;
+        Debug.Assert(data != null);
+
+        FamePickMethod.Environment environment = data.environment.ResolveFeatureLocale();
+        if (environment == null) {
+            yield break;
+        }
+
+        foreach (FamePickMethod.PickMethod pickMethod in environment.method) {
+            yield return (pickMethod.type, pickMethod.repeatType, pickMethod);
         }
     }
 }

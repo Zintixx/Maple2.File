@@ -801,4 +801,39 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestFame() {
+        foreach ((_, _, _) in _parser.ParseFame()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
+    public void TestFameDef() {
+        foreach ((_, _) in _parser.ParseFameDef()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
+    public void TestFameLimit() {
+        foreach ((_, _) in _parser.ParseFameLimit()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
+    public void TestFameLog() {
+        foreach ((_, _) in _parser.ParseFameLog()) {
+            continue;
+        }
+    }
+
+    [TestMethod]
+    public void TestFamePickMethod() {
+        foreach ((_, _, _) in _parser.ParseFamePickMethod()) {
+            continue;
+        }
+    }
 }
