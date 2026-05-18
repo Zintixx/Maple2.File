@@ -10,7 +10,6 @@ public partial class FamePickMethod {
 
     public partial class Environment : IFeatureLocale {
         [M2dFeatureLocale] private IList<PickMethod> _method;
-
     }
 
     public partial class PickMethod : IFeatureLocale {
@@ -19,11 +18,11 @@ public partial class FamePickMethod {
         [M2dArray] public int[] pickCountByRank = Array.Empty<int>();
         [XmlAttribute] public int reloadOnAccept;
         [XmlAttribute] public int reloadOnComplete;
-        [XmlElement] public List<Alliance> _alliance;
+        [XmlElement] public List<Alliance> alliance;
     }
 
     public class Alliance {
-        [XmlAttribute] public int id;
+        [XmlAttribute] public string id = string.Empty;
     }
 }
 
