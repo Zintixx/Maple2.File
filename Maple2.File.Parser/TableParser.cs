@@ -116,6 +116,7 @@ public class TableParser {
     private readonly XmlSerializer fameLimitSerializer;
     private readonly XmlSerializer fameLogSerializer;
     private readonly XmlSerializer famePickMethodSerializer;
+    private readonly XmlSerializer characterAbilitySerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -226,6 +227,7 @@ public class TableParser {
         fameLimitSerializer  = new XmlSerializer(typeof(FameLimitRoot));
         fameLogSerializer = new XmlSerializer(typeof(FameLogRoot));
         famePickMethodSerializer = new XmlSerializer(typeof(FamePickMethod));
+        characterAbilitySerializer = new XmlSerializer(typeof(CharacterAbilityRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -1731,6 +1733,17 @@ public class TableParser {
 
         foreach (FamePickMethod.PickMethod pickMethod in environment.method) {
             yield return (pickMethod.type, pickMethod.repeatType, pickMethod);
+        }
+    }
+
+    public IEnumerable<(int Id, CharacterAbility Ability)> ParseCharacterAbility() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/characterability.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = characterAbilitySerializer.Deserialize(reader) as CharacterAbilityRoot;
+        Debug.Assert(data != null);
+
+        foreach (CharacterAbility entry in data.ability) {
+            yield return (entry.id, entry);
         }
     }
 }

@@ -836,4 +836,11 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestCharacterAbility() {
+        foreach ((_, _) in _parser.ParseCharacterAbility()) {
+            continue;
+        }
+    }
 }
