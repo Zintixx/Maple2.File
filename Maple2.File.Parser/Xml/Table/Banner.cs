@@ -15,5 +15,6 @@ public partial class Banner {
     [XmlAttribute] public bool ad;
     [XmlAttribute] public int size;
     [XmlAttribute] public string @default = string.Empty;
+    [XmlAttribute] public bool admin;
     [M2dArray] public long[] price = Array.Empty<long>();
 }
