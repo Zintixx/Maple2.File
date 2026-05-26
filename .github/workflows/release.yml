@@ -5,7 +5,7 @@ on:
 jobs:
   check:
     # Only ever run in the canonical repo, never in a fork.
-    if: github.repository == 'AngeloTadeucci/Maple2.File'
+    if: github.repository == 'MS2Community/Maple2.File'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
