@@ -117,6 +117,11 @@ public class TableParser {
     private readonly XmlSerializer fameLogSerializer;
     private readonly XmlSerializer famePickMethodSerializer;
     private readonly XmlSerializer characterAbilitySerializer;
+    private readonly XmlSerializer maidExpSerializer;
+    private readonly XmlSerializer maidPropertySerializer;
+    private readonly XmlSerializer maidRecipeSerializer;
+    private readonly XmlSerializer maidRecipeGroupSerializer;
+    private readonly XmlSerializer maidSalarySerializer;
 
     private readonly string locale;
     private readonly string language;
@@ -228,6 +233,11 @@ public class TableParser {
         fameLogSerializer = new XmlSerializer(typeof(FameLogRoot));
         famePickMethodSerializer = new XmlSerializer(typeof(FamePickMethod));
         characterAbilitySerializer = new XmlSerializer(typeof(CharacterAbilityRoot));
+        maidExpSerializer = new XmlSerializer(typeof(MaidExpRoot));
+        maidPropertySerializer = new XmlSerializer(typeof(MaidPropertyRoot));
+        maidRecipeSerializer = new XmlSerializer(typeof(MaidRecipeRoot));
+        maidRecipeGroupSerializer = new XmlSerializer(typeof(MaidRecipeGroupRoot));
+        maidSalarySerializer = new XmlSerializer(typeof(MaidSalaryRoot));
 
         locale = FeatureLocaleFilter.Locale.ToLower();
         this.language = language;
@@ -1743,6 +1753,61 @@ public class TableParser {
         Debug.Assert(data != null);
 
         foreach (CharacterAbility entry in data.ability) {
+            yield return (entry.id, entry);
+        }
+    }
+
+    public IEnumerable<(int Level, MaidExp Exp)> ParseMaidExp() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/maidexp.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidExpSerializer.Deserialize(reader) as MaidExpRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidExp entry in data.Exp) {
+            yield return (entry.Level, entry);
+        }
+    }
+
+    public IEnumerable<(int MaidId, MaidProperty Property)> ParseMaidProperty() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/maidproperty.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidPropertySerializer.Deserialize(reader) as MaidPropertyRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidProperty entry in data.Property) {
+            yield return (entry.MaidID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, MaidRecipe Recipe)> ParseMaidRecipe() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/maidrecipe.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidRecipeSerializer.Deserialize(reader) as MaidRecipeRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidRecipe entry in data.recipe) {
+            yield return (entry.Id, entry);
+        }
+    }
+
+    public IEnumerable<(int GroupId, MaidRecipeGroup Group)> ParseMaidRecipeGroup() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/maidrecipegroup.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidRecipeGroupSerializer.Deserialize(reader) as MaidRecipeGroupRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidRecipeGroup entry in data.group) {
+            yield return (entry.GroupID, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, MaidSalary Salary)> ParseMaidSalary() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry($"table/{locale}/maidsalary.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidSalarySerializer.Deserialize(reader) as MaidSalaryRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidSalary entry in data.key) {
             yield return (entry.id, entry);
         }
     }

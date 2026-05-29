@@ -15,6 +15,8 @@ using IndividualItemDropRoot = Maple2.File.Parser.Xml.Table.Server.IndividualIte
 using ItemMergeOptionRoot = Maple2.File.Parser.Xml.Table.Server.ItemMergeOptionRoot;
 using ItemOptionVariation = Maple2.File.Parser.Xml.Table.Server.ItemOptionVariation;
 using MergeOption = Maple2.File.Parser.Xml.Table.Server.MergeOption;
+using MaidRecipe = Maple2.File.Parser.Xml.Table.Server.MaidRecipe;
+using MaidRecipeRoot = Maple2.File.Parser.Xml.Table.Server.MaidRecipeRoot;
 
 namespace Maple2.File.Parser;
 
@@ -61,6 +63,8 @@ public class ServerTableParser {
     private readonly XmlSerializer constantsSerializer;
     private readonly XmlSerializer npcStatFactorByPlayerCountSerializer;
     private readonly XmlSerializer npcStatFactorByLevelSerializer;
+    private readonly XmlSerializer maidGradeInfoSerializer;
+    private readonly XmlSerializer maidRecipeSerializer;
 
     public ServerTableParser(M2dReader xmlReader) {
         this.xmlReader = xmlReader;
@@ -105,6 +109,8 @@ public class ServerTableParser {
         constantsSerializer = new XmlSerializer(typeof(Constants));
         npcStatFactorByPlayerCountSerializer = new XmlSerializer(typeof(NpcStatFactorByPlayerCountRoot));
         npcStatFactorByLevelSerializer = new XmlSerializer(typeof(NpcStatFactorByLevelRoot));
+        maidGradeInfoSerializer = new XmlSerializer(typeof(MaidGradeInfoRoot));
+        maidRecipeSerializer = new XmlSerializer(typeof(MaidRecipeRoot));
 
         // var seen = new HashSet<string>();
         // this.bankTypeSerializer.UnknownAttribute += (sender, args) => {
@@ -726,6 +732,28 @@ public class ServerTableParser {
 
         foreach (NpcStatFactorByLevel entry in data.levelFactor) {
             yield return entry;
+        }
+    }
+
+    public IEnumerable<(int Grade, MaidGradeInfo GradeInfo)> ParseMaidGradeInfo() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/Server/MaidGradeInfo.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidGradeInfoSerializer.Deserialize(reader) as MaidGradeInfoRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidGradeInfo entry in data.Grade) {
+            yield return (entry.Grade, entry);
+        }
+    }
+
+    public IEnumerable<(int Id, MaidRecipe Recipe)> ParseMaidRecipe() {
+        string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry("table/Server/MaidRecipeSvr.xml")));
+        var reader = XmlReader.Create(new StringReader(xml));
+        var data = maidRecipeSerializer.Deserialize(reader) as MaidRecipeRoot;
+        Debug.Assert(data != null);
+
+        foreach (MaidRecipe entry in data.recipe) {
+            yield return (entry.Id, entry);
         }
     }
 }

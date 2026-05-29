@@ -843,4 +843,23 @@ public class TableParserTest {
             continue;
         }
     }
+
+    [TestMethod]
+    public void TestMaid() {
+        foreach ((_, _) in _parser.ParseMaidExp()) {
+            continue;
+        }
+        foreach ((_, _) in _parser.ParseMaidProperty()) {
+            continue;
+        }
+        foreach ((_, _) in _parser.ParseMaidRecipe()) {
+            continue;
+        }
+        foreach ((_, _) in _parser.ParseMaidRecipeGroup()) {
+            continue;
+        }
+        foreach ((_, _) in _parser.ParseMaidSalary()) {
+            continue;
+        }
+    }
 }
