@@ -2,6 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 using Maple2.File.IO;
+using Maple2.File.IO.Crypto.Common;
 using Maple2.File.Parser.Tools;
 using Maple2.File.Parser.Xml;
 using Maple2.File.Parser.Xml.Table;
@@ -9,17 +10,6 @@ using Maple2.File.Parser.Xml.Table;
 namespace Maple2.File.Parser;
 
 public class ItemOptionParser {
-    private readonly string[] constantSuffix = [
-        "equip",
-        "equip_fighter",
-        "equip_pet",
-        "equip_s2",
-        "equipmanual",
-        "etc",
-        "gemstone",
-        "mergematerial",
-        "skin",
-    ];
     private readonly string[] randomSuffix = [
         "12",
         "13",
@@ -114,9 +104,8 @@ public class ItemOptionParser {
     }
 
     public IEnumerable<ItemOptionConstantData> ParseConstant() {
-        foreach (string suffix in constantSuffix) {
-            string filename = $"itemoption/constant/itemoptionconstant_{suffix}.xml";
-            string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(xmlReader.GetEntry(filename)));
+        foreach (PackFileEntry entry in xmlReader.Files.Where(entry => entry.Name.StartsWith("itemoption/constant/itemoptionconstant_"))) {
+            string xml = Sanitizer.RemoveEmpty(xmlReader.GetString(entry));
             var reader = XmlReader.Create(new StringReader(xml));
             var root = itemOptionConstantSerializer.Deserialize(reader) as ItemOptionConstantRoot;
             Debug.Assert(root != null);
