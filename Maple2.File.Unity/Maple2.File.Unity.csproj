@@ -41,6 +41,10 @@
         <!-- NpcParser and dependencies -->
         <Compile Include="..\Maple2.File.Parser\NpcParser.cs" Link="NpcParser.cs" />
         <Compile Include="..\Maple2.File.Parser\Xml\Npc\*.cs" Link="Xml\Npc\%(Filename)%(Extension)" />
+
+        <!-- ItemParser and dependencies -->
+        <Compile Include="..\Maple2.File.Parser\ItemParser.cs" Link="ItemParser.cs" />
+        <Compile Include="..\Maple2.File.Parser\Xml\Item\*.cs" Link="Xml\Item\%(Filename)%(Extension)" />
         <Compile Include="..\Maple2.File.Parser\Xml\Common\StatValue.cs" Link="Xml\Common\StatValue.cs" />
         <Compile Include="..\Maple2.File.Parser\Xml\Common\ItemOption.cs" Link="Xml\Common\ItemOption.cs" />
         <Compile Include="..\Maple2.File.Parser\Xml\Common\ItemOptionNew.cs" Link="Xml\Common\ItemOptionNew.cs" />
