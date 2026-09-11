@@ -157,6 +157,38 @@ public class AssetIndex {
         return (name, path, string.Join(':', tags));
     }
 
+    // Lazily-built reverse of ntLookup["name"] (uuid -> name), so ResolveLlid can go name -> uuid -> llid.
+    private Dictionary<string, string> nameToUuid;
+
+    /// <summary>The reverse of <see cref="GetFields"/>: resolve an asset NAME (e.g. a NIF's
+    /// <c>40400053_ugc_..._run_a</c>) back to its <c>urn:llid:...</c> string, or "" when the name is not in
+    /// the metadata. The map editor uses this to write a placed entity's <c>NifAsset</c> in the urn:llid
+    /// form the retail client requires, rather than the bare name (which only this project's loader accepts).
+    /// Case-insensitive; builds the name→uuid index once on first use and reuses it.</summary>
+    public string ResolveLlid(string name) {
+        if (string.IsNullOrEmpty(name)) {
+            return "";
+        }
+
+        if (nameToUuid == null) {
+            nameToUuid = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            if (ntLookup.TryGetValue("name", out Dictionary<string, string> nameMap)) {
+                foreach ((string uuid, string assetName) in nameMap) {
+                    // NIF asset names are unique in practice; last write wins on the rare duplicate.
+                    nameToUuid[assetName] = uuid;
+                }
+            }
+        }
+
+        if (!nameToUuid.TryGetValue(name, out string foundUuid)
+            || !ntLookup.TryGetValue("llid", out Dictionary<string, string> llidMap)
+            || !llidMap.TryGetValue(foundUuid, out string llid)) {
+            return "";
+        }
+
+        return "urn:llid:" + llid;
+    }
+
     private static Dictionary<string, string> ParseNtFile(string data) {
         var result = new Dictionary<string, string>();
         foreach (string line in data.Split("\n")) {
