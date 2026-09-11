@@ -9,7 +9,11 @@ namespace Maple2.File.IO {
     public class M2dReader : IDisposable {
         private readonly FileStream m2dFile;
         private readonly object m2dLock = new();
-        public readonly IReadOnlyList<PackFileEntry> Files;
+        public IReadOnlyList<PackFileEntry> Files { get; protected set; }
+
+        // For subclasses (e.g. LooseM2dReader) that source their files from somewhere other than a packed
+        // .m2d/.m2h pair — they set Files themselves and override the Get* readers. Leaves m2dFile null.
+        protected M2dReader() { }
 
         public M2dReader(string path) {
             // Force Globalization to en-US because we use periods instead of commas for decimals
@@ -40,11 +44,11 @@ namespace Maple2.File.IO {
             return Files.First(entry => entry.Name.EndsWith(filename));
         }
 
-        public XmlReader GetXmlReader(PackFileEntry entry) {
+        public virtual XmlReader GetXmlReader(PackFileEntry entry) {
             return XmlReader.Create(new MemoryStream(DecryptEntry(entry)));
         }
 
-        public XmlDocument GetXmlDocument(PackFileEntry entry) {
+        public virtual XmlDocument GetXmlDocument(PackFileEntry entry) {
             var document = new XmlDocument();
             byte[] data = DecryptEntry(entry);
             try {
@@ -57,11 +61,11 @@ namespace Maple2.File.IO {
             return document;
         }
 
-        public byte[] GetBytes(PackFileEntry entry) {
+        public virtual byte[] GetBytes(PackFileEntry entry) {
             return DecryptEntry(entry);
         }
 
-        public string GetString(PackFileEntry entry) {
+        public virtual string GetString(PackFileEntry entry) {
             byte[] data = DecryptEntry(entry);
             string result = Encoding.Default.GetString(data);
             // Remove UTF-8 BOM if present
