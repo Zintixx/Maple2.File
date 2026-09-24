@@ -164,7 +164,10 @@ public class AssetIndex {
     /// <c>40400053_ugc_..._run_a</c>) back to its <c>urn:llid:...</c> string, or "" when the name is not in
     /// the metadata. The map editor uses this to write a placed entity's <c>NifAsset</c> in the urn:llid
     /// form the retail client requires, rather than the bare name (which only this project's loader accepts).
-    /// Case-insensitive; builds the name→uuid index once on first use and reuses it.</summary>
+    /// Case-insensitive; builds the name→uuid index once on first use and reuses it.
+    /// Only <c>gamebryo-scenegraph</c> (NIF) assets are considered: names are NOT unique across kinds — a
+    /// cube NIF, its texture and its flat usually share one (<c>ca_deform_brick_A01</c> is both a .nif and a
+    /// .dds), and 4,416 of the GMS2 client's 29,751 NIF names collide with another asset that way.</summary>
     public string ResolveLlid(string name) {
         if (string.IsNullOrEmpty(name)) {
             return "";
@@ -172,10 +175,12 @@ public class AssetIndex {
 
         if (nameToUuid == null) {
             nameToUuid = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            if (ntLookup.TryGetValue("name", out Dictionary<string, string> nameMap)) {
+            if (ntLookup.TryGetValue("name", out Dictionary<string, string> nameMap)
+                && ntLookup.TryGetValue("gamebryo-scenegraph", out Dictionary<string, string> scenegraph)) {
                 foreach ((string uuid, string assetName) in nameMap) {
-                    // NIF asset names are unique in practice; last write wins on the rare duplicate.
-                    nameToUuid[assetName] = uuid;
+                    if (scenegraph.ContainsKey(uuid)) {
+                        nameToUuid[assetName] = uuid;
+                    }
                 }
             }
         }

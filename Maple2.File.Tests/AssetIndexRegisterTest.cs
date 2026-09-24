@@ -89,6 +89,15 @@ public class AssetIndexRegisterTest {
     }
 
     [TestMethod]
+    public void ResolveLlid_PrefersTheNif_WhenATextureSharesItsName() {
+        AssetIndex index = BuildIndex();
+        AssetIndex.CustomAsset nif = index.Register("/Model/Map/Custom/cube/cu_same_A01.nif", "application", "gamebryo-scenegraph");
+        index.Register("/Model/Map/Textures/Custom/cu_same_A01.dds", "dds", "image"); // registered last
+
+        Assert.AreEqual(nif.UrnLlid, index.ResolveLlid("cu_same_A01"));
+    }
+
+    [TestMethod]
     public void Register_IsIdempotent_AndSurvivesSerialization() {
         AssetIndex index = BuildIndex();
         AssetIndex.CustomAsset first = index.Register("/Model/Map/Custom/cube/cu_test_cube_A01.nif", "gamebryo-scenegraph");
